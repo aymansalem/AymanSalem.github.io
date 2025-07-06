@@ -2,31 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Analysis Portfolio | Ayman Salem</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; }
-    .bg-purple { background-color: #6a1b9a; }
-    .bg-pink { background-color: #e91e63; color: white; }
-    .btn-pink { background-color: #e91e63; color: white; border: none; }
-    .hero { color: white; background-image: linear-gradient(135deg, #6a1b9a, #8e24aa); }
-    .project-card img { max-width: 100%; border-radius: 8px; }
-    .code-link { font-size: 0.9rem; }
-    .footer a { color: white; margin: 0 10px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Data Analytics Portfolio | Ayman Salem</title>
+  <meta name="description" content="Explore Ayman Salem's hotel data analytics projects using Tableau, SQL, and Python. Focused on booking pace, ADR, forecast accuracy, and revenue trends." />
+  <meta name="keywords" content="Hotel Data Analytics, Revenue Management, Tableau, Python, SQL, ADR, Booking Pace, Forecast vs Actual, Hospitality Insights, Ayman Salem" />
+  <meta name="author" content="Ayman Salem" />
+  <meta property="og:title" content="Hotel Data Analytics Portfolio | Ayman Salem" />
+  <meta property="og:description" content="Explore data-driven insights into hotel performance. Forecasting, booking pace, and pricing analysis visualized with Tableau and Python." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com" />
+  <meta property="og:image" content="https://yourdomain.com/assets/preview.jpg" />
+  
+  <link rel="canonical" href="https://yourdomain.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
+<body>
+  <!-- Header and Navigation -->
+  <nav class="navbar navbar-expand-lg bg-purple">
     <div class="container">
-      <a class="navbar-brand" href="#">Ayman Salem</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <a class="navbar-brand text-white" href="#">Hotel Data Insights</a>
+      <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a c
+          <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <header class="hero bg-purple text-center py-5">
+    <div class="container">
+      <h1 class="text-white mb-3">Unlocking Hospitality Performance with Data</h1>
+      <p class="text-white">Transforming hotel metrics into actionable insights using Tableau, PostgreSQL, and Python.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Featured Projects -->
+    <section id="projects" class="container my-5">
+      <h2 class="text-center mb-4">Featured Analysis Projects</h2>
+      <div class="row">
+        <article class="col-md-4">
+          <div class="box bg-blue p-4 text-white">
+            <h5>Booking Pace Analysis</h5>
+            <p>Visualizing year-over-year room sales and seasonality insights using Tableau dashboards.</p>
+            <a href="https://github.com/aymansalem/ZNZ_hotel_analysis" class="btn btn-light btn-sm" rel="noopener" target="_blank">View</a>
+          </div>
+        </article>
+        <article class="col-md-4">
+          <div class="box bg-blue p-4 text-white">
+            <h5>Weekly Segment Performance</h5>
+            <p>PostgreSQL + Python visualizations tracking ADR across market segments weekly.</p>
+            <a href="https://github.com/aymansalem/ZNZ_hotel_analysis" class="btn btn-light btn-sm" rel="noopener" target="_blank">Explore</a>
+          </div>
+        </article>
+        <article class="col-md-4">
+          <div class="box bg-blue p-4 text-white">
+            <h5>Forecast vs Actual</h5>
+            <p>Compare forecasted and actual demand across lead times, segments, and seasons.</p>
+            <a href="https://github.com/aymansalem/ZNZ_hotel_analysis" class="btn btn-light btn-sm" rel="noopener" target="_blank">Details</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Project Highlights -->
+    <section class="container my-5">
+      <h2 class="text-center mb-4">Project Highlights</h2>
+
+      <!-- Booking Trends -->
+      <article class="mb-5">
+        <h3>Market Segment Booking Pace Analysis</h3>
+        <ul>
+          <li>Analyzed OTA vs Direct bookings (2018–2020) using historical OTB data.</li>
+          <li>Segmented bookings by lead time and grouped by weekly arrival dates.</li>
+          <li>Generated KPIs: Room Nights, ADR, Revenue by segment and lead time.</li>
+          <li>Created dynamic filters by hotel and channel in Tableau dashboards.</li>
+        </ul>
+        <a href="booking_pace.html" class="btn btn-pink">Booking Trends Analysis</a>
+      </article>
+
+      <!-- ADR & RevPAR Weekly -->
+      <article class="mb-5">
+        <h3>ADR & RevPAR Weekly Insights</h3>
+        <ul>
+          <li>Tracked weekly ADR shifts and pricing volatility by segment and year.</li>
+          <li>Visualized ADR change YoY between 2018–2020 for pricing optimization.</li>
+          <li>Identified underperforming weeks and price sensitivity indicators.</li>
+        </ul>
+        <a href="adr.html" class="btn btn-pink">View ADR Insights</a>
+      </article>
+
+      <!-- Forecast Accuracy -->
+      <article class="mb-5">
+        <h3>Forecast vs Actual Performance</h3>
+        <ul>
+          <li>Measured variance in forecasted vs actual room nights and ADR by week.</li>
+          <li>Highlighted segment-level forecast accuracy and booking behaviors.</li>
+          <li>Supported future model refinement based on variance tracking.</li>
+        </ul>
+        <a href="forecast.html" class="btn btn-pink">View Forecast Comparison</a>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer bg-pink text-center py-3 mt-4">
+    <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
+  </footer>
+</body>
+</html>
