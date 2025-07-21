@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /search
+Disallow: /b/
+Disallow: /preview
+Allow: /
+
+Sitemap: https://aymansalem.github.io/sitemap.xml
