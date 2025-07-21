@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forecast vs Actual | Hotel Data Analysis</title>
+  <meta name="description" content="Compare forecasted and actual hotel performance by room nights, revenue, and ADR. Track segment-level accuracy and refine predictive models with visual insights." />
+  <meta name="keywords" content="hotel forecast analysis, actual vs forecast, ADR forecast accuracy, booking variance, revenue forecast, segment-level performance" />
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- === FORECAST PAGE === -->
+<!-- Forecast Project (forecast.html) -->
+<link rel="canonical" href="https://aymansalem.github.io/forecast">
+ <!-- === FORECAST PAGE === -->
+<!-- Forecast Project (forecast.html) -->
+<link rel="canonical" href="https://aymansalem.github.io/forecast.html /">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {
+        "@type": "WebPage",
+        "@id": "https://aymansalem.github.io/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Forecast",
+      "item": {
+        "@type": "WebPage",
+        "@id": "https://aymansalem.github.io/forecast"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+  <title>Hotel Trends | Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-purple">
+  <div class="container">
+    <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="Forc_vs_Actual.html">Booking Pace</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="adr.html">ADR & RevPAR</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="forecast.html">Forecast</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero bg-purple text-white py-5 text-center">
+  <div class="container">
+    <h1 class="mb-3"> Hotel Segment Forecasting </h1>
+    <p class="lead">Measure weekly forecasting accuracy for room nights and ADR across segments, and uncover data-driven refinement opportunities.</p>
+  </div>
+</section>
+
+
+<section class = "container -5">
+  <br><br/>
+    <h3>📊 Reading Report Output</h3>
+
+ <p> Report analgising to determine the how to spread RevPAR, Occupancy and Rate targets through all major segments and accounts. 
+These output helps to read into Monthly Bases the total property view “total Properties 13 Boutique hotels” </p>
+<h5>Executive Summary page</h5>
+<b>The first Section</b>, with expected roomnight, mix and ADR change for 2019 and 2020. 
+<br><b>The second report pag</b>e is a 2019 Segment Conribution to RevPAR growth<br>
+</div>
+
+<!-- Content Section -->
+
+
+</section>
+<section class="container my-5">
+
+  <!-- Section 1 -->
+
+
+
+<section class="mb-5">
+   <h3 class="mb-4"> 📊Properties Averages Summary</h3>
+    <p>Visualize weekly differences between forecasted and actual room nights sold and ADR, highlighting deviations that guide forecast improvements.</p>
+    
+   
+    <!-- 3 col intro-->
+        <h3 class="mb-4">Properties Segment Overview</h3>
+        <div>
+          <p>understanding what drives RevPAR change helps you:
+Identify whether growth is volume-driven (Occupancy) or rate-driven (ADR).
+Adjust strategy: If ADR is flat but occupancy rises → pricing opportunity.
+Align forecasting and pricing strategy by segment or season.
+</p>
+        </div>
+    <section class="mb-5">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Properties' Averages</h5>
+        <img src="assets/matrix-1.PNG" class="img-fluid rounded" alt="proprties avg">
+      </div>
+      <div class="col-md-4">
+        <h5>Average Changes </h5>
+        <img src="assets/matrix-change1.PNG" class="img-fluid rounded" alt="Average Changes Table">
+      </div>
+      <div class="col-md-4">
+        <h5>Drivers of RevPAR Changes</h5>
+        <img src="assets/matrix-change2.PNG" class="img-fluid rounded" alt="ADR Change Table">
+      </div>
+    </div>
+  </section>
+
+
+<!---2 col 4 graphsa-->
+
+<section class="mb-5">
+    <h3 class="mb-4">Segment Total</h3>
+<p>
+  <b>Room Nights</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭 Tracks segment growth (e.g., Is OTA growing while Direct is shrinking?)
+💰 Revenue strategy alignment (e.g., push high-ADR segments)
+🎯 Marketing targeting (e.g., re-engage underperforming channels)
+</p>
+<p>
+  <b>MIX (%) by Segment</b>for each year — which shows how much each Segment to the total business annually.
+🧠 Why This Query is Important
+Shows reliance on OTAs, Direct, TO/TA, etc.
+Helps identify shifts in booking patterns over time
+Useful for strategic planning and segment targeting
+Reveals disintermediation opportunities (e.g., shift OTA to Direct)
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>Room Nights by Segment</h5>
+        <img src="assets/seg-roomnught.PNG" class="img-fluid rounded" alt="Room Nights Table">
+      </div>
+      <div class="col-md-6">
+        <h5>MIX (%) by Segment </h5>
+        
+        <img src="assets/seg-mix.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - Room Nights by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - MIX (%) by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!--segment-2-->
+
+<section class="mb-5">
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+
+
+
+
+<p>
+
+
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!---col 2 segment changes-->
+
+
+<section class="mb-5">
+    <h3 class="mb-4">Segment Changes</h3>
+<p>
+
+<b>What This Query Is About:</b>
+This query tracks <b>CHANGES </b> happened on <b>Room Nights</b>, <b>ADR</b> ,<b>Mix</b> ,<b>RevPAR</b> and <b>Revenue</b> by Segment (e.g., Corporate, Group, Contract) across three years (2014–2016), and it categorizes them into:
+</p>
+<p>
+🧠<b>Why This Query Is Important:</b> 
+<b>📊 Segment Change</b> : It tells you which segments are growing or declining in contribution.
+
+📈 Transient vs Group mix tracking: Helps you monitor balance between transient (short-stay, rate-sensitive) and group (block) business.
+
+🧩 Forecasting & Budgeting: These trends guide how to allocate sales effort, adjust rate strategy, or optimize inventory.
+
+🔍 Strategy Refinement: Spot where demand shifts are occurring by year.
+</p>
+  
+<p>
+  <b>MIX (%) by Segment</b>for each year — which shows how much each Segment to the total business annually.
+🧠 Why This Query is Important
+Shows reliance on OTAs, Direct, TO/TA, etc.
+Helps identify shifts in booking patterns over time
+Useful for strategic planning and segment targeting
+Reveals disintermediation opportunities (e.g., shift OTA to Direct)
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>Room Nights Change by Segment</h5>
+        <img src="assets/seg-roomnught.PNG" class="img-fluid rounded" alt="Room Nights Table">
+      </div>
+      <div class="col-md-6">
+        <h5>MIX (%) by Segment </h5>
+        
+        <img src="assets/seg-mix.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - Room Nights by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - MIX (%) by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!--segment-2-->
+
+<section class="mb-5">
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <!-- Section 2 --->
+  <div class="mb-5">
+    <h3>🔎 Segment-Level Forecast Accuracy</h3>
+    <p>Track how accurately each market segment performed against projected values. Pinpoint which segments are most predictable and which need better modeling.</p>
+    <img src="assets/segment-forecast-accuracy-placeholder.png" alt="Segment Forecast Accuracy" class="img-fluid mb-3" style="max-width: 700px;" />
+  </div>
+  <section class="mb-5">
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <div class="mb-5">
+    <h3>📅 Booking Window Impact</h3>
+    <p>Understand how lead time affects forecasting reliability. Longer lead windows often introduce more volatility and deviation from expected demand.</p>
+    <img src="assets/forecast-leadtime-placeholder.png" alt="Lead Time and Forecast Accuracy" class="img-fluid mb-3" style="max-width: 700px;" />
+  </div>
+  <section class="mb-5">
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <div class="mb-5">
+    <h3>📉 Forecast Error by Week</h3>
+    <p>Analyze weeks with largest forecasting errors to adjust model assumptions and improve future planning for revenue, staffing, and inventory.</p>
+    <img src="assets/weekly-error-placeholder.png" alt="Forecasting Error by Week" class="img-fluid mb-3" style="max-width: 700px;" />
+  </div>
+  <section class="mb-5">
+    <section class="mb-5">
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <div class="mb-5">
+    <h3>📈 Trend of Forecast Accuracy Over Time</h3>
+    <p>Evaluate whether forecasting performance is improving year-over-year, indicating successful adjustments and model tuning.</p>
+    <img src="assets/forecast-trend-placeholder.png" alt="Forecast Accuracy Trend" class="img-fluid mb-3" style="max-width: 700px;" />
+  </div>
+<section class="mb-5">
+  <section class="mb-5">
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+<p>
+
+  <b>ADR by Segment</b> How many  were generated by each distribution channel (segment) over three years.
+<b>Why it's important:</b>
+🧭  It tracks pricing trends by Segment.
+🎯 Helps identify underpriced or overpriced segments.
+💰 Supports revenue optimization and strategic rate setting.
+📈 Helps identify high-yield vs low-yield segments
+Informs pricing strategies by segment and year
+Enables benchmarking over time
+Foundation for RevPAR decomposition (ADR × Occ%)
+
+</p>
+<p>
+
+  <b>Revenue by Segment</b>Calculates total revenue per segment for each year from 2014 to 2016.
+
+🧠 Why This Query is Important
+Tracks revenue contribution by segment across years.
+Identifies growth trends or underperforming channels.
+Useful for budgeting, forecasting, and strategic allocation.
+</p>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>ADR by Segment</h5>
+        <img src="assets/adr-seg-1.PNG" class="img-fluid rounded" alt="ADR by Segment Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Revenue by Segment </h5>
+        
+        <img src="assets/rev-seg.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - DR by Segmentt</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/otb-mix-bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/otb-mix-bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/otb-mix-line-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Revenue by Segment</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/pick-up-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/pick-up-bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/pick-up-line1.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/pick-up-line2.png" class="img-fluid rounded" alt="Chart 16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-pink text-center py-3 mt-4">
+  <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
+</footer>
+
+</body>
+</html>

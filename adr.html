@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel ADR & Segment Insights | Ayman Salem</title>
+  <meta name="description" content="ADR and segment-level insights from hotel booking data, highlighting rate changes, mix %, and booking pace for strategic revenue decisions." />
+  <meta name="keywords" content="ADR Analysis, Booking Lead Time, Channel Mix, OTB Variance, Hotel Revenue, Hospitality Analytics, Tableau, Ayman Salem" />
+  <meta name="author" content="Ayman Salem" />
+  <meta property="og:title" content="ADR & Channel Analysis Dashboard | Ayman Salem" />
+  <meta property="og:description" content="Explore rate trends, segment contribution, and monthly variance insights across multiple hotel channels from 2018 to 2020." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aymansalem.github.io/adr.html" />
+  <meta property="og:image" content="https://aymansalem.github.io/assets/preview-adr.png" />
+
+  <!-- === ADR PAGE === -->
+<!-- File: adr.html -->
+<link rel="canonical" href="https://aymansalem.github.io/adr.html" />
+<meta name="keywords" content="ADR, Average Daily Rate, Revenue Analytics, Hotel Pricing, Tableau, Hospitality Revenue Management" />
+<meta name="description" content="Analyze ADR trends across segments. Use Tableau to compare actual vs OTB rates and identify opportunities to optimize hotel pricing." />
+<meta property="og:image" content="https://aymansalem.github.io/assets/adr-preview.jpg" />
+<!-- === ADR PAGE === -->
+<!-- ADR Project (adr.html) -->
+<link rel="canonical" href="https://aymansalem.github.io/adr">
+<!-- === ADR PAGE === -->
+<!-- ADR Project (adr.html) -->
+<link rel="canonical" href="https://aymansalem.github.io/adr.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "ADR Trends and Optimization",
+  "description": "Average Daily Rate (ADR) trends and optimization techniques visualized using Tableau dashboards.",
+  "url": "https://aymansalem.github.io/adr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aymansalem.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ADR",
+      "item": "https://aymansalem.github.io/adr"
+    }
+  ]
+}
+</script>
+
+  
+  
+  <link rel="canonical" href="https://aymansalem.github.io/adr.html" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-purple">
+  <div class="container">
+    <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="Forc_vs_Actual.html">Forecasting</a></li>
+        <li class="nav-item"><a class="nav-link text-white active" href="adr.html">ADR</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="forecast.html">Forecast</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-5">
+  <section>
+    <h2 class="mb-4">ADR, Booking Trends & Channel Insights (2018–2020)</h2>
+    <p>This dashboard explores <strong>ADR evolution</strong>, booking lead times, monthly channel variance, and market segment mix across years. Visuals help revenue managers understand guest behavior, pricing shifts, and performance across OTA and direct channels.</p>
+  </section>
+
+  <section class="my-5">
+    <h3>Key Metrics Covered</h3>
+    <ul>
+      <li><strong>Booking Pace:</strong> OTA vs Direct weekly bookings</li>
+      <li><strong>Lead Time:</strong> Segmenting reservations by advance window</li>
+      <li><strong>KPI Breakdown:</strong> Room Nights, Revenue, ADR</li>
+      <li><strong>Monthly Variance:</strong> MoM OTB comparisons</li>
+      <li><strong>Mix % & Channel Share:</strong> Contribution of each segment</li>
+      <li><strong>ADR Trends:</strong> Month-over-month changes in average rates</li>
+    </ul>
+  </section>
+
+  <section class="my-5">
+    <h3>Visual Charts</h3>
+    <div class="row">
+      <div class="col-md-6"><img src="assets/adr-booking-pace.png" alt="OTA vs Direct Booking Pace" class="img-fluid rounded shadow mb-3" /></div>
+      <div class="col-md-6"><img src="assets/booking-lead.PNG" alt="Lead Time Segmentation" class="img-fluid rounded shadow mb-3" /></div>
+    </div>
+    <div class="row">
+      <div class="col-md-6"><img src="assets/ota-direct.PNG" alt="KPI Breakdown" class="img-fluid rounded shadow mb-3" /></div>
+      <div class="col-md-6"><img src="assets/month-over0month.PNG" alt="Month-over-Month Variance" class="img-fluid rounded shadow mb-3" /></div>
+    </div>
+    <div class="row">
+      <div class="col-md-6"><img src="assets/kpi-chart.png" alt="KPI Breakdown" class="img-fluid rounded shadow mb-3" /></div>
+      <div class="col-md-6"><img src="assets/month-over0month.PNG" alt="Month-over-Month Variance" class="img-fluid rounded shadow mb-3" /></div>
+    </div>
+  </section>
+
+  <section class="my-5">
+    <h3>Channel Mix & ADR Change</h3>
+    <div class="row">
+      <div class="col-md-6"><img src="assets/adr-mix-percent.png" alt="Channel Mix %" class="img-fluid rounded shadow mb-3" /></div>
+      <div class="col-md-6"><img src="assets/adr-change.png" alt="ADR Monthly Change" class="img-fluid rounded shadow mb-3" /></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer bg-pink text-center py-3">
+  <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
+</footer>
+
+</body>
+</html>

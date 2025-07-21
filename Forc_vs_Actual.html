@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Forecasting & Booking Pace Analysis | Ayman Salem</title>
+  <meta name="description" content="Explore booking pace and forecast accuracy insights using hotel performance data. Visual trends in OTB, ADR, and segment mix from 2018 to 2020." />
+  <meta name="keywords" content="Hotel Booking Pace, Forecast Accuracy, On the Books, Hotel Revenue Analysis, ADR, Segment Mix, Tableau, Hospitality Analytics, Ayman Salem" />
+  <meta name="author" content="Ayman Salem" />
+  <meta property="og:title" content="Forecasting & Booking Pace Dashboard | Ayman Salem" />
+  <meta property="og:description" content="Data visualization of room demand trends, forecast performance, and ADR segmentation across seasons. Built with Tableau and SQL." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aymansalem.github.io/portfolio/Forc_vs_Actual.html" />
+  <meta property="og:image" content="https://yourdomain.com/assets/preview-booking.png" />
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Hotel Analytics Projects | Ayman Salem",
+  "url": "https://aymansalem.github.io/portfolio/projects.html",
+  "description": "Explore advanced hotel analytics projects using Tableau and SQL for forecasting, revenue optimization, and performance analysis.",
+  "keywords": "Hotel Revenue, Tableau, Booking Pace, Forecast"
+}
+</script>
+
+  <title>Hotel Trends | Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <link rel="canonical" href="https://aymansalem.github.io/portfolio/Forc_vs_Actual.html" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-purple">
+  <div class="container">
+    <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="Forc_vs_Actual.html">Forecasting</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="adr.html">ADR</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="forecast.html">Forecast</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-5">
+  <section>
+    <h2 class="mb-4">Hotel Booking Pace & Forecast Accuracy (2018–2020)</h2>
+    <p>This dashboard analyzes how room night bookings evolved weekly and seasonally. It compares <strong>On the Books (OTB)</strong> performance with past years and recent booking behaviors to assess accuracy and optimize forecasting strategy.</p>
+  </section>
+
+  <section class="my-5">
+    <h3>Key Metrics Explained</h3>
+    <ul>
+      <li><strong>OTB Variance:</strong> Difference in room nights between current and prior periods.</li>
+      <li><strong>Pickup Analysis:</strong> How many room nights were picked up vs. projected.</li>
+      <li><strong>Segment Mix %:</strong> Proportional contribution of each channel/segment to total demand.</li>
+      <li><strong>ADR Trends:</strong> Weekly ADR movement by segment and channel.</li>
+    </ul>
+  </section>
+
+  <section class="my-5">
+    <h3>Visual Insights</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="assets/2018.png" alt="OTB Variance 2018" class="img-fluid rounded shadow" />
+      </div>
+      <div class="col-md-6">
+        <img src="assets/2020.png" alt="OTB Variance 2020" class="img-fluid rounded shadow" />
+      </div>
+    </div>
+    <p class="mt-3">These visuals show forward-looking OTB performance vs. same period last year and past booking trends.</p>
+  </section>
+
+  <section class="my-5">
+    <h3>Segment-Level Pickup & Mix</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <img src="assets/Hotel_trend_table.PNG" alt="Pickup Comparison Table" class="img-fluid mb-4 rounded shadow" />
+        <p>Tracks segment mix trends and weekly pacing comparisons. Useful for revenue managers to assess how booking behavior evolves across time frames.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-5">
+    <h3>Bar & Line Chart Trends</h3>
+    <p>Visual breakdown of weekly booking pace and ADR fluctuations across all market segments:</p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      <img src="assets/pace-1.png" alt="Bar Chart 1" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/pace-2.png" alt="Bar Chart 2" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/pace-3.png" alt="Bar Chart 3" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/pace-4.png" alt="Bar Chart 4" class="img-thumbnail" style="width: 200px;" />
+    </div>
+    <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+      <img src="assets/pace-line-1.png" alt="Line Chart 1" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/pace-line-2.png" alt="Line Chart 2" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/pace-line-3.png" alt="Line Chart 3" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/pace-line-4.png" alt="Line Chart 4" class="img-thumbnail" style="width: 200px;" />
+    </div>
+  </section>
+
+  <section class="my-5">
+    <h3>Week-over-Week ADR Changes</h3>
+    <p>Analyzing changes in ADR from previous periods helps assess pricing decisions and forecast alignment:</p>
+    <img src="assets/changes-table.PNG" alt="ADR Week-over-Week" class="img-fluid rounded shadow mb-4" />
+  </section>
+
+  <section class="my-5">
+    <h3>Segment Forecast Accuracy</h3>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      <img src="assets/m_sg-bar-1.png" alt="Segment Bar 1" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/m_sg-bar-2.png" alt="Segment Bar 2" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/m_sg-bar-3.png" alt="Segment Bar 3" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/m_sg-bar-4.png" alt="Segment Bar 4" class="img-thumbnail" style="width: 200px;" />
+    </div>
+    <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+      <img src="assets/m_sg-chart-1.png" alt="Segment Line 1" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/m_sg-chart-2.png" alt="Segment Line 2" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/m_sg-chart-3.png" alt="Segment Line 3" class="img-thumbnail" style="width: 200px;" />
+      <img src="assets/m_sg-chart-4.png" alt="Segment Line 4" class="img-thumbnail" style="width: 200px;" />
+    </div>
+  </section>
+</main>
+
+<footer class="footer bg-pink text-center py-3">
+  <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
+</footer>
+</body>
+</html>
