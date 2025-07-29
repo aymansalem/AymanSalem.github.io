@@ -72,6 +72,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
 
+<!-- Include FontAwesome icon CDN in <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 
 </head>
@@ -192,50 +194,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 </footer>
-<script>
-  const backToTop = document.getElementById("backToTop");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  });
+<!-- 🔼 Back to Top Button -->
+<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+</a>
 
-  backToTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-<!--Highlited Nav page-->
+
+<!--  Back to top and Nav Highlited -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    // ✅ Back to Top Logic
+    const backToTop = document.getElementById("backToTop");
+
+    if (backToTop) {
+      // Show/hide on scroll
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      // Scroll to top on click
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // ✅ Highlight Active Navigation
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll(".nav-link");
 
     navLinks.forEach(link => {
       const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+      if (linkPage === currentPage) {
         link.classList.add("active");
       }
     });
   });
 </script>
-<script>
-  // Highlight the active nav link based on current URL
-  document.addEventListener("DOMContentLoaded", function () {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
 
-    navLinks.forEach(link => {
-      const linkPath = new URL(link.href).pathname;
-      if (linkPath === currentPath || (currentPath === '/' && linkPath.includes('index'))) {
-        link.classList.add('active');
-      }
-    });
-  });
-</script>
+
 
 
 </body>
