@@ -4,7 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- JSON-LD Structured Data for Person -->
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About Ayman Salem | Hotel Revenue Management Professional</title>
+  <meta name="description" content="Learn more about Ayman Salem, a hotel revenue management expert with 17+ years of experience in hospitality analytics, forecasting, and digital strategy." />
+  <meta name="keywords" content="Ayman Salem, Hotel Revenue Manager, Hospitality Analytics, Revenue Optimization, About Ayman, Hotel Forecasting Expert, Hospitality Portfolio, Hotelier Hub, Hospitality Management, About Me, Hotel Strategy, Revenue Projects, Hotel Data Expert" />
+  <link rel="canonical" href="https://aymansalem.github.io/about" />
+
+    <!-- JSON-LD Structured Data for Person -->
   <!-- === ABOUT PAGE === -->
 <!-- File: about.html -->
 <link rel="canonical" href="https://aymansalem.github.io/about">
@@ -17,17 +27,6 @@
   "url": "https://aymansalem.github.io/about"
 }
 </script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>About Ayman Salem | Hotel Revenue Management Professional</title>
-  <meta name="description" content="Learn more about Ayman Salem, a hotel revenue management expert with 17+ years of experience in hospitality analytics, forecasting, and digital strategy." />
-  <meta name="keywords" content="Ayman Salem, Hotel Revenue Manager, Hospitality Analytics, Revenue Optimization, About Ayman, Hotel Forecasting Expert, Hospitality Portfolio, Hotelier Hub, Hospitality Management, About Me, Hotel Strategy, Revenue Projects, Hotel Data Expert" />
-  <link rel="canonical" href="https://aymansalem.github.io/about" />
-
   <!-- Structured Data: BreadcrumbList -->
   <script type="application/ld+json">
   {
@@ -111,6 +110,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="footer text-center py-3 bg-pink">
   <p class="mb-0">&copy; 2025 Ayman Salem | <a href="index.html" class="text-white">Back to Home</a></p>
 </footer>
+   <!-- Back to Top Button -->
+<a href="#" id="backToTop" class="back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</a>
+
+ <!-- Back to Top Button (optional, if not already in your HTML) -->
+<a href="#" id="backToTop" style="display: none;">⬆️ Back to Top</a>
+
+<!-- Scripts placed BEFORE closing body -->
 <script>
   const backToTop = document.getElementById("backToTop");
 
@@ -127,7 +135,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 </script>
-<!--Highlited Nav page-->
+
+<!-- Highlighted Nav Page -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const currentPage = location.pathname.split("/").pop();
@@ -141,18 +150,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 </script>
-<script>
-  // Highlight the active nav link based on current URL
-  document.addEventListener("DOMContentLoaded", function () {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
+  <script>
+  const backToTop = document.getElementById("backToTop");
 
-    navLinks.forEach(link => {
-      const linkPath = new URL(link.href).pathname;
-      if (linkPath === currentPath || (currentPath === '/' && linkPath.includes('index'))) {
-        link.classList.add('active');
-      }
-    });
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+
+  backToTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 </script>
 
