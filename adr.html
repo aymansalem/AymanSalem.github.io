@@ -30,6 +30,9 @@
 <meta name="keywords" content="ADR, Average Daily Rate, Revenue Analytics, Hotel Pricing, Tableau, Hospitality Revenue Management" />
 <meta name="description" content="Analyze ADR trends across segments. Use Tableau to compare actual vs OTB rates and identify opportunities to optimize hotel pricing." />
 <meta property="og:image" content="https://aymansalem.github.io/assets/adr-preview.jpg" />
+  <!-- Include FontAwesome icon CDN in <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 <!-- === ADR PAGE === -->
 <!-- ADR Project (adr.html) -->
 <link rel="canonical" href="https://aymansalem.github.io/adr">
@@ -193,6 +196,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 
+<!-- Footer -->
+<footer class="footer text-center py-3 bg-pink">
+  <p class="mb-0">&copy; 2025 Ayman Salem | <a href="index.html" class="text-white">Back to Home</a></p>
 </footer>
 
 <!-- 🔼 Back to Top Button -->
@@ -204,7 +210,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!--  Back to top and Nav Highlited -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // ✅ Back to Top Logic
+  
     const backToTop = document.getElementById("backToTop");
 
     if (backToTop) {
@@ -224,7 +230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }
 
-    // ✅ Highlight Active Navigation
+    <!-- Highlited Nav Bar-->
     const currentPage = location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll(".nav-link");
 
