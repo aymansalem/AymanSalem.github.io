@@ -13,8 +13,9 @@
   <meta property="og:url" content="https://aymansalem.github.io/portfolio/Forc_vs_Actual.html" />
   <meta property="og:image" content="https://yourdomain.com/assets/preview-booking.png" />
 
-  <!-- Include FontAwesome icon CDN in <head> -->
+ <!-- Include FontAwesome icon CDN in <head> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 
   <script type="application/ld+json">
 {
@@ -153,7 +154,7 @@
 <!--  Back to top and Nav Highlited -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-  
+    // ✅ Back to Top Logic
     const backToTop = document.getElementById("backToTop");
 
     if (backToTop) {
@@ -173,7 +174,7 @@
       });
     }
 
-    <!-- Highlited Nav Bar-->
+    // ✅ Highlight Active Navigation
     const currentPage = location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll(".nav-link");
 
@@ -185,6 +186,7 @@
     });
   });
 </script>
+
 
 
 </body>
