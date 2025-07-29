@@ -6,6 +6,8 @@
   <title>Forecast vs Actual | Hotel Data Analysis</title>
   <meta name="description" content="Compare forecasted and actual hotel performance by room nights, revenue, and ADR. Track segment-level accuracy and refine predictive models with visual insights." />
   <meta name="keywords" content="hotel forecast analysis, actual vs forecast, ADR forecast accuracy, booking variance, revenue forecast, segment-level performance" />
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- === FORECAST PAGE === -->
 <!-- Forecast Project (forecast.html) -->
@@ -765,12 +767,22 @@ Useful for budgeting, forecasting, and strategic allocation.
 </section>
 
 <!-- Footer -->
+
+  
 <footer class="footer bg-pink text-center py-3 mt-4">
   <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
 </footer>
 
-</body>
-  <script>
+  <!-- Back to Top Button -->
+<a href="#" id="backToTop" class="back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</a>
+
+ <!-- Back to Top Button (optional, if not already in your HTML) -->
+<a href="#" id="backToTop" style="display: none;">⬆️ Back to Top</a>
+
+<!-- Scripts placed BEFORE closing body -->
+<script>
   const backToTop = document.getElementById("backToTop");
 
   window.addEventListener("scroll", () => {
@@ -786,7 +798,8 @@ Useful for budgeting, forecasting, and strategic allocation.
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 </script>
-<!--Highlited Nav page-->
+
+<!-- Highlighted Nav Page -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const currentPage = location.pathname.split("/").pop();
@@ -800,5 +813,25 @@ Useful for budgeting, forecasting, and strategic allocation.
     });
   });
 </script>
+  <script>
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+
+  backToTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+</body>
+
+
 
 </html>
