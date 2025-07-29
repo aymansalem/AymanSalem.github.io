@@ -68,6 +68,12 @@
   border-bottom: 2px solid white;
 }
 
+  <!--Nav Bar Higlihted-->
+  .nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
 </head>
 <body>
 
@@ -98,6 +104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </nav>
+
 
 
 <main class="container my-5">
@@ -360,6 +367,37 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
   <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
 </footer>
 </body>
+  <script>
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  });
+
+  backToTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+<!--Highlited Nav page-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
 </html>
 
         
