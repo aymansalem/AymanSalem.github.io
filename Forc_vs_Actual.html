@@ -13,6 +13,9 @@
   <meta property="og:url" content="https://aymansalem.github.io/portfolio/Forc_vs_Actual.html" />
   <meta property="og:image" content="https://yourdomain.com/assets/preview-booking.png" />
 
+  <!-- Include FontAwesome icon CDN in <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,62 +142,50 @@
 <footer class="footer bg-pink text-center py-3">
   <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
 </footer>
-   <!-- Back to Top Button -->
-<a href="#" id="backToTop" class="back-to-top">
+
+  
+<!-- 🔼 Back to Top Button -->
+<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
   <i class="fas fa-arrow-up"></i>
 </a>
 
- <!-- Back to Top Button (optional, if not already in your HTML) -->
-<a href="#" id="backToTop" style="display: none;">⬆️ Back to Top</a>
 
-<!-- Scripts placed BEFORE closing body -->
-<script>
-  const backToTop = document.getElementById("backToTop");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  });
-
-  backToTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-
-<!-- Highlighted Nav Page -->
+<!--  Back to top and Nav Highlited -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  
+    const backToTop = document.getElementById("backToTop");
+
+    if (backToTop) {
+      // Show/hide on scroll
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      // Scroll to top on click
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    <!-- Highlited Nav Bar-->
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll(".nav-link");
 
     navLinks.forEach(link => {
       const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+      if (linkPage === currentPage) {
         link.classList.add("active");
       }
     });
   });
 </script>
-  <script>
-  const backToTop = document.getElementById("backToTop");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.classList.add("show");
-    } else {
-      backToTop.classList.remove("show");
-    }
-  });
-
-  backToTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
 
 </body>
 
