@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<!--Nav Bae-->
+  .nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
   <!-- JSON-LD Structured Data for Person -->
   <!-- === ABOUT PAGE === -->
 <!-- File: about.html -->
@@ -88,21 +92,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
   </div>
-</nav>
-<!--<nav class="navbar navbar-expand-lg bg-purple">
-        <div class="container">
-            <a class="navbar-brand text-white" href="#">Hotel Data Insights</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="bout.html">About</a></li>
 
-                    <li class="nav-item"><a class="nav-link text-white" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>-->
 
 
 
@@ -130,6 +120,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="footer text-center py-3 bg-pink">
   <p class="mb-0">&copy; 2025 Ayman Salem | <a href="index.html" class="text-white">Back to Home</a></p>
 </footer>
+<script>
+  const backToTop = document.getElementById("backToTop");
 
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  });
+
+  backToTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+<!--Highlited Nav page-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
 </body>
 </html>
