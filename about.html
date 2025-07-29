@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!--Nav Bae-->
-  .nav-link.active {
-  font-weight: bold;
-  border-bottom: 2px solid white;
-}
+
   <!-- JSON-LD Structured Data for Person -->
   <!-- === ABOUT PAGE === -->
 <!-- File: about.html -->
@@ -145,5 +141,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 </script>
+<script>
+  // Highlight the active nav link based on current URL
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+      const linkPath = new URL(link.href).pathname;
+      if (linkPath === currentPath || (currentPath === '/' && linkPath.includes('index'))) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
