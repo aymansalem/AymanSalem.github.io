@@ -45,6 +45,12 @@
   <title>Hotel Trends | Portfolio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
+  <!--Nav Bar Higlihted-->
+  .nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
 </head>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -57,7 +63,7 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
   
-<!-- Navigation -->
+<!--Nav BAR-->
 <nav class="navbar navbar-expand-lg bg-purple">
   <div class="container">
     <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
@@ -72,6 +78,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </nav>
+
 
 <!-- Hero -->
 <section class="hero bg-purple text-white py-5 text-center">
@@ -763,4 +770,35 @@ Useful for budgeting, forecasting, and strategic allocation.
 </footer>
 
 </body>
+  <script>
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  });
+
+  backToTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+<!--Highlited Nav page-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
 </html>
