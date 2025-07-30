@@ -111,82 +111,91 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </a>
 </div>
 
-<!-- Floating GitHub Button with Label (after 20% scroll) -->
+  <!-- Place this in your HTML body (e.g., index.html) -->
+<!-- Place this in your HTML body -->
+
 <style>
-#githubFloatingBtn {
-  position: fixed;
-  bottom: 90px; /* Moved down */
-  right: 80px;  /* Moved left */
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
+  .floatingBtn {
+    position: fixed;
+    bottom: 10px;
+    right: 80px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-#githubFloatingBtn.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+  .floatingBtn a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+  }
 
-#githubFloatingBtn a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  background-color: #24292e;
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s;
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-}
+  .iconCircle {
+    background-color: #f57c00; /* Blogger orange */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s;
+  }
 
-#githubFloatingBtn a:hover {
-  background-color: #333;
-}
+  .floatingBtn a:hover .iconCircle {
+    background-color: #e65100;
+  }
 
-#githubFloatingBtn i {
-  font-size: 22px;
-  margin: 0;
-}
-
-#githubLabel {
-  margin-top: 6px;
-  font-size: 12px;
-  color: white;
-  background: #24292e;
-  padding: 4px 6px;
-  border-radius: 5px;
-  text-align: center;
-}
+  .labelBox {
+    margin-top: 6px;
+    font-size: 12px;
+    background: #f57c00;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
 </style>
 
-<div id="githubFloatingBtn">
-  <a href="https://aymansalem.github.io/" target="_blank" title="Visit my GitHub Portfolio">
-    <i class="fab fa-github"></i>
+<!-- Blogger Floating Button -->
+<div class="floatingBtn">
+  <a href="https://4-hoteliers.blogspot.com/" target="_blank" title="Visit My Blog">
+    <div class="iconCircle"><i class="fas fa-blog"></i></div>
+    <div class="labelBox">Visit My Blog</div>
   </a>
-  <div id="githubLabel">GitHub</div>
 </div>
 
-<!-- Font Awesome CDN -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<!--
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!--button action-->
 <script>
-  // Show GitHub button after 20% scroll
-  window.addEventListener('scroll', function () {
-    const btn = document.getElementById('githubFloatingBtn');
-    const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-    if (scrollPercent >= 0.2) {
-      btn.classList.add('show');
-    } else {
-      btn.classList.remove('show');
-    }
+  // Wait until DOM is ready
+  document.addEventListener("DOMContentLoaded", function () {
+    const floatingBtn = document.querySelector(".floatingBtn");
+    floatingBtn.style.display = "none"; // Hide initially
+
+    window.addEventListener("scroll", function () {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+
+      if (scrollPercent > 10) {
+        floatingBtn.style.display = "flex"; // Show after 10% scroll
+      } else {
+        floatingBtn.style.display = "none"; // Hide before 10% scroll
+      }
+    });
   });
 </script>
--->
+
+<!--END of Flaoting button-->
   
   
 <!-- Footer -->
