@@ -261,11 +261,13 @@
   </main>
 
   <!-- Place this in your HTML body (e.g., index.html) -->
+<!-- Place this in your HTML body -->
 
 <style>
   .floatingBtn {
     position: fixed;
     bottom: 10px;
+    right: 20px;
     z-index: 9999;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -284,7 +286,7 @@
   }
 
   .iconCircle {
-    background-color: #24292e;
+    background-color: #f57c00; /* Blogger orange */
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -297,37 +299,21 @@
   }
 
   .floatingBtn a:hover .iconCircle {
-    background-color: #333;
+    background-color: #e65100;
   }
 
   .labelBox {
     margin-top: 6px;
     font-size: 12px;
-    background: #24292e;
+    background: #f57c00;
     padding: 4px 10px;
     border-radius: 4px;
     color: white;
   }
-
-  #githubFloatingBtn {
-    right: 80px;
-  }
-
-  #blogFloatingBtn {
-    right: 20px;
-  }
 </style>
 
-<!-- GitHub Floating Button -->
-<div id="githubFloatingBtn" class="floatingBtn">
-  <a href="https://aymansalem.github.io/" target="_blank" title="Visit my GitHub Portfolio">
-    <div class="iconCircle"><i class="fab fa-github"></i></div>
-    <div class="labelBox">GitHub Portfolio</div>
-  </a>
-</div>
-
-<!-- Blog Floating Button -->
-<div id="blogFloatingBtn" class="floatingBtn">
+<!-- Blogger Floating Button -->
+<div class="floatingBtn">
   <a href="https://4-hoteliers.blogspot.com/" target="_blank" title="Visit My Blog">
     <div class="iconCircle"><i class="fas fa-blog"></i></div>
     <div class="labelBox">Visit Blog</div>
@@ -336,7 +322,8 @@
 
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+<!--END of Flaoting button-->
+<!--“Back to Top” button-->
   <script>
   const backToTop = document.getElementById("backToTop");
 
