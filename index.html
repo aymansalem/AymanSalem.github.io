@@ -322,6 +322,28 @@
 
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!--button action-->
+<script>
+  // Wait until DOM is ready
+  document.addEventListener("DOMContentLoaded", function () {
+    const floatingBtn = document.querySelector(".floatingBtn");
+    floatingBtn.style.display = "none"; // Hide initially
+
+    window.addEventListener("scroll", function () {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+
+      if (scrollPercent > 10) {
+        floatingBtn.style.display = "flex"; // Show after 10% scroll
+      } else {
+        floatingBtn.style.display = "none"; // Hide before 10% scroll
+      }
+    });
+  });
+</script>
+
 <!--END of Flaoting button-->
 <!--“Back to Top” button-->
   <script>
