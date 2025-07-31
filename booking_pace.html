@@ -195,7 +195,94 @@ Monitors Growth or Decline: Helps assess the effectiveness of revenue management
       </div>
     </div>
   </section>
+<h5>On The Books (OTB) Mix to Last Year"</h5> 
+<p>
+Refers to the comparison of the current year’s on-the-books data mix to the same time last year — usually by market segment, distribution channel, or booking source. It is a percentage share comparison used to evaluate how your business composition has changed year over year.
+<br></p>
+<h6>How This Query WORKS</h6>
+<p>
+compares monthly room nights between what was forecasted and what was actually realized, for better visibility into forecast accuracy and performance.
+<br>
+<b>🔍 Key Features:</b>
+<p>
+  <ul>
+<li><b>Forecast vs. Realized:</b> It uses forecast type e.g( <b>"OTB"</b>, <b>"Realized"</b>, <b>Forecast"</b>, <b>"Projected"</b>) to differentiate the predicted vs. actual room nights.</li>
+<li><b>Days Out:</b> Calculates lead time from the snapshot (reservation_status_date) to the actual arrival.</li>
+<li><b>As-of Date (Snapshot):</b> Keeps track of the point-in-time when the data was valid, useful for pacing.</li>
+<li><b>Status Filter:</b> Includes only meaningful statuses (Confirmed, Check-in, Check-out) to avoid noise from cancelled/no-shows <i>(modify this logic if needed).</i></li>
+<li><b>Date Range:</b>	 Filters only from May to September 2019 for the analysis window.</li>
+<li><b>Pivoted Format:</b> Data is restructured to show Forecast, Realized, and their Difference side by side for each month.</li>
+</ul>
+<h5>Purpose:</h5>
+<p>
+This query compares forecasted vs realized room nights sold per month, helping you identify how accurate your forecasting was.
 
+</p>
+</p>
+</p>
+
+•	<b>On The Books (OTB)</b>: Reservations that are currently confirmed and in the system for future dates.
+<br>
+•	<b>Mix:</b> The proportion (percentage) that each segment/channel contributes to the total OTB bookings.
+•	To Last Year: Comparing this year’s OTB mix to the same point in time last year (e.g., 90 days out, same reservation status date).
+<br>
+</br>
+
+
+
+<b>A negative number (e.g., -946) means:</b>	
+<br>
+</br>
+In 2019, you sold 946 fewer rooms on that Month/Week (e.g., Friday) compared to 2020.
+<br>
+•<b>A positive number would mean you sold more in 2020 than 2019</b>	
+  </p>
+</section>
+<section>
+
+  <p>
+   <h5>Current Mix To Last Year Forecast- LY Actual</h5> 
+In hotel forecasting terms, "Last Year Actual" (LY Actual) typically refers to:
+The actual number of rooms sold (or actual performance) on a specific arrival date last year — not just bookings, but the actualized check-ins.
+<br>
+</br>
+<b>So, LY Actual ≠ Bookings made last year, it’s:</b>
+<ul>
+<li>The realized occupancy — how many guests checked in and stayed on that date.</li>	
+<li>Based on the arrival_date, not the booking date.</li>
+<li>Does not include cancellations or no-shows — it's the true performance</li>
+  </p>
+  </ul>
+</section>
+     <section>
+
+      <p>
+
+    <h5> More Explination</h5>
+
+<b>Current Mix – (Last Year Forecast – Last Year Actual)</b>
+<br>
+<p>
+→ This measures if the current year’s OTB (CY Mix) is compensating for the gap between last year's forecast and what actually materialized
+Component	What it does
+cy_mix	Current year’s On The Books (forecast_type = 'OTB')
+ly_forecast	Last year’s forecasted room sold (forecast_type = 'LY Forecast')
+ly_actual	Last year’s actual performance (only Check-In / Check-Out)
+ly_gap	The under- or overperformance last year: ly_forecast - ly_actual
+diff	Your current performance compared to that gap: cy_mix - (ly_forecast - ly_actual)
+</p>
+<h5>NOTE</h5>
+<ul>
+<li>✅ A positive value = current OTB is stronger than the gap LY missed.</li>	
+<li>✅ A zero = current OTB is exactly covering last year’s gap.</li>	
+<li>✅ A negative value = current OTB is underperforming, even compared to LY forecast shortfalls</li>
+
+<li>✅ We're not including canceled or no-show reservations in LY Actual — </li>
+<li>✅ We're cleanly aggregate by week/Month</li>
+
+</ul>
+      </p>
+     </section>
   <!-- Variance Comparison -->
   <section class="mb-5">
     <h3 class="mb-4">OTB Variance & Pickup Analysis</h3>
