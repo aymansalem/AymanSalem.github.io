@@ -103,100 +103,95 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Booking Pace Summary -->
   <section class="mb-5">
-    <h3 class="mb-4">Booking PACE & Forecast Accuracy Analysisis</h3>
-    <p>: Advanced Revenue Management using On-The-Books (OTB), Pickup, and Forecast Gap Analysis</p>
+   <section style="margin-top: 40px; font-family: Arial, sans-serif; line-height: 1.6;">
+  <h2 style="font-size: 24px; color: #333;">Booking Pace & Forecast Accuracy Analysis</h2>
+  <p><strong>Booking Pace-to-Projection Tool</strong> is built for revenue managers to track On-the-Books (OTB), Pickup trends, and forecast accuracy — using real historical data snapshots instead of today's data to simulate forward-looking performance.</p>
 
-
-<!--expilation-->
-<section>
-  <p>
-<b>Since we are suing Historica dataset</b>
-WE should simulate what On the Books looked like from a specific date in the past (e.g., 2019-06-01) rather than using CURRENT_DATE.
-<br>
-<b>Project Summary </b>
-<br>
-A dynamic analysis of booking pace trends, forecast accuracy, and segment performance using historical on-the-books data. This model simulates real-time revenue decision-making, comparing current booking performance to last year and prior periods, with weekly lead-time tracking
-</p>
-</section>
-
-<section>
-<p>
- <h3>🧠 Why Booking Pace Matters (for Resorts)</h3> 
-
-  <li>📌 Booking Pace = How fast guests are reserving rooms for a future arrival date</li>
+  <p><strong>Summary Tables</strong> 
+ 
+  
   <ul>
-<b>It answers questions like:</b>
-<li>Are we ahead or behind compared to last year?</li>	
-<li>Are guests delaying bookings this year?</li>
-<li>Do I need to adjust pricing, promos, or stop-sells?</li>
-<b>For resorts:</b>
-<li>Long lead times (30–90+ days) → pace helps forecast peak/shoulder fill</li>
-<li>Sudden slowdowns in pace may signal a market shift or pricing issue.</li>
-</ul>
-<b>**Why It Matters**</b>
-</p>
-<ul>
-  <li>-Helps identify shifts in booking behavior.</li>
-<li>Reveals if you're too reliant on a specific channel (e.g., OTAs).</li>
-<li>Informs sales and marketing strategy (e.g., push more Direct if it’s shrinking).</li>
-<li>	Crucial for pricing and forecasting, especially if high-ADR segments are losing share.</li>
-</ul>
-</p>
-</section>
- <h4> *Monthly Bases display Current Year VS Last Year Forecast*</h4> 
-<p>
-Tracks Monthly Booking Trends: Helps visualize how many more or fewer rooms are booked now compared to the same week last year, per day.
+    <li>🤔How do transient room nights booked for the next 90 days compare to the room nights <b>OTB</b> for same time last year?:</li>
+    <li> 😕How Bookings performance looking forwards compares to same time last year looking forwards.</li>
+  
+    <li>📊 Variance between projected pickups and actual pickups from the same lead time (last year and last period)</li>
+    <li>📉 Variance in OTB now vs. what was on the books at the same days-out last year and last period</li>
+  </ul>
+ </p>
+  <p>Since we’re using historical data, we simulate what OTB looked like at a specific point in time (e.g., <code>2019-06-01</code>), instead of relying on <code>CURRENT_DATE</code>.</p>
 
-Spot Underperformance: Highlights weak weekdays (e.g., if Fridays are consistently underbooked YoY).
+  <p style="font-size: 18px;">🚫 <strong>Please do not get lost while reading — Too Much KPIs together, but we’ll break it down step-by-step.</strong></p>
 
-Supports Forecast Accuracy: Used to validate or adjust forecasts based on pacing vs. last year.
+  <h3 style="margin-top: 30px;">🧠 Why Booking Pace Matters — Especially for Resorts</h3>
+  <p><strong>Booking Pace</strong> Answering How do transient room nights booked for the next 90 days compare to the room nights on the books at the same time last year?:</p>
+  <ul>
+    <li>Are we ahead or behind compared to last year?</li>
+    <li>Are bookings slower this year?</li>
+    <li>Do we need to adjust pricing, promotions, or stop-sells?</li>
+  </ul>
+  <p>For resorts with long booking windows (30–90+ days), pace analysis helps forecast shoulder/peak periods, identify booking slowdowns, and refine channel and pricing strategies.</p>
 
-Enables Actionable Insight: Sales/marketing can push promotions on underperforming days or weeks.
+  <p><strong>Want a deeper explanation?</strong> 📚 <a href="https://4-hoteliers.blogspot.com/2024/10/transient-pace-to-projection.html" target="_blank" rel="noopener">Read the full blog post here</a></p>
 
-Monitors Growth or Decline: Helps assess the effectiveness of revenue management strategies over time.</p>
+  <h3 style="margin-top: 30px;">📊 OTB Mix vs. Last Year</h3>
+  <p><strong>Business Question:</strong> “How do transient room nights booked for the upcoming 365 days compare to what was on the books at the same time last year?”</p>
+  <p>This table shows monthly OTB volumes (e.g., January 2019), broken down by weekday. It's a forward-looking snapshot that mimics how things looked from a past point in time (e.g., report generated on August 1st, 2018).</p>
 
-</section>
-     
+  <h4>💡 Why This Matters:</h4>
+  <ul>
+    <li>📈 Spot changes in weekday booking behavior</li>
+    <li>🧭 Understand seasonality by day of week</li>
+    <li>💰 Evaluate promo/rate effectiveness</li>
+    <li>⚠️ Flag underperforming dates early</li>
+    <li>📦 Layer segmentation for deeper insights (Direct, OTA, TO, etc.)</li>
+  </ul>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <h5>"On The Book" Mix To Last Year</h5>
-        <img src="assets/Monthly-rm.PNG" class="img-fluid rounded" alt="On The Book Mix To Last Year Table">
-      </div>
-      <div class="col-md-6">
-        <h5>Current Mix To Last Year Forecast - LY Actual</h5>
-        <img src="assets/Monthly-2020.PNG" class="img-fluid rounded" alt="Current Mix To LY Forecast Table">
-      </div>
-    </div>
+  <h3>📐 Dataset Logic Overview</h3>
+  <ul>
+    <li><strong>Snapshot Date:</strong> e.g., 01-Aug-2018</li>
+    <li><strong>Filter:</strong> Only bookings on file as of the snapshot</li>
+    <li><strong>Arrival Month:</strong> Used for grouping</li>
+    <li><strong>Weekday Split:</strong> From Friday to Thursday</li>
+    <li><strong>Output:</strong> Total room nights per weekday per month</li>
+  </ul>
+
+  <h4>📌 Example Output (Room Nights)</h4>
+  <pre style="background-color: #f9f9f9; padding: 10px; overflow-x: auto; border: 1px solid #ddd;">
+Month Of   Fri  Sat  Sun  Mon  Tue  Wed  Thu  Total
+Jan-19     527  656  673  649  764 1024  858   5151
+Feb-19     821  578  854  644  696  739  899   5231
+...
+Dec-19     681  765  980  777  996  517  459   5175
+  </pre>
+
+  <h4>🧠 Strategic Takeaways</h4>
+  <ul>
+    <li><strong>Weekday Strategy:</strong> If Wednesdays perform better than Fridays, promote shoulder nights or raise ADR midweek.</li>
+    <li><strong>Compression Forecast:</strong> Identify months at risk of early sellout.</li>
+    <li><strong>Rate Sensitivity:</strong> Later combine this with ADR to evaluate rate-volume trade-offs.</li>
+    <li><strong>Forecasting Accuracy:</strong> This sets the foundation for comparing projected vs. actuals.</li>
+  </ul>
+
+  <h3>🔄 What We are covering Here?</h3>
+  <ul>
+    <!--Jump-->
+    <!--<a href="#projection-analysis">🔽 Jump to Projection Analysis</a>-->
+    <li>On The Books (OTB) Mix to Last Year</li>
+    <li>Current Mix To Last Year Forecast- LY Actual</li>
+    <li>📊 OTB Variance & Pickup Analysis</li>
+    <li>📉 On The Book Variances To 1 Period Ago <i>"Month"</i></li>
+    <li>📌 Pick Up Variance To 1 Period Ago (Projection PU - 1PdAgo PU)</li>
+    <li>📈 OTB Mix Percentages</li>
+    <li>📐Measuring Segment ADR Change</li>
+    <li>🎯Segment ADR Change From Last Period <I>"Month"</I></li>
+  </ul>
 
 
-
-    <div class="row">
-      <div class="col-md-6">
-        <h6>Charts - "On The Book" Mix</h6>
-        <div class="row g-3">
-          <div class="col-6"><img src="assets/Weekly Bases display Current Year VS ast Year Forecast-bar-1.png" class="img-fluid rounded" alt="Chart 1"></div>
-          <div class="col-6"><img src="assets/Weekly Bases display Current Year VS ast Year Forecast-bar-2.png" class="img-fluid rounded" alt="Chart 2"></div>
-          <div class="col-6"><img src="assets/Weekly Bases display Current Year VS ast Year Forecast-line-1.png" class="img-fluid rounded" alt="Chart 3"></div>
-          <div class="col-6"><img src="assets/Weekly Bases display Current Year VS ast Year Forecast-line-2.png" class="img-fluid rounded" alt="Chart 4"></div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h6>Charts - Current Mix vs LY Forecast</h6>
-        <div class="row g-3">
-          <div class="col-6"><img src="assets/OTB Mix compares-bar-1.png" class="img-fluid rounded" alt="Chart 5"></div>
-          <div class="col-6"><img src="assets/OTB Mix compares-bar-2.png" class="img-fluid rounded" alt="Chart 6"></div>
-          <div class="col-6"><img src="assets/OTB Mix compares-line-1.png" class="img-fluid rounded" alt="Chart 7"></div>
-          <div class="col-6"><img src="assets/OTB Mix compares-line-2.png" class="img-fluid rounded" alt="Chart 8"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-<h5>On The Books (OTB) Mix to Last Year"</h5> 
+  <h5>On The Books (OTB) Mix to Last Year"</h5> 
 <p>
 Refers to the comparison of the current year’s on-the-books data mix to the same time last year — usually by market segment, distribution channel, or booking source. It is a percentage share comparison used to evaluate how your business composition has changed year over year.
 <br></p>
-<h6>How This Query WORKS</h6>
+<h5>How This Query WORKS</h5>
 <p>
 compares monthly room nights between what was forecasted and what was actually realized, for better visibility into forecast accuracy and performance.
 <br>
@@ -217,6 +212,47 @@ This query compares forecasted vs realized room nights sold per month, helping y
 </p>
 </p>
 </p>
+  <p><strong>Used Tools:</strong> SQL Server, Excel, Tableau</p>
+  <p><em>Author: Ayman H. Salem – Revenue Strategist</em></p>
+</section>
+
+     
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5>"On The Book" Mix To Last Year</h5>
+        <img src="assets/2019-Table-On The Book Mix To Last Yea.jpg" class="img-fluid rounded" alt="On The Book Mix To Last Year Table">
+      </div>
+      <div class="col-md-6">
+        <h5>Current Mix To Last Year Forecast - LY Actual</h5>
+        <img src="assets/2020-Table-Current Mix To Last Year Forecast - LY Actual.jpg" class="img-fluid rounded" alt="Current Mix To LY Forecast Table">
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Charts - "On The Book" Mix</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/2019-On The Book Mix To Last Year-Bar-1.png" class="img-fluid rounded" alt="Chart 1"></div>
+          <div class="col-6"><img src="assets/2019-On The Book Mix To Last Year-Bar-2.png" class="img-fluid rounded" alt="Chart 2"></div>
+          <div class="col-6"><img src="assets/2019-On The Book Mix To Last Year-Line-1.png" class="img-fluid rounded" alt="Chart 3"></div>
+          <div class="col-6"><img src="assets/2019-On The Book Mix To Last Year-Line-2.png" class="img-fluid rounded" alt="Chart 4"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Charts - Current Mix vs LY Forecast</h6>
+        <div class="row g-3">
+          <div class="col-6"><img src="assets/OTB Mix compares-bar-1.png" class="img-fluid rounded" alt="Chart 5"></div>
+          <div class="col-6"><img src="assets/OTB Mix compares-bar-2.png" class="img-fluid rounded" alt="Chart 6"></div>
+          <div class="col-6"><img src="assets/2020-Current Mix To Last Year Forecast - LY Actual-Line-1.png" class="img-fluid rounded" alt="Chart 7"></div>
+          <div class="col-6"><img src="assets/2020-Current Mix To Last Year Forecast - LY Actual-Line-2.png" class="img-fluid rounded" alt="Chart 8"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 •	<b>On The Books (OTB)</b>: Reservations that are currently confirmed and in the system for future dates.
 <br>
@@ -227,7 +263,7 @@ This query compares forecasted vs realized room nights sold per month, helping y
 
 
 
-<b>A negative number (e.g., -946) means:</b>	
+
 <br>
 </br>
 In 2019, you sold 946 fewer rooms on that Month/Week (e.g., Friday) compared to 2020.
@@ -297,32 +333,32 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
 </section>
     <div class="row mb-4">
       <div class="col-md-6">
-        <h5>"On The Book" Variance To 1 Period Ago</h5>
-        <img src="assets/2019 Realized OTB-Table.PNG" class="img-fluid rounded" alt="OTB Variance Table">
+        <h5>"On The Book" Variance To 1 Period Ago <i>"Month"</i></h5>
+        <img src="assets/2020-Tables-On The Book Variances To 1 Period Ago.jpg" class="img-fluid rounded" alt="OTB Variance Table">
       </div>
       <div class="col-md-6">
-        <h5>Pickup Variance To 1 Period Ago</h5>
+        <h5>Pickup Variance To 1 Period Ago <i>"Month"</i></h5>
         
-        <img src="assets/2020 Realized OTB-Table.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+        <img src="assets/2020--TableProjected PU – 1 Period Ago Actual PU).jpg" class="img-fluid rounded" alt="Pickup Variance Table">
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <h6>Charts - OTB Variance</h6>
         <div class="row g-3">
-          <div class="col-6"><img src="assets/Only 2019 Realized OTB-Bar-1.png" class="img-fluid rounded" alt="Chart 9"></div>
-          <div class="col-6"><img src="assets/Only 2019 Realized OTB-Bar-2.png" class="img-fluid rounded" alt="Chart 10"></div>
-          <div class="col-6"><img src="assets/Only 2019 Realized OTBchartr-1.png" class="img-fluid rounded" alt="Chart 11"></div>
-          <div class="col-6"><img src="assets/Only 2019 Realized OTBchartr-2.png" class="img-fluid rounded" alt="Chart 12"></div>
+          <div class="col-6"><img src="assets/2020-Bar-On The Book Variances To 1 Period Ago.png" class="img-fluid rounded" alt="Chart 9"></div>
+          <div class="col-6"><img src="assets/2020-Bar-2-On The Book Variances To 1 Period Ago.png" class="img-fluid rounded" alt="Chart 10"></div>
+          <div class="col-6"><img src="assets/2020-Line-1-On The Book Variances To 1 Period Ago.png" class="img-fluid rounded" alt="Chart 11"></div>
+          <div class="col-6"><img src="assets/2020-Line-2-On The Book Variances To 1 Period Ago.png" class="img-fluid rounded" alt="Chart 12"></div>
         </div>
       </div>
       <div class="col-md-6">
         <h6>Charts - Pickup Variance</h6>
         <div class="row g-3">
-          <div class="col-6"><img src="assets/Only 2029 Realized OTB-barr-1.png" class="img-fluid rounded" alt="Chart 13"></div>
-          <div class="col-6"><img src="assets/Only 2029 Realized OTB-barr-2.png" class="img-fluid rounded" alt="Chart 14"></div>
-          <div class="col-6"><img src="assets/Only 2029 Realized OTB-cgart-1.png" class="img-fluid rounded" alt="Chart 15"></div>
-          <div class="col-6"><img src="assets/Only 2029 Realized OTB-cgart-2.png" class="img-fluid rounded" alt="Chart 16"></div>
+          <div class="col-6"><img src="assets/2020-Projected PU-bar-1.png" class="img-fluid rounded" alt="Chart 13"></div>
+          <div class="col-6"><img src="assets/2020-Projected PU-Bar-2.png" class="img-fluid rounded" alt="Chart 14"></div>
+          <div class="col-6"><img src="assets/2020-Projected PU-line-2.png" class="img-fluid rounded" alt="Chart 15"></div>
+          <div class="col-6"><img src="assets/2020-Projected PU-line-1.png" class="img-fluid rounded" alt="Chart 16"></div>
         </div>
       </div>
     </div>
@@ -334,92 +370,164 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
 
 <!-- Variance Comparison -->
   <section class="mb-5">
-  <h3 class="mb-4">Month-over-Month (MoM) On-The-Books (OTB) Room Nights</h3>
+  <section style="margin-top: 40px; font-family: Arial, sans-serif; line-height: 1.6;">
+  <h2 style="font-size: 20px; color: #333;">Understanding the Difference Between the Two Queries</h2>
+
+  <!-- OTB Variance Explanation -->
+   <p style="font-size: 16px; font-weight: bold; color: #2c3e50;">
+  🤓 Don’t worry — it only looks scary. You've got this!
+</p>
+
+  <p><strong>✅ 1. "On The Book Variances To 1 Period Ago"</strong><br>
+  <em>How does On the Books performance looking forwards compare to performance 1 period ago.:</em> How does On the Books (OTB) performance looking forward compare to how it looked one period ago?<br>
+  <strong>Data Source:</strong> <code>forecast_type = 'OTB'</code><br>
+  <strong>Metric:</strong> Projected room nights<br>
+  <strong>Method:</strong> Compare the current OTB for future arrival dates to what the OTB was one period ago (e.g., a week or a month ago).<br>
+  <strong>Output:</strong> Absolute values by month and weekday (no subtraction).<br>
+  <strong>Use it to:</strong> Assess if your booking pace is improving or slowing down.</p>
+
+  <!-- OTB Sample Table -->
+   <p style="font-size: 16px; font-weight: bold; color: #2c3e50;">
+  🤓 Don’t worry — it only looks scary. You've got this!
+</p>
+
+  <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
+    <caption style="text-align: left; font-weight: bold; margin-bottom: 6px;">📊 Sample: On The Book Variance to 1 Period Ago</caption>
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 6px;">Month Of</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Fri</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Sat</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Sun</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Mon</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Tue</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Wed</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Thu</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Jan-20</td><td>907</td><td>592</td><td>598</td><td>538</td><td>566</td><td>1046</td><td>1199</td><td>5446</td></tr>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Feb-20</td><td>765</td><td>809</td><td>742</td><td>612</td><td>490</td><td>504</td><td>608</td><td>4530</td></tr>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Mar-20</td><td>623</td><td>1000</td><td>935</td><td>1072</td><td>870</td><td>663</td><td>767</td><td>5930</td></tr>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Apr-20</td><td>701</td><td>1008</td><td>781</td><td>577</td><td>722</td><td>801</td><td>1074</td><td>5664</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PU Variance Explanation -->
+  <p><strong>✅ 2. "Pick Up Variance To 1 Period Ago (Proj PU - 1PdAgo PU)"</strong><br>
+  <em>What it answers:</em> How does the projected pick-up compare to what was picked up one period ago for the same arrival window?<br>
+  <strong>Data Source:</strong><br>
+  - <code>forecast_type = 'Forecast'</code> for current projected PU<br>
+  - <code>forecast_type IN ('Check-In', 'Check-Out')</code> for historical actual PU<br>
+  
+
+  <!-- PU Sample Table -->
+   <div class="table-wrapper">
+  <!-- 👇 Add message here -->
+  <p style="...">🧭 Please don’t get lost...</p>
+
+  <table>...</table>
+</div>
+
+  <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
+    <caption style="text-align: left; font-weight: bold; margin-bottom: 6px;">📊 Sample: Pick Up Variance to 1 Period Ago</caption>
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 6px;">Month Of</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Fri</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Sat</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Sun</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Mon</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Tue</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Wed</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Thu</th>
+        <th style="border: 1px solid #ccc; padding: 6px;">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Jan-20</td><td>936</td><td>615</td><td>740</td><td>534</td><td>673</td><td>1052</td><td>1182</td><td>5732</td></tr>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Feb-20</td><td>714</td><td>821</td><td>743</td><td>556</td><td>430</td><td>627</td><td>677</td><td>4568</td></tr>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Mar-20</td><td>546</td><td>977</td><td>913</td><td>1117</td><td>760</td><td>772</td><td>709</td><td>5794</td></tr>
+      <tr><td style="border: 1px solid #ccc; padding: 6px;">Apr-20</td><td>723</td><td>943</td><td>801</td><td>610</td><td>695</td><td>811</td><td>1056</td><td>5639</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Summary Table -->
+  <p><strong>💡 Why is there a difference?</strong><br>
+  Because you’re comparing two different behaviors:<br>
+  - <strong>OTB Variance:</strong> What’s already booked now vs. what was booked last period<br>
+  - <strong>PU Variance:</strong> What you forecast will be booked vs. what was actually booked last period</p>
+  <p>😲 <strong> Rememebr</strong></p>
+  
+  <b><strong>WE ARE NOT separating or comparing OTB vs LY Forecast (or LY Actual)</strong></b>
+  <br>
+</br>
+<section>
+
   <p>
-    How much your confirmed bookings (with buffer) are ahead or behind the gap between last year's forecast and actuals.
-    It factors in how overestimated or underestimated last year’s forecasts were — giving a more refined measure than a straight CY - LY comparison.
+    Table showing total room nights (projected) per weekday and month for the year 2020, but combining the following forecast types:
+    <ul>
+<li>'OTB' → your current bookings</li>
+<li>'LY Forecast' → last year’s forecast <strong>(made in 2019 for 2020)</strong></li>
+<li>'LY Actual' → actual room nights <strong>realized in 2020</strong></li>
+</ul>
   </p>
-
-  <h4>What the Query Does (Step by Step):</h4>
-  <ul>
-    <li>Filters only <code>forecast_type = 'OTB'</code> (i.e., On-The-Books = bookings made before arrival).</li>
-    <li>Only for <strong>2019 VS 2020</strong>.</li>
-    <li>Includes specific distribution channels: <em>OTA, Direct, TA/TO, Website, Group, Corporate</em>.</li>
-    <li>Extracts fields like <code>arrival_date</code>, <code>month</code>, <code>year</code>, and <code>month_start</code> for grouping.</li>
-    <li>Retains <code>room_sold</code> and <code>distribution_channel</code>.</li>
-  </ul>
-
-  <h4>Calculates:</h4>
-  <ul>
-    <li><strong>OTB Variance</strong> = current OTB - previous OTB</li>
-    <li><strong>MoM % Change</strong> = (Variance / previous OTB) × 100</li>
-    <li>Formats <code>month_start</code> into a readable label like "Jan 2019"</li>
-  </ul>
-
-  <h5>✅ Final Output: A month-by-month report showing:</h5>
-  <ul>
-    <li>Month</li>
-    <li>Current OTB</li>
-    <li>Last Month OTB</li>
-    <li>OTB Variance</li>
-    <li>MoM % Change</li>
-  </ul>
-
-  <h4>📊 Why This Is Important for a Revenue Manager:</h4>
-  <ul>
-    <li><strong>Tracks Booking Momentum:</strong> Shows whether the current month booking volume is up or down vs. the previous month. Helps assess performance trends and booking pace.</li>
-    <li><strong>Channel Contribution Focus:</strong> Focuses on specific distribution channels (OTA, Direct, etc.) for mix analysis and to prioritize high-performing sources.</li>
-    <li><strong>Revenue Forecasting Insight:</strong> OTB room nights are a leading indicator of future revenue. Declining MoM bookings may indicate weak demand, prompting pricing or promotional adjustments.</li>
-    <li><strong>Supports Seasonality & Strategy:</strong> Can incorporate seasonal logic (currently commented out in the query) for better planning during peak or low periods.</li>
-    <li><strong>Data-Driven Decisions:</strong> The MoM % change helps quantify trends to guide:
+  <p><strong>But here's the key:</strong>
+    <p>
       <ul>
-        <li>Marketing spend decisions</li>
-        <li>Revenue optimization</li>
-        <li>Targeted sales initiatives</li>
-      </ul>
-    </li>
-  </ul>
-
-  <h4>🧠 Summary</h4>
-  <p>
-    This is a MoM On-The-Books booking trend analysis by distribution channel. It helps revenue managers identify shifts in booking patterns, adjust strategies, and optimize revenue opportunities in real time.
-  </p>
+      <li>✅ You’re aggregating all three types into a single number</li>
+<li>❌ You're not separating or comparing OTB vs LY Forecast (or LY Actual)</li>
+</ul>
+</p>
 </section>
+
+  <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+    <thead>
+      <tr style="background-color: #f0f0f0;">
+        <th style="padding: 8px; border: 1px solid #ccc;">Aspect</th>
+        <th style="padding: 8px; border: 1px solid #ccc;">OTB Variance To 1Pd Ago</th>
+        <th style="padding: 8px; border: 1px solid #ccc;">PU Variance To 1Pd Ago</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ccc;">Metric</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">Current On-The-Books</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">Forecasted Pick Up</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ccc;">Compared To</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">OTB 1 period ago</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">Actual PU 1 period ago</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ccc;">Data Source</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">Only OTB</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">Forecast + Check-In/Out</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ccc;">Behavior Observed</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">How bookings evolved</td>
+        <td style="padding: 8px; border: 1px solid #ccc;">How new bookings are expected to behave</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #ccc;">Result</td>
 
    
 </section>
     <div class="row mb-4">
       <div class="col-md-6">
         <h5>"On The Book" Variance To 1 Period Ago</h5>
-        <img src="assets/August-2019 Table.PNG" class="img-fluid rounded" alt="OTB Variance Table">
+        <img src="assets/2020-Tables-On The Book Variances To 1 Period Ago.jpg" class="img-fluid rounded" alt="OTB Variance Table">
       </div>
       <div class="col-md-6">
         <h5>Pickup Variance To 1 Period Ago</h5>
         
-        <img src="assets/August-20120Table.PNG" class="img-fluid rounded" alt="Pickup Variance Table">
+        <img src="assets/2020--TableProjected PU – 1 Period Ago Actual PU).jpg" class="img-fluid rounded" alt="Pickup Variance Table">
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h6>Charts - OTB Variance</h6>
-        <div class="row g-3">
-          <div class="col-6"><img src="assets/bar-2019-1.png" class="img-fluid rounded" alt="Chart 9"></div>
-          <div class="col-6"><img src="assets/bar-2019-2.png" class="img-fluid rounded" alt="Chart 10"></div>
-          <div class="col-6"><img src="assets/line-2019-1.png" class="img-fluid rounded" alt="Chart 11"></div>
-          <div class="col-6"><img src="assets/line-2019-2.png" class="img-fluid rounded" alt="Chart 12"></div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h6>Charts - Pickup Variance</h6>
-        <div class="row g-3">
-          <div class="col-6"><img src="assets/bar-2020-1.png" class="img-fluid rounded" alt="Chart 13"></div>
-          <div class="col-6"><img src="assets/bar-2020-2.png" class="img-fluid rounded" alt="Chart 14"></div>
-          <div class="col-6"><img src="assets/line-2020-1.png" class="img-fluid rounded" alt="Chart 15"></div>
-          <div class="col-6"><img src="assets/line-2020-2.png" class="img-fluid rounded" alt="Chart 16"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    
 <h5>✅ Final Output: A month-by-month report showing:</h5>
   <ul>
     <li>Month</li>
@@ -456,18 +564,107 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
     <div class="row">
       <div class="col-md-4">
         <h5>OTB Mix %</h5>
-        <img src="assets/segment-change last-3 months.PNG" class="img-fluid rounded" alt="OTB Mix Table">
+
+        <img src="assets/Mix OTB.jpg" class="img-fluid rounded" alt="OTB Mix Table">
       </div>
       <div class="col-md-4">
         <h5>Segment ADR</h5>
-        <img src="assets/ADR-.PNG" class="img-fluid rounded" alt="Segment ADR Table">
+        <img src="assets/adr-seg-1.jpg" class="img-fluid rounded" alt="Segment ADR Table">
       </div>
+
+      <!--Mix OTB-->
+
+      
       <div class="col-md-4">
-        <h5>Segment ADR Change From Last Week</h5>
-        <img src="assets/adr-monthly.PNG" class="img-fluid rounded" alt="ADR Change Table">
+        <h5>Segment ADR Change From Last "Month"</h5>
+        <img src="assets/Revenue-OTB.jpg" class="img-fluid rounded" alt="ADR Change Table">
       </div>
     </div>
   </section>
+<section style="font-family: Arial, sans-serif; line-height: 1.6; margin-top: 40px;">
+  <h2 style="font-size: 22px; color: #333;">📊 Resort OTB Mix % (Historical, Monthly)</h2>
+
+  <p><strong>What this shows:</strong> This query helps simulate how your resort's On-The-Books (OTB) looked <strong>90 days before arrival</strong>, broken down by month and rate segment.</p>
+
+  <p><strong>How it works:</strong></p>
+  <ul>
+    <li><strong>🗂️ Grouped by:</strong> Month of arrival and rate segment (e.g., TO, OTA, Direct, etc.)</li>
+    <li><strong>📊 Output:</strong> Each segment’s share (%) of the total OTB room nights for that month</li>
+    <li><strong>📅 Timeframe:</strong> Typically filtered for high season, e.g., <code>arrival_date BETWEEN '2020-06-01' AND '2020-08-31'</code></li>
+    <li><strong>📁 Snapshot logic:</strong> Only bookings confirmed 90 days before arrival (resorts often rely on longer lead times)</li>
+  </ul>
+
+  <h3 style="font-size: 18px; margin-top: 20px;">🧠 Resort-Specific Notes</h3>
+  <ul>
+    <li>Replace <code>market_segment</code> with your actual segment or channel (e.g., <code>rate_type</code>)</li>
+    <li>Make sure <code>snapshot_date</code> (or <code>status_date</code>) is correct — this defines what was considered "on the books" at that time</li>
+    <li>This logic works well with stacked bar charts or area graphs in Tableau for clear visualization</li>
+  </ul>
+
+  <h3 style="font-size: 18px; margin-top: 30px;">📘 Example Table Explanation</h3>
+  <p>This table provides a monthly view of OTB mix by segment. All figures are as of 90 days prior to the arrival month. Example:</p>
+
+  <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 8px;">Month</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">TO (%)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Direct (%)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">OTA (%)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Group (%)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Corporate (%)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Total Rooms</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 8px;">Jan-20</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">82.3%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">12.1%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">30.2%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">0.0%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">5.6%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">121</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 8px;">Apr-20</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">18.7%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">24.5%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">52.6%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">41.9%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">35.9%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">234</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 8px;">Sep-20</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">89.6%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">6.3%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">4.1%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">0.0%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">0.0%</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">312</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size: 18px; margin-top: 30px;">💡 Strategic Interpretation</h3>
+  <ul>
+    <li><strong>High TO %:</strong> Suggests reliance on Tour Operators. Consider diversifying to improve ADR.</li>
+    <li><strong>Strong OTA months:</strong> May indicate short-lead FIT demand — ideal time to test last-minute rates.</li>
+    <li><strong>Group/Corporate activity:</strong> Peaks in shoulder months — align with event/conference calendar.</li>
+    <li><strong>Direct underperformance:</strong> Explore digital campaigns or loyalty offers to grow direct share.</li>
+  </ul>
+
+  <h3 style="font-size: 18px; margin-top: 30px;">📈 Use Cases for Revenue Strategy</h3>
+  <ul>
+    <li>📌 Identify seasonality shifts and adjust segmentation mix accordingly</li>
+    <li>💰 Align pricing with channel sensitivity — e.g., hold rate on strong Direct months</li>
+    <li>📉 Reduce dependency on low-ADR segments like TO during shoulder or peak months</li>
+    <li>🧠 Inform marketing campaigns, promo timing, and group strategy</li>
+  </ul>
+
+  <p style="margin-top: 30px;"><strong>🔗 Want to go deeper?</strong> <a href="https://4-hoteliers.blogspot.com/2024/10/transient-pace-to-projection.html" target="_blank" style="color: #0077cc;">Read the full breakdown here on the blog</a>.</p>
+</section>
 
   <!--injected here-->
 
