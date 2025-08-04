@@ -321,80 +321,31 @@
 
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>
-  <!--button action-->
+
+<!-- Floating Button, Back to Top, and Highlight Nav -->
 <script>
-  // Wait until DOM is ready
   document.addEventListener("DOMContentLoaded", function () {
+    // Floating Button Logic
     const floatingBtn = document.querySelector(".floatingBtn");
-    floatingBtn.style.display = "none"; // Hide initially
+    if (floatingBtn) {
+      floatingBtn.style.display = "none";
 
-    window.addEventListener("scroll", function () {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
+      window.addEventListener("scroll", function () {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
 
-      if (scrollPercent > 10) {
-        floatingBtn.style.display = "flex"; // Show after 10% scroll
-      } else {
-        floatingBtn.style.display = "none"; // Hide before 10% scroll
-      }
-    });
-  });
-</script>
-
-<!--END of Flaoting button-->
-<!--“Back to Top” button-->
-  <script>
-  const backToTop = document.getElementById("backToTop");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
+        if (scrollPercent > 10) {
+          floatingBtn.style.display = "flex";
+        } else {
+          floatingBtn.style.display = "none";
+        }
+      });
     }
-  });
 
-  backToTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-<!--Highlited Nav page-->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-
-    navLinks.forEach(link => {
-      const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
-        link.classList.add("active");
-      }
-    });
-  });
-</script>
-
-
-  <!-- Footer -->
-  <footer class="footer bg-pink text-center py-3 mt-4">
-    <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
-  </footer>
-
-  <!-- 🔼 Back to Top Button -->
-<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
-  <i class="fas fa-arrow-up"></i>
-</a>
-
-
-<!--  Back to top and Nav Highlited -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // ✅ Back to Top Logic
+    // Back to Top Button Logic
     const backToTop = document.getElementById("backToTop");
-
     if (backToTop) {
-      // Show/hide on scroll
       window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
           backToTop.classList.add("show");
@@ -403,14 +354,13 @@
         }
       });
 
-      // Scroll to top on click
       backToTop.addEventListener("click", function (e) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
 
-    // ✅ Highlight Active Navigation
+    // Highlight Active Navigation
     const currentPage = location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll(".nav-link");
 
@@ -423,7 +373,19 @@
   });
 </script>
 
+<!-- Footer -->
+<footer class="footer bg-pink text-center py-3 mt-4">
+  <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
+</footer>
+
+<!-- 🔼 Back to Top Button -->
+<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+</a>
+
+
 
 </body>
 </html>
+
 
