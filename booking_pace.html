@@ -670,7 +670,7 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
   <!--injected here-->
 
 
-  
+  </main>
     <!-- Place this in your HTML body (e.g., index.html) -->
 <!-- Place this in your HTML body -->
 
@@ -756,140 +756,61 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
 </script>
 
 <!--END of Flaoting button-->
-<!--“Back to Top” button-->
-  <script>
-  const backToTop = document.getElementById("backToTop");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  });
-
-  backToTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-
-<!--Highlited Nav page-->
+<!-- ✅ Back to Top + Highlight Nav + Error Patch -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-
-    navLinks.forEach(link => {
-      const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
-        link.classList.add("active");
-      }
-    });
-  });
-</script>
-  </main>
-<script>
-  const backToTop = document.getElementById("backToTop");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  });
-
-  backToTop.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-<!--Highlited Nav page-->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = location.pathname.split("/").pop();
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-
-    navLinks.forEach(link => {
-      const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
-        link.classList.add("active");
-      }
-    });
-  });
-</script>
-
-<footer class="footer bg-pink text-center py-3">
-  <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
-</footer>
-
- <!-- 🔼 Back to Top Button -->
-<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
-  <i class="fas fa-arrow-up"></i>
-</a>
-
-
-<!--  Back to top and Nav Highlited -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // ✅ Back to Top Logic
+    // ✅ Back to Top Button
     const backToTop = document.getElementById("backToTop");
 
     if (backToTop) {
-      // Show/hide on scroll
+      // Show/hide button on scroll
       window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
-          backToTop.classList.add("show");
+          backToTop.style.display = "block"; // or use classList.add("show")
         } else {
-          backToTop.classList.remove("show");
+          backToTop.style.display = "none"; // or use classList.remove("show")
         }
       });
 
-      // Scroll to top on click
+      // Smooth scroll to top on click
       backToTop.addEventListener("click", function (e) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
 
-    // ✅ Highlight Active Navigation
+    // ✅ Highlight current nav item
     const currentPage = location.pathname.split("/").pop() || "index.html";
-    const navLinks = document.querySelectorAll(".nav-link");
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link, .nav-link");
 
     navLinks.forEach(link => {
       const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage) {
+      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
         link.classList.add("active");
       }
     });
   });
-</script>
-<!-- Your content here -->
-  <!-- ✅ Patch: Suppress 'null.style' errors without touching existing scripts -->
-<script>
+
+  // ✅ Optional: Silent fail if #backToTop is missing (prevents console error)
   window.addEventListener("error", function (e) {
     if (
       e.message &&
       e.message.includes("Cannot read properties of null") &&
       e.message.includes("style")
     ) {
-      e.preventDefault(); // Prevent error from breaking page
+      e.preventDefault();
     }
   });
 </script>
 
-<div id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; right:20px; z-index:9999; cursor:pointer; background:#333; color:#fff; padding:10px 15px; border-radius:50%;">
+
+  
+</body>
+  <div id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; z-index:9999; cursor:pointer; background:#333; color:#fff; padding:10px 15px; border-radius:50%;">
   <i class="fas fa-chevron-up"></i>
 </div>
 
-
-</body>
-
-
 </html>
-
-        
 
 
 
