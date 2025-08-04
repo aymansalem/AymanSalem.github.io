@@ -242,47 +242,56 @@
 </footer>
 
   
-<!-- 🔼 Back to Top Button -->
-<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
-  <i class="fas fa-arrow-up"></i>
-</a>
-
-
-<!--  Back to top and Nav Highlited -->
+<!-- ✅ Back to Top + Highlight Nav + Error Patch -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // ✅ Back to Top Logic
+    // ✅ Back to Top Button
     const backToTop = document.getElementById("backToTop");
 
     if (backToTop) {
-      // Show/hide on scroll
+      // Show/hide button on scroll
       window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
-          backToTop.classList.add("show");
+          backToTop.style.display = "block"; // or use classList.add("show")
         } else {
-          backToTop.classList.remove("show");
+          backToTop.style.display = "none"; // or use classList.remove("show")
         }
       });
 
-      // Scroll to top on click
+      // Smooth scroll to top on click
       backToTop.addEventListener("click", function (e) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
 
-    // ✅ Highlight Active Navigation
+    // ✅ Highlight current nav item
     const currentPage = location.pathname.split("/").pop() || "index.html";
-    const navLinks = document.querySelectorAll(".nav-link");
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link, .nav-link");
 
     navLinks.forEach(link => {
       const linkPage = link.getAttribute("href");
-      if (linkPage === currentPage) {
+      if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
         link.classList.add("active");
       }
     });
   });
+
+  // ✅ Optional: Silent fail if #backToTop is missing (prevents console error)
+  window.addEventListener("error", function (e) {
+    if (
+      e.message &&
+      e.message.includes("Cannot read properties of null") &&
+      e.message.includes("style")
+    ) {
+      e.preventDefault();
+    }
+  });
 </script>
+
+  <div id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; z-index:9999; cursor:pointer; background:#333; color:#fff; padding:10px 15px; border-radius:50%;">
+  <i class="fas fa-chevron-up"></i>
+</div>
 
 
 
@@ -291,3 +300,4 @@
 
 
 </html>
+
