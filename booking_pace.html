@@ -120,18 +120,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
   <p>For resorts with long booking windows (30–90+ days), pace analysis helps forecast shoulder/peak periods, identify booking slowdowns, and refine channel and pricing strategies.</p>
 
-  <h3>🔄 What We are covering Here?</h3>
+     <!--Jump-->
+   <h3>🔄 What We are covering Here? </h3>
+  <strong><i>"Use link to jump to section"</i></strong>
   <ul>
     <!--Jump-->
     <!--<a href="#projection-analysis">🔽 Jump to Projection Analysis</a>-->
-    <li>On The Books (OTB) Mix to Last Year</li>
-    <li>Current Mix To Last Year Forecast- LY Actual</li>
-    <li>📊 OTB Variance & Pickup Analysis</li>
-    <li>📉 On The Book Variances To 1 Period Ago <i>"Month"</i></li>
-    <li>📌 Pick Up Variance To 1 Period Ago (Projection PU - 1PdAgo PU)</li>
-    <li>📈 OTB Mix Percentages</li>
-    <li>📐Measuring Segment ADR Change</li>
-    <li>🎯Segment ADR Change From Last Period <I>"Month"</I></li>
+<li><a href="#OTBMIX-section">On The Books (OTB) Mix to Last Year</a></li>
+    <li><a href="#Current Mix-section">Current Mix To Last Year Forecast- LY Actual</a></li>
+    <li><a href="#OTB Variance-section">📊 OTB Variance & Pickup Analysis</a></li>
+    <li><a href="#Period Ago-section">📉 On The Book Variances To 1 Period Ago <i>"Month"</i></a></li>
+    <li>📌 <a href="#Proj PU-section">Pick Up Variance To 1 Period Ago (Projection PU - 1PdAgo PU)</a></li>
+    <li><a href="#Mix-Percentages-section">📈 OTB Mix Percentages</a></li>
+    <li><a href="#Segment ADR-section">📐Measuring Segment ADR Change</a></li>
+    <li><a href="#Segment ADR-section">🎯Segment ADR Change From Last Period <I>"Month"</I></a></li>
   </ul>
 <p>
   <strong><h4>🔹 1. Performance Summary Comparison</h4></strong>
@@ -423,11 +425,11 @@ This query compares forecasted vs realized room nights sold per month, helping y
 
     <div class="row mb-4">
       <div class="col-md-6">
-        <h5>"On The Book" Mix To Last Year</h5>
+        <h5 id="OTBMIX-section">🏨 1. "On The Book" Mix To Last Year</h5>
         <img src="assets/2019-Table-On The Book Mix To Last Yea.jpg" class="img-fluid rounded" alt="On The Book Mix To Last Year Table">
       </div>
       <div class="col-md-6">
-        <h5>Current Mix To Last Year Forecast - LY Actual</h5>
+       < h5 id ="Current Mix-section">📊 2. Current Mix To Last Year Forecast - LY Actual</a></h5>
         <img src="assets/2020-Table-Current Mix To Last Year Forecast - LY Actual.jpg" class="img-fluid rounded" alt="Current Mix To LY Forecast Table">
       </div>
     </div>
@@ -521,7 +523,7 @@ diff	Your current performance compared to that gap: cy_mix - (ly_forecast - ly_a
      </section>
   <!-- Variance Comparison -->
   <section class="mb-5">
-    <h3 class="mb-4">OTB Variance & Pickup Analysis</h3>
+    <h3 id = "OTB Variance-section"> OTB Variance & Pickup Analysis</h3>
     <p>  How much your confirmed bookings (with buffer) are ahead or behind the gap between LY forecast and actuals.
 It factors in how overestimated or underestimated LY forecasts were — giving a more refined measure than a straight CY - LY comparison
 <p>
@@ -618,7 +620,9 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
   </table>
 
   <!-- PU Variance Explanation -->
-  <p><strong>✅ 2. "Pick Up Variance To 1 Period Ago (Proj PU - 1PdAgo PU)"</strong><br>
+  <h5 id ="Proj PU-section"><strong>
+  📌 Pick Up Variance To 1 Period Ago (Proj PU - 1 Period Ago Actual PU)
+</h5></strong>
   <em>What it answers:</em> How does the projected pick-up compare to what was picked up one period ago for the same arrival window?<br>
   <strong>Data Source:</strong><br>
   - <code>forecast_type = 'Forecast'</code> for current projected PU<br>
@@ -786,7 +790,10 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
     </div>
   </section>
 <section style="font-family: Arial, sans-serif; line-height: 1.6; margin-top: 40px;">
-  <h2 style="font-size: 22px; color: #333;">📊 Resort OTB Mix % (Historical, Monthly)</h2>
+ <h2 id="Mix-Percentages-section" style="font-size: 22px; color: #333;">📊 Resort OTB Mix % (Historical, Monthly)</h2>
+  <h5>OTB Mix %</h5>
+        <img src="assets/Colab-chart.png" style="height: 400px; width: auto;"  class="img-fluid rounded" alt="Segment ADR Table" />
+      </div>
 
   <p><strong>What this shows:</strong> This query helps simulate how your resort's On-The-Books (OTB) looked <strong>90 days before arrival</strong>, broken down by month and rate segment.</p>
 
@@ -870,6 +877,167 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
   <p style="margin-top: 30px;"><strong>🔗 Want to go deeper?</strong> <a href="https://4-hoteliers.blogspot.com/2024/10/transient-pace-to-projection.html" target="_blank" style="color: #0077cc;">Read the full breakdown here on the blog</a>.</p>
 </section>
 
+<h5 id="Segment ADR-section"> OTB Mix %</h5>
+<div class="col-md-12">
+        <p>
+
+          OTB Mix % stands for "On The Books Mix Percentage." It represents the proportion of room nights or revenue that a specific market segment contributes to the total rooms or revenue currently booked ("on the books") for a future arrival period.
+        </p>
+        <img src="assets/Segment-ADR-Col.JPG" style="height: 400px; width: auto;"  class="img-fluid rounded" alt="Segment ADR Table" />
+      </div>
+    </p>
+    </section>
+        <p>
+
+        <strong>If you have the following On The Books (OTB) reservations for a future month:</strong>  
+M<table class="table table-bordered w-auto my-3">
+  <thead>
+    <tr>
+      <th>Market Segment</th>
+      <th>OTB Room Nights</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OTA</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>Direct</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>TA/TO</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td><!-- Add another segment if needed --></td>
+ </tbody>
+</table>
+        </p>
+        <p>
+
+          <strong>Then the OTB Mix % is:</strong>
+          
+<table class="table table-bordered w-auto my-3">
+  <thead>
+    <tr>
+      <th>Market Segment</th>
+      <th>OTB Room Nights</th>
+      <th>Mix %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OTA</td>
+      <td>300</td>
+      <td>60%</td>
+    </tr>
+    <tr>
+      <td>Direct</td>
+      <td>150</td>
+      <td>30%</td>
+    </tr>
+    <tr>
+      <td>TA/TO</td>
+      <td>50</td>
+      <td>10%</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p>
+
+ <strong>🔹 Why it's Important:</strong>
+ <ul> 
+<li>It shows how dependent you are on certain channels or segments.</li>
+<li>Useful for distribution strategy — e.g., too much reliance on OTAs vs. Direct</li>
+<li>Helps track how your segment mix is evolving YoY or MoM.</li>
+<li>It informs pricing decisions, marketing focus, and sales targeting</li>
+</Ul>
+</p>
+<strong>Insight</strong> 
+<ul>
+  <li>How each segment contributes to total ADR across weeks. </li>
+<li>The rise and fall of different segments like Corporate or Website.</li>
+<li>Visual dominance of certain channels in specific weeks (e.g., spikes from Website or Corporate ADR).
+</li>
+</ul>
+<p>
+
+<strong>🧠 How to Read a Row</strong>
+Take this example:
+
+<table class="table table-bordered w-auto my-3">
+  <thead>
+    <tr>
+      <th>Week Of</th>
+      <th>TO</th>
+      <th>Direct</th>
+      <th>OTA</th>
+      <th>Website</th>
+      <th>Corporate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>06-Jan</td>
+      <td>147.47</td>
+      <td>96.39</td>
+      <td>101.23</td>
+      <td>132.29</td>
+      <td>109.02</td>
+    </tr>
+    </tr>
+    <!-- Add another row here if needed -->
+  </tbody>
+</table>
+</p>
+<p>
+    <!-- Add another row here if needed-->
+<strong>means:</strong> <br>
+<strong>•	During the week of 6th January, the average daily rate was:</strong>
+<ul>
+<li>  $147.47 via Tour Operators</li>
+<li>	$96.39 via Direct bookings</li>
+<li>$101.23 via OTAs</li>
+<li>$132.29 via the Hotel Website</li>
+<li>$109.02 for Corporate bookings</li>
+
+</ul>
+
+</p>
+<strong>📊 What You Can Do With It
+You can analyze:</strong>
+<ul>
+<li>Which channel performs best in terms of revenue or rates</li>
+<li>Trends over time: are some channels growing or declining?</li>
+<li>Seasonality: do OTAs spike in summer? Do corporate bookings fall on weekends?</li>
+<li>Mix & dependency: Is the hotel overly dependent on one segment (e.g., OTA)?</li>
+</ul>
+</p>
+<p>
+  <strong>🔍 Patterns to Look For</strong>
+  <ul>
+<li><b>High Website values</b></li>
+<ol>→ Strong direct digital presence (good for profit).</ol>
+<li><b>High OTA values</b></li>
+<ol>→ Reliance on third-party platforms (less profitable).</ol> 
+<li><b>Corporate dips </b></li> 
+<ol>on weekends/holidays→ Business travelers don't book then.</ol>
+<li><b>Zero values</b></li> 
+<ol>→ No bookings or missing data.</ol>
+
+  </ul>
+
+</p>
+
+</section>
+  
   <!--injected here-->
 
 
@@ -1012,6 +1180,7 @@ o	Same lead time (e.g., 30 days before arrival in 2020 vs 30 days before arrival
 
 
 </html>
+
 
 
 
