@@ -1,6 +1,5 @@
- 📁 AymanSalem.github.io/booking_pace/README.md
-markdown
-CopyEdit
+📁 [booking_pace/README.md]](https://github.com/AymanSalem/AymanSalem.github.io/blob/main/booking_pace/README.md)
+
 # 📊 Booking Pace Analysis
 
 **Project Focus**: Analyze and visualize the hotel’s On-the-Books (OTB) booking pace data over multiple years to track trends, segment mix, and ADR sensitivity for better forecasting and revenue planning.
