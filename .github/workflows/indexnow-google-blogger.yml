@@ -43,7 +43,6 @@ jobs:
           BLOGGER_SITEMAP="https://4-hoteliers.blogspot.com/sitemap.xml"
           echo "Fetching Blogger sitemap..."
           curl -s "$BLOGGER_SITEMAP" | grep -oP '(?<=<loc>).*?(?=</loc>)' >> urls.txt || true
-          # Remove empty lines and duplicates
           sed -i '/^\s*$/d' urls.txt || true
           sort -u urls.txt -o urls.txt || true
           echo "Final urls.txt contents:"
@@ -58,7 +57,7 @@ jobs:
             exit 0
           fi
 
-python3 <<PYTHON
+          python3 <<PYTHON
 import os, json, urllib.request, urllib.error
 from urllib.parse import urlparse
 from collections import defaultdict
@@ -68,41 +67,38 @@ if not key:
     print("INDEXNOW_KEY not set; skipping IndexNow submission.")
     exit(0)
 
-hosts = defaultdict(list)
+key_files = {
+    'aymansalem.github.io': f'https://aymansalem.github.io/{key}.txt',
+    '4-hoteliers.blogspot.com': None  # Blogger doesn't require keyLocation hosting
+}
+
+urls_by_host = defaultdict(list)
 with open('urls.txt') as f:
-    for line in f:
-        url = line.strip()
+    for url in f:
+        url = url.strip()
         if url:
             host = urlparse(url).netloc
-            hosts[host].append(url)
+            urls_by_host[host].append(url)
 
-for host, urls in hosts.items():
-    key_url = f'https://{host}/{key}.txt'
-    print(f'Checking for IndexNow key file at {key_url}...')
-    has_key = False
-    try:
-        req = urllib.request.Request(key_url, headers={'User-Agent': 'IndexNowChecker/1.0'})
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            content = resp.read().decode().strip()
-            if resp.status == 200 and content == key:
-                has_key = True
-    except Exception as e:
-        print(f'Failed to check key file for {host}: {e}')
-
-    if not has_key:
-        print(f"Key file not found for {host}, skipping IndexNow for this host.")
-        continue
-
-    payload = {'host': host, 'key': key, 'keyLocation': key_url, 'urlList': urls}
+for host, urls in urls_by_host.items():
+    payload = {
+        'host': host,
+        'key': key,
+        'urlList': urls
+    }
+    if key_files.get(host):
+        payload['keyLocation'] = key_files[host]
     data = json.dumps(payload).encode('utf-8')
-    req2 = urllib.request.Request('https://www.bing.com/indexnow', data=data, headers={'Content-Type': 'application/json'})
+    req = urllib.request.Request(
+        'https://www.bing.com/indexnow',
+        data=data,
+        headers={'Content-Type': 'application/json'}
+    )
     try:
-        with urllib.request.urlopen(req2, timeout=15) as resp2:
-            print(f'IndexNow submission for {host} responded with {resp2.status}: {resp2.read().decode()}')
-    except urllib.error.HTTPError as e:
-        print(f'IndexNow HTTP error for {host}: {e.code} - {e.read().decode()}')
+        with urllib.request.urlopen(req) as resp:
+            print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
     except Exception as e:
-        print(f'IndexNow submission error for {host}: {e}')
+        print(f'Error submitting to IndexNow for host {host}: {e}')
 PYTHON
 
       - name: Submit URLs to Google Indexing API
@@ -113,10 +109,11 @@ PYTHON
             echo "No URLs to submit to Google Indexing API. Skipping."
             exit 0
           fi
+
           echo "$GOOGLE_API_JSON" > /tmp/google_key.json
           python3 -m pip install --upgrade --quiet google-api-python-client google-auth
 
-python3 <<PYTHON
+          python3 <<PYTHON
 import json
 import time
 from google.oauth2 import service_account
