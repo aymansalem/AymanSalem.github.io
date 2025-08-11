@@ -1,0 +1,29 @@
+name: Test Google Indexing API
+
+on:
+  workflow_dispatch:  # lets you run it manually
+
+jobs:
+  test-indexing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save Google JSON secret
+        run: echo "${{ secrets.GOOGLE_JSON }}" > service-account.json
+
+      - name: Install jq and curl
+        run: sudo apt-get update && sudo apt-get install -y jq curl
+
+      - name: Get Access Token
+        id: auth
+        run: |
+          ACCESS_TOKEN=$(curl -s -X POST -H "Content-Type: application/json" \
+            -d @service-account.json \
+            "https://oauth2.googleapis.com/token" | jq -r '.access_token')
+          echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> $GITHUB_ENV
+
+      - name: Send Test Indexing API Request
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $ACCESS_TOKEN" \
+            "https://indexing.googleapis.com/v3/urlNotifications:publish" \
+            -d '{"url": "https://aymansalem.github.io/", "type": "URL_UPDATED"}'
