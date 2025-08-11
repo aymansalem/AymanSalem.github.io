@@ -7,6 +7,7 @@ on:
 jobs:
   indexnow:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -29,10 +30,18 @@ jobs:
                 ;;
             esac
           done
+          if [ ${#URLS[@]} -gt 0 ]; then
+            printf "%s\n" "${URLS[@]}" > urls.txt
+          else
+            # No changed HTML files, create empty urls.txt for now
+            touch urls.txt
+          fi
 
-          if [ ${#URLS[@]} -eq 0 ] && [ -f sitemap.xml ]; then
-            # Run python code from heredoc
-            python3 <<EOF
+      - name: Populate URLs from sitemap.xml if urls.txt is empty
+        if: steps.build-url-list.outcome == 'success' && steps.build-url-list.outputs.has_urls != 'true'
+        run: |
+          if [ ! -s urls.txt ] && [ -f sitemap.xml ]; then
+            python3 - <<EOF
 import xml.etree.ElementTree as ET
 try:
     tree = ET.parse('sitemap.xml')
@@ -40,12 +49,10 @@ try:
     urls = [u.find('ns:loc', ns).text for u in tree.findall('.//ns:url', ns)]
     with open('urls.txt', 'w') as out:
         for u in urls:
-            out.write(u + '\\n')
+            out.write(u + '\n')
 except Exception:
     open('urls.txt', 'w').close()
 EOF
-          else
-            printf "%s\n" "${URLS[@]}" > urls.txt
           fi
 
       - name: Append Blogger.com URLs from sitemap
@@ -53,6 +60,8 @@ EOF
           BLOGGER_SITEMAP="https://4-hoteliers.blogspot.com/sitemap.xml"
           curl -s "$BLOGGER_SITEMAP" | \
             grep -oP '(?<=<loc>).*?(?=</loc>)' >> urls.txt
+          sed -i '/^\s*$/d' urls.txt
+          sort -u urls.txt -o urls.txt
           echo "Final URL list:"
           cat urls.txt
 
@@ -64,12 +73,17 @@ EOF
             echo "No urls to submit; exiting."
             exit 0
           fi
-          python3 <<PY
+
+python3 <<PY
 import os, json, urllib.request
 from urllib.parse import urlparse
 from collections import defaultdict
 
-key = os.environ['INDEXNOW_KEY']
+key = os.environ.get('INDEXNOW_KEY')
+if not key:
+    print("INDEXNOW_KEY not set; skipping IndexNow submission.")
+    exit(0)
+
 key_files = {
     'aymansalem.github.io': f'https://aymansalem.github.io/{key}.txt',
     '4-hoteliers.blogspot.com': None  # Blogger doesn't require keyLocation hosting
@@ -99,4 +113,43 @@ for host, urls in urls_by_host.items():
     )
     with urllib.request.urlopen(req) as resp:
         print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
+PY
+
+      - name: Submit URLs to Google Indexing API
+        env:
+          GOOGLE_API_JSON: ${{ secrets.GOOGLE_API_JSON }}
+        run: |
+          if [ ! -s urls.txt ]; then
+            echo "No URLs to submit to Google Indexing API. Skipping."
+            exit 0
+          fi
+          echo "$GOOGLE_API_JSON" > /tmp/google_key.json
+          python3 -m pip install --upgrade --quiet google-api-python-client google-auth
+
+python3 <<PY
+import json
+import time
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+creds_file = "/tmp/google_key.json"
+SCOPES = ["https://www.googleapis.com/auth/indexing"]
+
+try:
+    creds = service_account.Credentials.from_service_account_file(creds_file, scopes=SCOPES)
+    service = build("indexing", "v3", credentials=creds, cache_discovery=False)
+except Exception as e:
+    print("Failed to initialize Google API client:", e)
+    exit(1)
+
+with open("urls.txt") as f:
+    urls = [u.strip() for u in f if u.strip()]
+
+for url in urls:
+    try:
+        response = service.urlNotifications().publish(body={"url": url, "type": "URL_UPDATED"}).execute()
+        print(f"Google indexing updated for: {url} -> {response}")
+    except Exception as e:
+        print(f"Google API error for {url}: {e}")
+    time.sleep(1)
 PY
