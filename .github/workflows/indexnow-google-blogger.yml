@@ -27,13 +27,13 @@ jobs:
             FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           fi
           URLS=()
-          for f in $FILES; do
+          while IFS= read -r f; do
             case "$f" in
               *.html|*.htm)
                 URLS+=("https://${DOMAIN}/${f}")
                 ;;
             esac
-          done
+          done < <(printf "%s\n" "$FILES")
           printf "%s\n" "${URLS[@]}" > urls.txt
           echo "Initial urls.txt contents:"
           cat urls.txt || true
