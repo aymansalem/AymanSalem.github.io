@@ -56,9 +56,10 @@ jobs:
             echo "No URLs to submit to Bing IndexNow. Skipping."
             exit 0
           fi
-
           python3 <<PYTHON
-import os, json, urllib.request, urllib.error
+import os
+import json
+import urllib.request
 from urllib.parse import urlparse
 from collections import defaultdict
 
@@ -109,10 +110,8 @@ PYTHON
             echo "No URLs to submit to Google Indexing API. Skipping."
             exit 0
           fi
-
           echo "$GOOGLE_API_JSON" > /tmp/google_key.json
           python3 -m pip install --upgrade --quiet google-api-python-client google-auth
-
           python3 <<PYTHON
 import json
 import time
