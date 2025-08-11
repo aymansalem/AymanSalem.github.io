@@ -56,8 +56,7 @@ jobs:
             echo "No URLs to submit to Bing IndexNow. Skipping."
             exit 0
           fi
-
-          python3 <<EOF
+          cat <<PYTHON > submit_indexnow.py
 import os
 import json
 import urllib.request
@@ -101,7 +100,8 @@ for host, urls in urls_by_host.items():
             print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
     except Exception as e:
         print(f'Error submitting to IndexNow for host {host}: {e}')
-EOF
+PYTHON
+          python3 submit_indexnow.py
 
       - name: Submit URLs to Google Indexing API
         env:
@@ -113,8 +113,7 @@ EOF
           fi
           echo "$GOOGLE_API_JSON" > /tmp/google_key.json
           python3 -m pip install --upgrade --quiet google-api-python-client google-auth
-
-          python3 <<EOF
+          cat <<PYTHON > submit_google.py
 import json
 import time
 from google.oauth2 import service_account
@@ -140,4 +139,5 @@ for url in urls:
     except Exception as e:
         print(f"Google API error for {url}: {e}")
     time.sleep(1)
-EOF
+PYTHON
+          python3 submit_google.py
