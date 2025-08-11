@@ -1,8 +1,3 @@
-# Final Fixed IndexNow Workflow
-
-The issue is with how multiline strings are handled in YAML when they contain quotes and special characters. Here's the properly fixed version that will resolve your YAML syntax error:
-
-```yaml
 name: IndexNow + Google Indexing (GitHub Pages + Blogger)
 
 on:
@@ -12,7 +7,6 @@ on:
 
 permissions:
   contents: read
-  secrets: read
 
 jobs:
   index_and_notify:
@@ -56,7 +50,7 @@ jobs:
       - name: Submit URLs to Bing IndexNow (only hosts with public key file)
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-        run: >
+        run: |
           if [ ! -s urls.txt ]; then
             echo "No URLs to submit to Bing IndexNow. Skipping."
             exit 0
@@ -113,7 +107,7 @@ jobs:
       - name: Submit URLs to Google Indexing API
         env:
           GOOGLE_API_JSON: ${{ secrets.GOOGLE_API_JSON }}
-        run: >
+        run: |
           if [ ! -s urls.txt ]; then
             echo "No URLs to submit to Google Indexing API. Skipping."
             exit 0
