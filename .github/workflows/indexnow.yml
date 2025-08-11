@@ -1,1 +1,83 @@
+yaml
+CopyEdit
+name: IndexNow - Notify Bing (GitHub Pages + Blogger)
 
+on:
+  push:
+    branches: [ main ]   # or your publishing branch
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build URL list (GitHub Pages changed .html files)
+        env:
+          DOMAIN: aymansalem.github.io
+        run: |
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            FILES=$(git ls-files)
+          else
+            FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          fi
+          echo "Changed files:"
+          echo "$FILES"
+          URLS=()
+          for f in $FILES; do
+            case "$f" in
+              *.html|*.htm)
+                URLS+=("https://${DOMAIN}/${f}")
+                ;;
+            esac
+          done
+          if [ ${#URLS[@]} -eq 0 ] && [ -f sitemap.xml ]; then
+            python3 - <<'PY'
+import xml.etree.ElementTree as ET
+try:
+    tree = ET.parse('sitemap.xml')
+    ns = {'ns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+    urls = [u.find('ns:loc', ns).text for u in tree.findall('.//ns:url', ns)]
+    with open('urls.txt', 'w') as out:
+        for u in urls:
+            out.write(u + '\n')
+except Exception:
+    open('urls.txt', 'w').close()
+PY
+          else
+            printf "%s\n" "${URLS[@]}" > urls.txt
+          fi
+
+      - name: Append Blogger.com URLs from sitemap
+        run: |
+          BLOGGER_SITEMAP="https://4-hoteliers.blogspot.com/sitemap.xml"
+          curl -s "$BLOGGER_SITEMAP" | \
+          grep -oP '(?<=<loc>).*?(?=</loc>)' >> urls.txt
+          echo "Final URL list:"
+          cat urls.txt
+
+      - name: Submit to IndexNow (Bing)
+        env:
+          DOMAIN: aymansalem.github.io
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          if [ ! -s urls.txt ]; then
+            echo "No urls to submit; exiting."
+            exit 0
+          fi
+          python3 - <<'PY'
+import os, json, urllib.request
+key = os.environ['INDEXNOW_KEY']
+with open('urls.txt') as f:
+    urls = [l.strip() for l in f if l.strip()]
+payload = {
+    'host': 'aymansalem.github.io',
+    'key': key,
+    'keyLocation': f'https://aymansalem.github.io/{key}.txt',
+    'urlList': urls
+}
+data = json.dumps(payload).encode('utf-8')
+req = urllib.request.Request('https://www.bing.com/indexnow', data=data, headers={'Content-Type': 'application/json'})
+resp = urllib.request.urlopen(req)
+print('Response:', resp.status, resp.read().decode('utf-8'))
+PY
