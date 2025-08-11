@@ -17,7 +17,7 @@ jobs:
           if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
             FILES=$(git ls-files)
           else
-            FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+            FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} )
           fi
           echo "Changed files:"
           echo "$FILES"
@@ -56,7 +56,6 @@ PY
 
       - name: Submit to IndexNow (Bing)
         env:
-          DOMAIN: aymansalem.github.io
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
           if [ ! -s urls.txt ]; then
@@ -65,17 +64,39 @@ PY
           fi
           python3 - <<'PY'
 import os, json, urllib.request
+from urllib.parse import urlparse
+from collections import defaultdict
+
 key = os.environ['INDEXNOW_KEY']
-with open('urls.txt') as f:
-    urls = [l.strip() for l in f if l.strip()]
-payload = {
-    'host': 'aymansalem.github.io',
-    'key': key,
-    'keyLocation': f'https://aymansalem.github.io/{key}.txt',
-    'urlList': urls
+key_files = {
+    'aymansalem.github.io': f'https://aymansalem.github.io/{key}.txt',
+    '4-hoteliers.blogspot.com': None  # Blogger doesn't require keyLocation hosting
 }
-data = json.dumps(payload).encode('utf-8')
-req = urllib.request.Request('https://www.bing.com/indexnow', data=data, headers={'Content-Type': 'application/json'})
-resp = urllib.request.urlopen(req)
-print('Response:', resp.status, resp.read().decode('utf-8'))
+
+# Group URLs by host
+urls_by_host = defaultdict(list)
+with open('urls.txt') as f:
+    for url in f:
+        url = url.strip()
+        if url:
+            host = urlparse(url).netloc
+            urls_by_host[host].append(url)
+
+# Submit each host separately
+for host, urls in urls_by_host.items():
+    payload = {
+        'host': host,
+        'key': key,
+        'urlList': urls
+    }
+    if key_files.get(host):
+        payload['keyLocation'] = key_files[host]
+    data = json.dumps(payload).encode('utf-8')
+    req = urllib.request.Request(
+        'https://www.bing.com/indexnow',
+        data=data,
+        headers={'Content-Type': 'application/json'}
+    )
+    resp = urllib.request.urlopen(req)
+    print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
 PY
