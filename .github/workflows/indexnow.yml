@@ -37,24 +37,6 @@ jobs:
             touch urls.txt
           fi
 
-      - name: Populate URLs from sitemap.xml if urls.txt is empty
-        if: steps.build-url-list.outcome == 'success' && steps.build-url-list.outputs.has_urls != 'true'
-        run: |
-          if [ ! -s urls.txt ] && [ -f sitemap.xml ]; then
-            python3 - <<EOF
-import xml.etree.ElementTree as ET
-try:
-    tree = ET.parse('sitemap.xml')
-    ns = {'ns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
-    urls = [u.find('ns:loc', ns).text for u in tree.findall('.//ns:url', ns)]
-    with open('urls.txt', 'w') as out:
-        for u in urls:
-            out.write(u + '\n')
-except Exception:
-    open('urls.txt', 'w').close()
-EOF
-          fi
-
       - name: Append Blogger.com URLs from sitemap
         run: |
           BLOGGER_SITEMAP="https://4-hoteliers.blogspot.com/sitemap.xml"
@@ -73,8 +55,7 @@ EOF
             echo "No urls to submit; exiting."
             exit 0
           fi
-
-python3 <<PY
+          cat <<EOF > submit_indexnow.py
 import os, json, urllib.request
 from urllib.parse import urlparse
 from collections import defaultdict
@@ -111,9 +92,13 @@ for host, urls in urls_by_host.items():
         data=data,
         headers={'Content-Type': 'application/json'}
     )
-    with urllib.request.urlopen(req) as resp:
-        print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
-PY
+    try:
+        with urllib.request.urlopen(req) as resp:
+            print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
+    except Exception as e:
+        print(f'Error submitting to IndexNow for host {host}: {e}')
+EOF
+          python3 submit_indexnow.py
 
       - name: Submit URLs to Google Indexing API
         env:
@@ -125,8 +110,7 @@ PY
           fi
           echo "$GOOGLE_API_JSON" > /tmp/google_key.json
           python3 -m pip install --upgrade --quiet google-api-python-client google-auth
-
-python3 <<PY
+          cat <<EOF > submit_google.py
 import json
 import time
 from google.oauth2 import service_account
@@ -152,4 +136,5 @@ for url in urls:
     except Exception as e:
         print(f"Google API error for {url}: {e}")
     time.sleep(1)
-PY
+EOF
+          python3 submit_google.py
