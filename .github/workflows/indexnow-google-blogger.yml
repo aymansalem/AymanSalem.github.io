@@ -1,0 +1,144 @@
+name: IndexNow + Google Indexing (GitHub Pages + Blogger)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  secrets: read
+
+jobs:
+  index_and_notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build URL list from changed GitHub Pages HTML files
+        env:
+          DOMAIN: aymansalem.github.io
+        run: |
+          echo "Building URL list from changed HTML files..."
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            FILES=$(git ls-files)
+          else
+            FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          fi
+          URLS=()
+          for f in $FILES; do
+            case "$f" in
+              *.html|*.htm)
+                URLS+=("https://${DOMAIN}/${f}")
+                ;;
+            esac
+          done
+          printf "%s\n" "${URLS[@]}" > urls.txt
+          echo "Initial urls.txt contents:"
+          cat urls.txt || true
+
+      - name: Append Blogger URLs from sitemap
+        run: |
+          BLOGGER_SITEMAP="https://4-hoteliers.blogspot.com/sitemap.xml"
+          echo "Fetching Blogger sitemap..."
+          curl -s "$BLOGGER_SITEMAP" | grep -oP '(?<=<loc>).*?(?=</loc>)' >> urls.txt || true
+          # Remove empty lines and duplicates
+          sed -i '/^\s*$/d' urls.txt || true
+          sort -u urls.txt -o urls.txt || true
+          echo "Final urls.txt contents:"
+          cat urls.txt || true
+
+      - name: Submit URLs to Bing IndexNow (only hosts with public key file)
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          if [ ! -s urls.txt ]; then
+            echo "No URLs to submit to Bing IndexNow. Skipping."
+            exit 0
+          fi
+
+          python3 - <<'PYTHON'
+import os, json, urllib.request, urllib.error
+from urllib.parse import urlparse
+from collections import defaultdict
+
+key = os.environ.get('INDEXNOW_KEY')
+if not key:
+    print("INDEXNOW_KEY not set; skipping IndexNow submission.")
+    exit(0)
+
+hosts = defaultdict(list)
+with open('urls.txt') as f:
+    for line in f:
+        url = line.strip()
+        if url:
+            host = urlparse(url).netloc
+            hosts[host].append(url)
+
+for host, urls in hosts.items():
+    key_url = f'https://{host}/{key}.txt'
+    print(f'Checking for IndexNow key file at {key_url}...')
+    has_key = False
+    try:
+        req = urllib.request.Request(key_url, headers={'User-Agent': 'IndexNowChecker/1.0'})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            content = resp.read().decode().strip()
+            if resp.status == 200 and content == key:
+                has_key = True
+    except Exception as e:
+        print(f'Failed to check key file for {host}: {e}')
+
+    if not has_key:
+        print(f"Key file not found for {host}, skipping IndexNow for this host.")
+        continue
+
+    payload = {'host': host, 'key': key, 'keyLocation': key_url, 'urlList': urls}
+    data = json.dumps(payload).encode('utf-8')
+    req2 = urllib.request.Request('https://www.bing.com/indexnow', data=data, headers={'Content-Type': 'application/json'})
+    try:
+        with urllib.request.urlopen(req2, timeout=15) as resp2:
+            print(f'IndexNow submission for {host} responded with {resp2.status}: {resp2.read().decode()}')
+    except urllib.error.HTTPError as e:
+        print(f'IndexNow HTTP error for {host}: {e.code} - {e.read().decode()}')
+    except Exception as e:
+        print(f'IndexNow submission error for {host}: {e}')
+PYTHON
+
+      - name: Submit URLs to Google Indexing API
+        env:
+          GOOGLE_API_JSON: ${{ secrets.GOOGLE_API_JSON }}
+        run: |
+          if [ ! -s urls.txt ]; then
+            echo "No URLs to submit to Google Indexing API. Skipping."
+            exit 0
+          fi
+          echo "$GOOGLE_API_JSON" > /tmp/google_key.json
+          python3 -m pip install --upgrade --quiet google-api-python-client google-auth
+          python3 - <<'PYTHON'
+import json
+import time
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+creds_file = "/tmp/google_key.json"
+SCOPES = ["https://www.googleapis.com/auth/indexing"]
+
+try:
+    creds = service_account.Credentials.from_service_account_file(creds_file, scopes=SCOPES)
+    service = build("indexing", "v3", credentials=creds, cache_discovery=False)
+except Exception as e:
+    print("Failed to initialize Google API client:", e)
+    exit(1)
+
+with open("urls.txt") as f:
+    urls = [u.strip() for u in f if u.strip()]
+
+for url in urls:
+    try:
+        response = service.urlNotifications().publish(body={"url": url, "type": "URL_UPDATED"}).execute()
+        print(f"Google indexing updated for: {url} -> {response}")
+    except Exception as e:
+        print(f"Google API error for {url}: {e}")
+    time.sleep(1)
+PYTHON
