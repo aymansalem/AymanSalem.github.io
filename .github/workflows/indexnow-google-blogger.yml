@@ -108,13 +108,26 @@ jobs:
 
       - name: Submit URLs to Google Indexing API
         env:
-          GOOGLE_API_JSON: ${{ secrets.GOOGLE_API_JSON }}
+          GOOGLE_JSON: ${{ secrets.GOOGLE_JSON }}
         run: |
           if [ ! -s urls.txt ]; then
             echo "No URLs to submit to Google Indexing API. Skipping."
             exit 0
           fi
-          echo "$GOOGLE_API_JSON" > /tmp/google_key.json
+          
+          # Check if GOOGLE_JSON secret is set
+          if [ -z "$GOOGLE_JSON" ]; then
+            echo "GOOGLE_JSON secret is not set. Skipping Google Indexing API submission."
+            exit 0
+          fi
+          
+          # Check if GOOGLE_JSON is valid JSON
+          echo "$GOOGLE_JSON" > /tmp/google_key.json
+          if ! python3 -c "import json; json.loads(open('/tmp/google_key.json').read())" 2>/dev/null; then
+            echo "GOOGLE_JSON is not valid JSON. Skipping Google Indexing API submission."
+            exit 0
+          fi
+          
           python3 -m pip install --upgrade --quiet google-api-python-client google-auth
           
           cat > submit_google.py << 'EOF'
