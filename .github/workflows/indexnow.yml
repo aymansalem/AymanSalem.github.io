@@ -2,7 +2,7 @@ name: IndexNow - Notify Bing (GitHub Pages + Blogger)
 
 on:
   push:
-    branches: [ main ]   # or your publishing branch
+    branches: [ main ]
 
 jobs:
   indexnow:
@@ -19,10 +19,8 @@ jobs:
           else
             FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} )
           fi
-
           echo "Changed files:"
           echo "$FILES"
-
           URLS=()
           for f in $FILES; do
             case "$f" in
@@ -33,7 +31,8 @@ jobs:
           done
 
           if [ ${#URLS[@]} -eq 0 ] && [ -f sitemap.xml ]; then
-            python3 - <<'PY'
+            # Run python code from heredoc
+            python3 <<EOF
 import xml.etree.ElementTree as ET
 try:
     tree = ET.parse('sitemap.xml')
@@ -41,10 +40,10 @@ try:
     urls = [u.find('ns:loc', ns).text for u in tree.findall('.//ns:url', ns)]
     with open('urls.txt', 'w') as out:
         for u in urls:
-            out.write(u + '\n')
+            out.write(u + '\\n')
 except Exception:
     open('urls.txt', 'w').close()
-PY
+EOF
           else
             printf "%s\n" "${URLS[@]}" > urls.txt
           fi
@@ -65,8 +64,7 @@ PY
             echo "No urls to submit; exiting."
             exit 0
           fi
-
-          python3 - <<'PY'
+          python3 <<PY
 import os, json, urllib.request
 from urllib.parse import urlparse
 from collections import defaultdict
@@ -77,7 +75,6 @@ key_files = {
     '4-hoteliers.blogspot.com': None  # Blogger doesn't require keyLocation hosting
 }
 
-# Group URLs by host
 urls_by_host = defaultdict(list)
 with open('urls.txt') as f:
     for url in f:
@@ -86,7 +83,6 @@ with open('urls.txt') as f:
             host = urlparse(url).netloc
             urls_by_host[host].append(url)
 
-# Submit each host separately
 for host, urls in urls_by_host.items():
     payload = {
         'host': host,
