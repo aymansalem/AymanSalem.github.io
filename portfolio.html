@@ -1,64 +1,443 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Layout</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Site - Template</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://aymansalem.github.io/" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore Ayman Salem's hotel data analytics projects using Tableau, SQL, and Python. Focused on booking pace, ADR, forecast accuracy, and revenue trends." />
+  <meta name="keywords" content="Hotel Data Analytics, Revenue Management, Tableau, Python, SQL, ADR, Booking Pace, Forecast vs Actual, Hospitality Insights, Ayman Salem" />
+  <meta name="author" content="Ayman Salem" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Hotel Data Analytics Portfolio | Ayman Salem" />
+  <meta property="og:description" content="Explore data-driven insights into hotel performance. Forecasting, booking pace, and pricing analysis visualized with Tableau and Python." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aymansalem.github.io/" />
+  <meta property="og:image" content="https://res.cloudinary.com/dlw9sh9he/image/upload/v1753674283/Facebook-1_aucpd3.png" />
+  <meta property="fb:app_id" content="575153752985200" />
+
+
+  <!-- Structured Data (JSON-LD) -->
+ <!-- Structured Data for BlogPosting -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aymansalem.github.io/Portfolio"
+  },
+  "headline": "Unlocking Hospitality Performance",
+  "alternativeHeadline": "Hotel Revenue and Booking Insights",
+  "description": "Explore data-driven insights into hotel performance. Forecasting, booking pace, and pricing analysis visualized with Tableau and Python.",
+  "image": "https://res.cloudinary.com/dlw9sh9he/image/upload/v1753674283/Facebook-1_aucpd3.png",
+  "author": {
+    "@type": "Person",
+    "name": "Ayman Salem",
+    "url": "https://www.linkedin.com/in/ayman-h-salem/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hotelier Hub",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://res.cloudinary.com/dlw9sh9he/image/upload/v1753675432/logo-1_nyxtep.png"
+    }
+  },
+  "keywords": [
+    "Hotel Revenue Management",
+    "Booking Pace",
+    "Hospitality Analytics",
+    "Forecasting",
+    "Pricing Strategy",
+    "Hotel Performance",
+    "Tableau Dashboards",
+    "Python Data Analysis"
+  ],
+  "articleSection": "Hotel Revenue & Data Insights",
+  "wordCount": "800",
+  "url": "https://aymansalem.github.io/Porfolio",
+  "datePublished": "2025-07-21T08:00:00+03:00",
+  "dateModified": "2025-07-21T08:00:00+03:00",
+  "isAccessibleForFree": true,
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Hotelier Hub",
+    "url": "https://aymansalem.github.io/Portfolio"
+  }
+}
+</script>
+
+<!-- Structured Data for Breadcrumbs -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aymansalem.github.io/Portfolio"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hotel Revenue & Data Insights",
+      "item": "https://aymansalem.github.io/Portfolio"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Unlocking Hospitality Performance",
+      "item": "https://aymansalem.github.io/Portfolio"
+    }
+  ]
+}
+</script>
+
+
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KV3428MK');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT2VZ3W851"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZT2VZ3W851');
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+    <!-- Include FontAwesome icon CDN in <head> -->
+<script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-purple">
-        <div class="container">
-            <a class="navbar-brand text-white" href="#">My Portfolio</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754992762/briefcase_v9mykj.ico" alt="Logo" />
+        <h1>Ayman Salem</h1>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#posts">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+           <a href="index.html" class="portfolio-btn">
+  ← BACK TO HOME
+</a>
 
-    <!-- Hero Section -->
-    <section class="hero bg-purple text-center py-5">
-        <div class="container">
-            <div class="search-bar mx-auto">
-                <input type="text" class="form-control d-inline w-75" placeholder="Search...">
-                <button class="btn btn-pink">Go</button>
-            </div>
-        </div>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero card" aria-label="Hero">
+      <video autoplay muted loop playsinline class="hero-video">
+        <!-- CDN Source -->
+        <source src="https://res.cloudinary.com/dlw9sh9he/video/upload/v1754973888/Bg-Center_ru35j5.mp4" type="video/mp4">
+        <!-- Local fallback -->
+        <source src="resources/videos/Bg-Center.mp4" type="video/mp4">
+        Your browser does not support embedded videos.
+      </video>
     </section>
 
-    <!-- Grid Section -->
-    <section class="container my-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="box bg-blue p-4"></div>
-            </div>
-            <div class="col-md-4">
-                <div class="box bg-blue p-4"></div>
-            </div>
-            <div class="col-md-4">
-                <div class="box bg-blue p-4"></div>
-            </div>
+    <!-- About Me -->
+<section class="two-col" id="about">
+  
+  <div class="card">
+    <h3>About Me</h3>
+    <p>
+      Results-driven <strong>Hotel Revenue Management</strong> & Distribution <br>Specialist with 17+ years of experience across East Africa and the Middle East,
+      specializing in hotel contracting, OTA distribution, and revenue growth. Proven success in B2B partnership development,
+      hotel onboarding, pricing optimization, and digital transformation. Expert in e-commerce, channel management, and multi-property
+      strategy. Adept at driving growth through innovative rate strategies and partner relationship building. Seeking to leverage
+      this experience in a dynamic travel-tech environment.
+    </p>
+  </div>
+  <div class="card img-card">
+    <img class="profile-pic" src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754979010/2-_zzjjye.jpg" alt="Personal photo" />
+  </div>
+</section>
+
+
+    <!-- Certifications -->
+    <section class="cert" id="certifications">
+      <h3>Certifications</h3>
+      <br>
+      <div class="grid-4">
+        <div class="item">
+           <img class="profile-pic" src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754979166/cornel_g32q38.png" style="height: 200px; width:  align-self unset; " alt="Cornell — Revenue Mgmt" />
+
+          <h2>Cornell — Revenue Mgmt</h2>
         </div>
+        <div class="item">
+          <img class="profile-pic" src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754981135/GCC_badge_DA_1000x1000_czttcm.png" style="height: 200px; width:  auto; " alt="Google Data Analytics" />
+          
+          
+          <h2>Google Data Analytics</h2>
+        </div>
+        
+       
+        <div class="item">
+          <img class="profile-pic" src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754982292/e-com-badge_n5mby9.jpg"  style="height: 200px; width:  auto; " alt="Advanced Digital Marketing" />
+          <h2>Advanced Digital Marketing</h2>
+        </div>
+        <div class="item">
+         
+
+          <img class="profile-pic" src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754981370/ibm-business-intelligence-bi-analyst-professional-c_sg34ei.png"  style="height: 200px; width:  auto; " alt="IBM Business Intelligence (BI)" />
+          <h2>IBM Business Intelligence (BI)</h2>
+        </div>
+      </div>
     </section>
+<br>
+    
+    <!-- Achievements -->
+    <section class="achieve" id="achievements">
+      <h3>Achievements</h3>
+      <br>
+      <div class="grid-4">
+        <div class="item">
+          <img src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754987606/kasha-3_gkmtwd.jpg" style="height: 250px; width:  auto; " alt="Award 1">
+          <h5>Hall of Fame -Kasha Hotel</h5>
+        </div>
+        <div class="item">
+          <img src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754987607/kasha_svywdz.jpg" style="height: 250px; width:  auto; " alt="Award 2">
+          <h5>Kasha Hotel</h5>
+        </div>
+        <div class="item">
+          <img src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754987607/kasha-2_mcyndl.jpg" style="height: 250px; width:  auto; " alt="Award 3">
+          <h5>Travel Awards Excellence</h5>
+        </div>
+        <div class="item">
+          <img src="https://res.cloudinary.com/dlw9sh9he/image/upload/v1754987607/kasha-4_hfx7ib.jpg" style="height: 250px; width:  auto; " alt="Award 4">
+          <h5>Tripadvisor Certificate</h5>
+        </div>
+      </div>
+    </section>
+<br>
+    <!-- Skills -->
+    <section id="skills" style="padding: 40px 0; background-color: #f9f9f9;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <h2 style="text-align: left; font-size: 2em; margin-bottom: 20px;">Skills</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;">
+      
+      <!-- Column 1 -->
+      <div>
+        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Hotel Operations</h3>
+        <ul style="margin: 0 0 20px 20px; padding: 0; list-style: disc;">
+          <li>Front Office & Housekeeping</li>
+          <li>Reservations & Guest Relations</li>
+          <li>Staff Training & SOP Development</li>
+        </ul>
 
-    <!-- Footer -->
-    <footer class="footer bg-pink text-center py-3">
-        <p class="mb-0">&copy; 2025 My Portfolio</p>
-    </footer>
+        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Revenue Management & Analytics</h3>
+        <ul style="margin: 0 0 20px 20px; padding: 0; list-style: disc;">
+        <li>Complex Business Opportunity</li>
+        <li>Revenue Management Revenue Plan</li> 
+        <li>Contract Segment & Group Business</li>
+        <li>Meeting Planner Satisfaction Monitoring</li>
+        <li>Revenue Forecasting & Group Booking Pace</li>
+        <li>Data Analysis, P&L Oversight, Room Statistics</li>  
+        <li>Market Trend Analysis & Demand Generator Insights</li>
+        <li>Occupancy Conversion Analysis & STAR Data Reporting</li>
+        <li>Business Opportunity Assessment & Benchmark Rate Evaluation</li>
+        <li>Strategic Revenue Planning, Contract Segments, Group Business</li>
+        
+         </ul>
+      </div>
+      
+      <!-- Column 2 -->
+      <div>
+        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Sales </h3>
+        <ul style="margin: 0 0 20px 20px; padding: 0; list-style: disc;">
+          <li>B2B Contracting</li>
+          <li>OTA Partnerships</li>
+          <li>Corporate Accounts</li>
+        </ul>
 
-    <style>
-        .bg-purple { background-color: #6a1b9a; }
-        .bg-blue { background-color: #007bff; height: 150px; }
-        .bg-pink { background-color: #e91e63; color: white; }
-        .search-bar { max-width: 500px; }
-        .btn-pink { background-color: #e91e63; color: white; border: none; }
-    </style>
+        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Marketing</h3>
+        <ul style="margin: 0 0 20px 20px; padding: 0; list-style: disc;">
+          <li>Digital Campaigns</li>
+          <li>Social Media Strategy</li>
+          <li>Brand Positioning</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Latest Posts -->
+ <!-- Blog Posts Section -->
+<!-- Latest Posts Section -->
+<section id="latest-posts">
+  <h2>Latest Posts</h2>
+  <div id="blog-posts"></div>
+</section>
+
+</main>
+<!--  main JS file -->
+<script src="main.js"></script>
+
+<!-- Your blog posts loader script (contains the displayPosts function) -->
+<script src="blog-posts.js"></script>
+
+<!-- Blogger JSONP feed (calls displayPosts) -->
+<script src="https://4-hoteliers.blogspot.com/feeds/posts/default?alt=json-in-script&callback=displayPosts"></script>
+
+  
+<!-- Back to top- and Portfolio-->
+
+<style>
+  .floatingBtn {
+    position: fixed;
+    bottom: 10px;
+    right: 80px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .floatingBtn a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+  }
+
+  .iconCircle {
+    background-color: #f57c00; /* Blogger orange */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s;
+  }
+
+  .floatingBtn a:hover .iconCircle {
+    background-color: #e65100;
+  }
+
+  .labelBox {
+    margin-top: 6px;
+    font-size: 12px;
+    background: #f57c00;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+</style>
+
+<!-- Blogger Floating Button -->
+<div class="floatingBtn">
+  <a href="https://4-hoteliers.blogspot.com/" target="_blank" title="Visit My Blog">
+    <div class="iconCircle"><i class="fas fa-blog"></i></div>
+    <div class="labelBox">Visit My Blog</div>
+  </a>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>
+
+<!-- Floating Button, Back to Top, and Highlight Nav -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Floating Button Logic
+    const floatingBtn = document.querySelector(".floatingBtn");
+    if (floatingBtn) {
+      floatingBtn.style.display = "none";
+
+      window.addEventListener("scroll", function () {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+
+        if (scrollPercent > 10) {
+          floatingBtn.style.display = "flex";
+        } else {
+          floatingBtn.style.display = "none";
+        }
+      });
+    }
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById("backToTop");
+    if (backToTop) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // Highlight Active Navigation
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+<!-- 🔼 Back to Top Button -->
+<a href="#" id="backToTop" class="back-to-top" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+</a>
+<script src="blog-posts.js"></script>
+
 </body>
+<!-- Footer -->
+<footer class="footer bg-pink text-center py-3 mt-4">
+  <p class="mb-0">&copy; 2025 Ayman Salem | Hotel Data Portfolio</p>
+</footer>
+
+
 </html>
+
+
+  
