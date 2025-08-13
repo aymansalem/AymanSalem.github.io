@@ -25,6 +25,14 @@
 
 <!-- Canonical -->
 <link rel="canonical" href="https://aymansalem.github.io/adr" />
+  <!--redirect without html-->
+  <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
+
 
 <!-- Meta Tags -->
 <meta name="keywords" content="ADR, Average Daily Rate, Revenue Analytics, Hotel Pricing, Tableau, Hospitality Revenue Management" />
@@ -841,6 +849,7 @@ TA/TO saw a dramatic increase from -24.0% (2018) to +36.2% (2019) — a 60.2% sw
 
 </body>
 </html>
+
 
 
 
