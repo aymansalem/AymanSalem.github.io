@@ -845,10 +845,37 @@ TA/TO saw a dramatic increase from -24.0% (2018) to +36.2% (2019) — a 60.2% sw
 </script>
 
 
+<script>
+(function() {
+  var currentPath = window.location.pathname.toLowerCase();
+
+  // Skip portfolio page completely
+  if (currentPath.endsWith('/portfolio.html') || currentPath.endsWith('/portfolio')) {
+    return;
+  }
+
+  // Redirect only if URL ends with .html
+  if (currentPath.endsWith('.html')) {
+    var newPath = currentPath.replace(/\.html$/, '');
+
+    // Check if new path exists before redirecting
+    fetch(newPath, { method: 'HEAD' })
+      .then(function(res) {
+        if (res.ok) {
+          window.location.replace(window.location.origin + newPath + window.location.search + window.location.hash);
+        }
+      })
+      .catch(function() {
+        console.warn("Redirect skipped: extensionless page not found.");
+      });
+  }
+})();
+</script>
 
 
 </body>
 </html>
+
 
 
 
