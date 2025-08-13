@@ -26,6 +26,15 @@
 <script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>  <!-- === BOOKING PACE PAGE === -->
 
   <link rel="canonical" href="https://aymansalem.github.io/booking_pace.html" />
+
+   <!--redirect without html-->
+  <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
+
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1197,6 +1206,7 @@ You can analyze:</strong>
 
 
 </html>
+
 
 
 
