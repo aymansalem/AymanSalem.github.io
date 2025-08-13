@@ -8,6 +8,15 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://aymansalem.github.io/" />
 
+  <!--redirect without html-->
+  <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
+
+
   <!-- SEO Meta Tags -->
   <meta name="description" content="Explore Ayman Salem's hotel data analytics projects using Tableau, SQL, and Python. Focused on booking pace, ADR, forecast accuracy, and revenue trends." />
   <meta name="keywords" content="Hotel Data Analytics, Revenue Management, Tableau, Python, SQL, ADR, Booking Pace, Forecast vs Actual, Hospitality Insights, Ayman Salem" />
@@ -442,6 +451,7 @@
 
 
   
+
 
 
 
