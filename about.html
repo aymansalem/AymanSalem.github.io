@@ -14,6 +14,14 @@
   <!-- === ABOUT PAGE === -->
 <!-- File: about.html -->
 <link rel="canonical" href="https://aymansalem.github.io/about">
+ <!--redirect without html-->
+  <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -252,6 +260,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </body>
 </html>
+
 
 
 
