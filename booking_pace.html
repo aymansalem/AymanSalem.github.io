@@ -1195,11 +1195,38 @@ You can analyze:</strong>
   <div id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; z-index:9999; cursor:pointer; background:#333; color:#fff; padding:10px 15px; border-radius:50%;">
   <i class="fas fa-chevron-up"></i>
 </div>
-  
+  <script>
+(function() {
+  var currentPath = window.location.pathname.toLowerCase();
+
+  // Skip portfolio page completely
+  if (currentPath.endsWith('/portfolio.html') || currentPath.endsWith('/portfolio')) {
+    return;
+  }
+
+  // Redirect only if URL ends with .html
+  if (currentPath.endsWith('.html')) {
+    var newPath = currentPath.replace(/\.html$/, '');
+
+    // Check if new path exists before redirecting
+    fetch(newPath, { method: 'HEAD' })
+      .then(function(res) {
+        if (res.ok) {
+          window.location.replace(window.location.origin + newPath + window.location.search + window.location.hash);
+        }
+      })
+      .catch(function() {
+        console.warn("Redirect skipped: extensionless page not found.");
+      });
+  }
+})();
+</script>
+
 </body>
 
 
 </html>
+
 
 
 
