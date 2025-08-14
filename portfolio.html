@@ -123,6 +123,18 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-ZT2VZ3W851');
+
+    // Log portfolio page visit as custom event
+if (typeof gtag === "function") {
+  if (window.location.pathname === "/portfolio.html") {
+    gtag('event', 'portfolio_pageview', {
+      'page_path': '/portfolio.html',
+      'page_title': 'Portfolio'
+    });
+    console.log("✅ Portfolio pageview event sent to GA4");
+  }
+}
+
   </script>
 
   <!-- CSS -->
@@ -445,6 +457,7 @@
 
 
   
+
 
 
 
