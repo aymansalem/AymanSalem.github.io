@@ -22,11 +22,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build URL list from changed GitHub Pages HTML files
+      # STEP 1 — Build URLs from changed GitHub Pages HTML files
+      - name: Build URL list from changed HTML files
         env:
           DOMAIN: aymansalem.github.io
         run: |
-          echo "Building URL list from changed HTML files..."
+          echo "Building URL list..."
           if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
             FILES=$(git ls-files)
           else
@@ -52,6 +53,7 @@ jobs:
           echo "Initial urls.txt contents:"
           cat urls.txt || true
 
+      # STEP 2 — Append Blogger sitemap URLs
       - name: Append Blogger URLs from sitemap
         run: |
           BLOGGER_SITEMAP="https://4-hoteliers.blogspot.com/sitemap.xml"
@@ -62,6 +64,7 @@ jobs:
           echo "Final urls.txt contents:"
           cat urls.txt || true
 
+      # STEP 3 — Submit URLs to Bing IndexNow
       - name: Submit URLs to Bing IndexNow
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
@@ -110,13 +113,14 @@ jobs:
               )
               try:
                   with urllib.request.urlopen(req) as resp:
-                      print(f'Host: {host} -> Response:', resp.status, resp.read().decode('utf-8'))
+                      print(f'Host: {host} -> Response:', resp.status, resp.read().decode("utf-8"))
               except Exception as e:
                   print(f'Error submitting to IndexNow for host {host}: {e}')
           EOF
 
           python3 submit_indexnow.py
 
+      # STEP 4 — Submit URLs to Google Indexing API
       - name: Submit URLs to Google Indexing API
         env:
           GOOGLE_JSON: ${{ secrets.GOOGLE_JSON }}
