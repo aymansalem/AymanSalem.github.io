@@ -12,13 +12,13 @@ function displayPosts(data) {
     const contentSnippet = post.summary ? post.summary.$t : post.content.$t;
     const excerpt = contentSnippet.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
 
-    // Get post image
+    // Get post image thumbnail
     let img = '';
     if (post.media$thumbnail) {
-      img = post.media$thumbnail.url.replace('/s72-c/', '/s400/'); // higher res
+      img = post.media$thumbnail.url.replace('/s72-c/', '/s150/'); // thumbnail size
     } else if (post.content && post.content.$t) {
       const imgMatch = post.content.$t.match(/<img.*?src="(.*?)"/);
-      img = imgMatch ? imgMatch[1] : 'default-image.jpg'; // fallback image
+      img = imgMatch ? imgMatch[1] : 'default-thumb.jpg'; // fallback thumbnail
     }
 
     postsContainer.innerHTML += `
