@@ -1,7 +1,7 @@
 name: Test Google Indexing API
 
 on:
-  workflow_dispatch: # allows manual run from GitHub Actions UI
+  workflow_dispatch:
 
 jobs:
   test-indexing:
@@ -20,6 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install google-api-python-client google-auth google-auth-httplib2 google-auth-oauthlib
 
+      # ← Replace your old step with this
       - name: Run indexing test script
         env:
           GOOGLE_JSON: ${{ secrets.GOOGLE_JSON }}
