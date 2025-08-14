@@ -16,8 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Save Google JSON secret
-        run: echo "${{ secrets.GOOGLE_JSON }}" > /tmp/google_key.json
+      - name: Save Google JSON secret to file
+        run: |
+          echo "${{ secrets.GOOGLE_JSON }}" | jq '.' > /tmp/google_key.json
 
       - name: Install Google API Client
         run: python3 -m pip install --upgrade --quiet google-api-python-client google-auth
@@ -38,7 +39,7 @@ jobs:
               creds = service_account.Credentials.from_service_account_file(creds_file, scopes=SCOPES)
               service = build("indexing", "v3", credentials=creds, cache_discovery=False)
           except Exception as e:
-              print("Failed to initialize Google API client:", e)
+              print("❌ Failed to initialize Google API client:", e)
               sys.exit(1)
 
           try:
