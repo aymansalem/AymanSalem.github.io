@@ -10,23 +10,15 @@ on:
 
 permissions:
   contents: read
+  secrets: read
 
 jobs:
   test-indexing:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Google JSON secret
-        run: |
-          if [ -z "${{ secrets.GOOGLE_JSON }}" ]; then
-            echo "❌ GOOGLE_JSON secret is not set."
-            exit 1
-          fi
-          echo "${{ secrets.GOOGLE_JSON }}" > /tmp/google_key.json
-          if ! python3 -c "import json; json.loads(open('/tmp/google_key.json').read())" 2>/dev/null; then
-            echo "❌ GOOGLE_JSON secret is not valid JSON."
-            exit 1
-          fi
+      - name: Save Google JSON secret
+        run: echo "${{ secrets.GOOGLE_JSON }}" > /tmp/google_key.json
 
       - name: Install Google API Client
         run: python3 -m pip install --upgrade --quiet google-api-python-client google-auth
