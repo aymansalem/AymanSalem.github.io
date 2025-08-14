@@ -5,7 +5,7 @@ async function loadBloggerPosts() {
     const data = await response.json();
     const posts = data.feed.entry.slice(0, 3); // latest 3 posts
     const postsContainer = document.getElementById('blog-posts');
-    postsContainer.innerHTML = ''; // Clear container first
+    postsContainer.innerHTML = ''; // clear container first
 
     posts.forEach(post => {
       const title = post.title.$t;
@@ -20,7 +20,7 @@ async function loadBloggerPosts() {
         img = post.media$thumbnail.url.replace('/s72-c/', '/s400/'); // higher res
       } else if (post.content && post.content.$t) {
         const imgMatch = post.content.$t.match(/<img.*?src="(.*?)"/);
-        img = imgMatch ? imgMatch[1] : 'default-image.jpg';
+        img = imgMatch ? imgMatch[1] : 'default-image.jpg'; // fallback image
       }
 
       const postHTML = `
