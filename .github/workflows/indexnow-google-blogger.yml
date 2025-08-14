@@ -4,12 +4,16 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Auto-Generate Sitemap"]
+    types: [completed]
 
 permissions:
   contents: read
 
 jobs:
   index_and_notify:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -27,14 +31,24 @@ jobs:
           else
             FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           fi
+
           URLS=()
           while IFS= read -r f; do
             case "$f" in
               *.html|*.htm)
-                URLS+=("https://${DOMAIN}/${f}")
+                clean="${f#./}"
+                if [ "$clean" = "index.html" ]; then
+                  url="https://${DOMAIN}/"
+                elif [ "$clean" = "portfolio.html" ]; then
+                  url="https://${DOMAIN}/portfolio.html"
+                else
+                  url="https://${DOMAIN}/${clean%.html}"
+                fi
+                URLS+=("$url")
                 ;;
             esac
           done < <(printf "%s\n" "$FILES")
+
           printf "%s\n" "${URLS[@]}" > urls.txt
           echo "Initial urls.txt contents:"
           cat urls.txt || true
@@ -115,13 +129,11 @@ jobs:
             exit 0
           fi
           
-          # Check if GOOGLE_JSON secret is set
           if [ -z "$GOOGLE_JSON" ]; then
             echo "GOOGLE_JSON secret is not set. Skipping Google Indexing API submission."
             exit 0
           fi
           
-          # Check if GOOGLE_JSON is valid JSON
           echo "$GOOGLE_JSON" > /tmp/google_key.json
           if ! python3 -c "import json; json.loads(open('/tmp/google_key.json').read())" 2>/dev/null; then
             echo "GOOGLE_JSON is not valid JSON. Skipping Google Indexing API submission."
