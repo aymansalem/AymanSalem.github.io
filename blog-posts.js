@@ -1,8 +1,8 @@
 function displayPosts(data) {
   const postsContainer = document.getElementById('blog-posts');
   if (!data.feed.entry) return;
+  postsContainer.innerHTML = '';
 
-  postsContainer.innerHTML = ''; // clear container first
   const posts = data.feed.entry.slice(0, 3); // latest 3 posts
 
   posts.forEach(post => {
@@ -12,19 +12,19 @@ function displayPosts(data) {
     const contentSnippet = post.summary ? post.summary.$t : post.content.$t;
     const excerpt = contentSnippet.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
 
-    // Get post image thumbnail
+    // Get post image
     let img = '';
     if (post.media$thumbnail) {
-      img = post.media$thumbnail.url.replace('/s72-c/', '/s150/'); // thumbnail size
+      img = post.media$thumbnail.url.replace(/\/s[0-9]+(-c)?\//, '/s150-c/'); // thumbnail size
     } else if (post.content && post.content.$t) {
       const imgMatch = post.content.$t.match(/<img.*?src="(.*?)"/);
-      img = imgMatch ? imgMatch[1] : 'default-thumb.jpg'; // fallback thumbnail
+      img = imgMatch ? imgMatch[1] : 'default-thumb.jpg';
     }
 
     postsContainer.innerHTML += `
       <div class="post-card">
         <a href="${link}" target="_blank">
-          <img src="${img}" alt="${title}" class="post-image"/>
+          <img src="${img}" alt="${title}" class="post-image" style="width:150px;height:150px;object-fit:cover;"/>
         </a>
         <a href="${link}" target="_blank" class="post-title">${title}</a>
         <div class="post-meta">${publishedDate} • 3 min read</div>
