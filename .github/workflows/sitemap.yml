@@ -3,6 +3,8 @@ name: Auto-Generate Sitemap
 on:
   push:
     branches: [main]
+permissions:
+  contents: write
 
 jobs:
   build:
