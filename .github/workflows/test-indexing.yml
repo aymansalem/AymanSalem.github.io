@@ -1,29 +1,53 @@
 name: Test Google Indexing API
 
 on:
-  workflow_dispatch:  # lets you run it manually
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to test indexing"
+        required: true
+        default: "https://aymansalem.github.io/"
+
+permissions:
+  contents: read
+  secrets: read
 
 jobs:
   test-indexing:
     runs-on: ubuntu-latest
+
     steps:
       - name: Save Google JSON secret
-        run: echo "${{ secrets.GOOGLE_JSON }}" > service-account.json
+        run: echo "${{ secrets.GOOGLE_JSON }}" > /tmp/google_key.json
 
-      - name: Install jq and curl
-        run: sudo apt-get update && sudo apt-get install -y jq curl
+      - name: Install Google API Client
+        run: python3 -m pip install --upgrade --quiet google-api-python-client google-auth
 
-      - name: Get Access Token
-        id: auth
+      - name: Run Test Indexing Request
         run: |
-          ACCESS_TOKEN=$(curl -s -X POST -H "Content-Type: application/json" \
-            -d @service-account.json \
-            "https://oauth2.googleapis.com/token" | jq -r '.access_token')
-          echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> $GITHUB_ENV
+          cat > test_indexing.py << 'EOF'
+          import sys
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
 
-      - name: Send Test Indexing API Request
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $ACCESS_TOKEN" \
-            "https://indexing.googleapis.com/v3/urlNotifications:publish" \
-            -d '{"url": "https://aymansalem.github.io/", "type": "URL_UPDATED"}'
+          creds_file = "/tmp/google_key.json"
+          SCOPES = ["https://www.googleapis.com/auth/indexing"]
+
+          url_to_test = "${{ github.event.inputs.url }}"
+
+          try:
+              creds = service_account.Credentials.from_service_account_file(creds_file, scopes=SCOPES)
+              service = build("indexing", "v3", credentials=creds, cache_discovery=False)
+          except Exception as e:
+              print("Failed to initialize Google API client:", e)
+              sys.exit(1)
+
+          try:
+              response = service.urlNotifications().publish(body={"url": url_to_test, "type": "URL_UPDATED"}).execute()
+              print(f"✅ Google indexing updated for: {url_to_test}")
+              print(response)
+          except Exception as e:
+              print(f"❌ Google API error for {url_to_test}: {e}")
+          EOF
+
+          python3 test_indexing.py
