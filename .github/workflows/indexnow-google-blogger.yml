@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  secrets: read
 
 jobs:
   index_and_notify:
@@ -63,7 +64,7 @@ jobs:
           echo "Final urls.txt contents:"
           cat urls.txt || true
 
-      - name: Submit URLs to Bing IndexNow (only hosts with public key file)
+      - name: Submit URLs to Bing IndexNow
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
@@ -71,24 +72,22 @@ jobs:
             echo "No URLs to submit to Bing IndexNow. Skipping."
             exit 0
           fi
-          
+
           cat > submit_indexnow.py << 'EOF'
-          import os
-          import json
-          import urllib.request
+          import os, json, urllib.request
           from urllib.parse import urlparse
           from collections import defaultdict
-          
+
           key = os.environ.get('INDEXNOW_KEY')
           if not key:
               print("INDEXNOW_KEY not set; skipping IndexNow submission.")
               exit(0)
-          
+
           key_files = {
               'aymansalem.github.io': f'https://aymansalem.github.io/{key}.txt',
               '4-hoteliers.blogspot.com': None
           }
-          
+
           urls_by_host = defaultdict(list)
           with open('urls.txt') as f:
               for url in f:
@@ -96,7 +95,7 @@ jobs:
                   if url:
                       host = urlparse(url).netloc
                       urls_by_host[host].append(url)
-          
+
           for host, urls in urls_by_host.items():
               payload = {
                   'host': host,
@@ -117,7 +116,7 @@ jobs:
               except Exception as e:
                   print(f'Error submitting to IndexNow for host {host}: {e}')
           EOF
-          
+
           python3 submit_indexnow.py
 
       - name: Submit URLs to Google Indexing API
@@ -128,39 +127,38 @@ jobs:
             echo "No URLs to submit to Google Indexing API. Skipping."
             exit 0
           fi
-          
+
           if [ -z "$GOOGLE_JSON" ]; then
             echo "GOOGLE_JSON secret is not set. Skipping Google Indexing API submission."
             exit 0
           fi
-          
+
           echo "$GOOGLE_JSON" > /tmp/google_key.json
           if ! python3 -c "import json; json.loads(open('/tmp/google_key.json').read())" 2>/dev/null; then
             echo "GOOGLE_JSON is not valid JSON. Skipping Google Indexing API submission."
             exit 0
           fi
-          
+
           python3 -m pip install --upgrade --quiet google-api-python-client google-auth
-          
+
           cat > submit_google.py << 'EOF'
-          import json
           import time
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
-          
+
           creds_file = "/tmp/google_key.json"
           SCOPES = ["https://www.googleapis.com/auth/indexing"]
-          
+
           try:
               creds = service_account.Credentials.from_service_account_file(creds_file, scopes=SCOPES)
               service = build("indexing", "v3", credentials=creds, cache_discovery=False)
           except Exception as e:
               print("Failed to initialize Google API client:", e)
               exit(1)
-          
+
           with open("urls.txt") as f:
               urls = [u.strip() for u in f if u.strip()]
-          
+
           for url in urls:
               try:
                   response = service.urlNotifications().publish(body={"url": url, "type": "URL_UPDATED"}).execute()
@@ -169,5 +167,5 @@ jobs:
                   print(f"Google API error for {url}: {e}")
               time.sleep(1)
           EOF
-          
+
           python3 submit_google.py
