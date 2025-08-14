@@ -16,9 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Save Google JSON secret to file
+      - name: Validate and save Google JSON secret
         run: |
-          echo "${{ secrets.GOOGLE_JSON }}" | jq '.' > /tmp/google_key.json
+          echo "${{ secrets.GOOGLE_JSON }}" > /tmp/google_key.json
+          cat /tmp/google_key.json | jq empty
 
       - name: Install Google API Client
         run: python3 -m pip install --upgrade --quiet google-api-python-client google-auth
