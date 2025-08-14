@@ -40,8 +40,6 @@ jobs:
                 clean="${f#./}"
                 if [ "$clean" = "index.html" ]; then
                   url="https://${DOMAIN}/"
-                elif [ "$clean" = "portfolio.html" ]; then
-                  url="https://${DOMAIN}/portfolio.html"
                 else
                   url="https://${DOMAIN}/${clean%.html}"
                 fi
