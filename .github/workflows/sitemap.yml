@@ -3,6 +3,9 @@ name: Auto-Generate Sitemap
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 0 * * *" # Run daily at midnight UTC
+
 permissions:
   contents: write
 
@@ -25,14 +28,12 @@ jobs:
 
           # Loop through all HTML files except index.html
           for file in $(find . -name "*.html" ! -name "index.html"); do
-            # Remove leading ./ from path
             clean_path=$(echo "$file" | sed 's|^\./||')
 
             # Special case: portfolio.html (keep extension)
             if [[ "$clean_path" == "portfolio.html" ]]; then
               url="${BASE_URL}/portfolio.html"
             else
-              # Remove .html extension for clean URL
               url="${BASE_URL}/$(basename "$clean_path" .html)"
             fi
 
@@ -48,3 +49,5 @@ jobs:
           git add sitemap.xml
           git commit -m "Auto-update sitemap" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
