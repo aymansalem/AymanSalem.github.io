@@ -1,8 +1,6 @@
 name: Auto-Generate Blogger Sitemap
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -23,9 +21,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Generate Blogger Sitemap
-        run: |
-          python generate_blogger_sitemap.py
+      - name: Run Blogger Sitemap Generator
+        run: python generate_blogger_sitemap.py
 
       - name: Commit & Push Blogger Sitemap
         env:
