@@ -36,5 +36,5 @@ jobs:
           git commit -m "Auto-update Blogger sitemap" || echo "No changes to commit"
           git fetch origin main
           git reset --hard origin/main
-          # Use the env variable directly, not ${{ }}
+          # Push using environment variable directly
           git push https://x-access-token:$GH_PAT@github.com/$GITHUB_REPOSITORY HEAD:main --force
