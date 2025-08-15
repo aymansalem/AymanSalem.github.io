@@ -8,24 +8,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # full history needed for force push
 
+      # 2️⃣ Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
+      # 4️⃣ Generate Blogger Sitemap
       - name: Generate Blogger Sitemap
         run: python generate_blogger_sitemap.py
 
+      # 5️⃣ Commit & Push sitemap
       - name: Commit & Push Blogger Sitemap
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
@@ -36,5 +41,4 @@ jobs:
           git commit -m "Auto-update Blogger sitemap" || echo "No changes to commit"
           git fetch origin main
           git reset --hard origin/main
-          # Push using environment variable directly
           git push https://x-access-token:$GH_PAT@github.com/$GITHUB_REPOSITORY HEAD:main --force
