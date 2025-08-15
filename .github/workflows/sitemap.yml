@@ -1,10 +1,11 @@
 name: Auto-Generate Sitemap
 
+# Trigger on push to main branch or scheduled daily at midnight UTC
 on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 0 * * *" # Run daily at midnight UTC
+    - cron: "0 0 * * *"
 
 permissions:
   contents: write
@@ -12,19 +13,24 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # 1️⃣ Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # 2️⃣ Generate sitemap
       - name: Generate sitemap
         run: |
           BASE_URL="https://aymansalem.github.io"
           TODAY=$(date +'%Y-%m-%dT%H:%M:%S+00:00')
-          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          SITEMAP_FILE="sitemap.xml"
+
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > $SITEMAP_FILE
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $SITEMAP_FILE
 
           # Always include homepage
-          echo "  <url><loc>${BASE_URL}/</loc><lastmod>${TODAY}</lastmod><priority>1.00</priority></url>" >> sitemap.xml
+          echo "  <url><loc>${BASE_URL}/</loc><lastmod>${TODAY}</lastmod><priority>1.00</priority></url>" >> $SITEMAP_FILE
 
           # Loop through all HTML files except index.html
           for file in $(find . -name "*.html" ! -name "index.html"); do
@@ -37,15 +43,18 @@ jobs:
               url="${BASE_URL}/$(basename "$clean_path" .html)"
             fi
 
-            echo "  <url><loc>${url}</loc><lastmod>${TODAY}</lastmod><priority>0.80</priority></url>" >> sitemap.xml
+            echo "  <url><loc>${url}</loc><lastmod>${TODAY}</lastmod><priority>0.80</priority></url>" >> $SITEMAP_FILE
           done
 
-          echo '</urlset>' >> sitemap.xml
+          echo '</urlset>' >> $SITEMAP_FILE
 
+      # 3️⃣ Commit and push sitemap safely
       - name: Commit sitemap
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "actions@github.com"
+          git fetch origin main
+          git reset --hard origin/main
           git add sitemap.xml
           git commit -m "Auto-update sitemap" || echo "No changes to commit"
           git push
