@@ -1,43 +1,37 @@
 import requests
 from bs4 import BeautifulSoup
-import datetime
+from datetime import datetime
 
+# Your Blogger Atom feed URL
+ATOM_FEED = "https://4-hoteliers.blogspot.com/feeds/posts/default"
+
+# Output sitemap file
 SITEMAP_FILE = "sitemap_blogger.xml"
-BLOG_URL = "https://4-hoteliers.blogspot.com"
-ATOM_FEED = f"{BLOG_URL}/feeds/posts/default?alt=rss"
 
-def fetch_blogger_posts():
-    urls = []
-    try:
-        resp = requests.get(ATOM_FEED, timeout=10)
-        resp.raise_for_status()
-        soup = BeautifulSoup(resp.text, "xml")
-        for entry in soup.find_all("link", rel="alternate"):
-            href = entry.get("href")
-            if href:
-                urls.append(href + "?m=0")
-    except Exception as e:
-        print(f"Failed to fetch Atom feed: {e}")
-    return urls
+# Fetch Atom feed
+resp = requests.get(ATOM_FEED)
+resp.raise_for_status()
 
-def generate_sitemap(urls):
-    now = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "+00:00"
-    sitemap_entries = []
-    for url in urls:
-        priority = "1.00" if url.rstrip("?m=0") == BLOG_URL else "0.80"
-        sitemap_entries.append(f'  <url><loc>{url}</loc><lastmod>{now}</lastmod><priority>{priority}</priority></url>')
+soup = BeautifulSoup(resp.content, "xml")
+entries = soup.find_all("entry")
 
-    sitemap_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    sitemap_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sitemap_content += "\n".join(sitemap_entries)
-    sitemap_content += "\n</urlset>"
+# Start building sitemap
+today = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S+00:00")
+sitemap = ['<?xml version="1.0" encoding="UTF-8"?>']
+sitemap.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
 
-    with open(SITEMAP_FILE, "w", encoding="utf-8") as f:
-        f.write(sitemap_content)
+# Add homepage
+sitemap.append(f'  <url><loc>https://4-hoteliers.blogspot.com/?m=0</loc><lastmod>{today}</lastmod><priority>1.0</priority></url>')
 
-if __name__ == "__main__":
-    urls = fetch_blogger_posts()
-    if BLOG_URL not in urls:
-        urls.insert(0, BLOG_URL + "?m=0")
-    generate_sitemap(urls)
-    print(f"Sitemap updated with {len(urls)} URLs.")
+# Add all posts
+for entry in entries:
+    link = entry.find("link")["href"]
+    sitemap.append(f'  <url><loc>{link}?m=0</loc><lastmod>{today}</lastmod><priority>0.8</priority></url>')
+
+sitemap.append('</urlset>')
+
+# Write sitemap
+with open(SITEMAP_FILE, "w", encoding="utf-8") as f:
+    f.write("\n".join(sitemap))
+
+print(f"Sitemap generated: {SITEMAP_FILE}")
