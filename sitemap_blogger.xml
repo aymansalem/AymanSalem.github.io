@@ -1,36 +1,4 @@
-import datetime
-
-SITEMAP_FILE = "sitemap_blogger.xml"
-BASE_URL = "https://4-hoteliers.blogspot.com"
-
-# Your Blogger URLs without ?m=0
-pages = [
-    "",  # homepage
-    "2024/10/room-rate-guidelines.html",
-    "2024/09/some-other-post.html",
-    # add more post paths here
-]
-
-def generate_sitemap():
-    now = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "+00:00"
-    sitemap_entries = []
-
-    for path in pages:
-        url = f"{BASE_URL}/{path}?m=0".replace("//?m", "/?m")
-        priority = "1.00" if path == "" else "0.80"
-        sitemap_entries.append(
-            f"  <url><loc>{url}</loc><lastmod>{now}</lastmod><priority>{priority}</priority></url>"
-        )
-
-    sitemap_content = (
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "\n".join(sitemap_entries) +
-        "\n</urlset>"
-    )
-
-    with open(SITEMAP_FILE, "w", encoding="utf-8") as f:
-        f.write(sitemap_content)
-
-if __name__ == "__main__":
-    generate_sitemap()
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://4-hoteliers.blogspot.com?m=0</loc><lastmod>2025-08-15T22:02:13+00:00</lastmod><priority>0.80</priority></url>
+</urlset>
