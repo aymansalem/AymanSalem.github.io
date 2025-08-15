@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensure full history for force-push
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,7 +28,7 @@ jobs:
 
       - name: Commit & Push Blogger Sitemap
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}  # Your personal access token
+          GH_PAT: ${{ secrets.GH_PAT }}  # Use your personal access token
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
