@@ -1,11 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aymansalem.github.io/</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>1.00</priority></url>
-  <url><loc>https://aymansalem.github.io/adr</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-  <url><loc>https://aymansalem.github.io/hotel_trends</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-  <url><loc>https://aymansalem.github.io/about</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-  <url><loc>https://aymansalem.github.io/booking_pace</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-  <url><loc>https://aymansalem.github.io/Forc_vs_Actual</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-  <url><loc>https://aymansalem.github.io/forecast</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-  <url><loc>https://aymansalem.github.io/portfolio.html</loc><lastmod>2025-08-15T20:12:17+00:00</lastmod><priority>0.80</priority></url>
-</urlset>
+import os
+import hashlib
+import datetime
+import requests
+from bs4 import BeautifulSoup
+
+SITEMAP_FILE = "sitemap.xml"
+BASE_URL = "https://aymansalem.github.io"
+
+def load_previous_lastmod():
+    if not os.path.exists(SITEMAP_FILE):
+        return {}
+    with open(SITEMAP_FILE, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f, "xml")
+    return {url.loc.text: url.lastmod.text for url in soup.find_all("url")}
+
+def get_page_hash(url):
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        return hashlib.md5(response.text.encode("utf-8")).hexdigest()
+    except Exception as e:
+        print(f"Failed to fetch {url}: {e}")
+        return None
+
+def generate_sitemap(pages):
+    previous_lastmod = load_previous_lastmod()
+    sitemap_entries = []
+
+    for path in pages:
+        url = f"{BASE_URL}/{path}".rstrip("/")
+        content_hash = get_page_hash(url)
+        now = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "+00:00"
+
+        if url in previous_lastmod:
+            old_lastmod = previous_lastmod[url]
+            old_hash = get_page_hash(url)  # Optional: Store hashes separately for better performance
+            if content_hash and old_hash == content_hash:
+                lastmod = old_lastmod
+            else:
+                lastmod = now
+        else:
+            lastmod = now
+
+        priority = "1.00" if url == BASE_URL else "0.80"
+        sitemap_entries.append(
+            f'  <url><loc>{url}</loc><lastmod>{lastmod}</lastmod><priority>{priority}</priority></url>'
+        )
+
+    sitemap_content = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap_content += "\n".join(sitemap_entries)
+    sitemap_content += "\n</urlset>"
+
+    with open(SITEMAP_FILE, "w", encoding="utf-8") as f:
+        f.write(sitemap_content)
+
+if __name__ == "__main__":
+    # Example list of your GitHub Pages paths
+    pages = ["", "adr", "hotel_trends", "about", "booking_pace", "Forc_vs_Actual", "forecast", "portfolio.html"]
+    generate_sitemap(pages)
