@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://4-hoteliers.blogspot.com?m=0</loc><lastmod>2025-08-15T22:02:13+00:00</lastmod><priority>0.80</priority></url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Blog Feed -->
+  <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/feeds/posts/default?alt=rss</loc>
+  </sitemap>
+
+  <!-- Labels -->
+  <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/feeds/posts/default/-/Revenue%20Management?alt=rss</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/feeds/posts/default/-/Data%20Analysis?alt=rss</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/feeds/posts/default/-/Sales%20and%20Marketing?alt=rss</loc>
+  </sitemap>
+
+  <!-- Static Pages -->
+  <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/p/revenue-management.html</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/p/sales-and-marketing.html</loc>
+  </sitemap>
+   <sitemap>
+    <loc>https://4-hoteliers.blogspot.com/p/data-analyses.html</loc>
+  </sitemap>
+
+</sitemapindex>
