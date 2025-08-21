@@ -80,11 +80,15 @@
 }
 
 body {
-    margin: 0;
-    background: var(--bg);
-    color: #111;
-    line-height: 1.4
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+main {
+    flex: 1; /* pushes footer down */
+}
+
 
 .container {
     max-width: var(--maxw);
@@ -313,12 +317,13 @@ nav a {
 }
 
 footer {
-    margin-top: 28px;
+    margin-top: 0; /* remove extra spacing */
     padding: 20px 0;
     text-align: center;
     color: var(--muted);
-    font-size: 14px
+    font-size: 14px;
 }
+
 
 /* Responsive */
 @media (max-width:1000px) {
