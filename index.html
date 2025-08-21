@@ -135,15 +135,6 @@
 
 </head>
 
-<body>
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3428MK"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
 
 <body>
 
@@ -156,34 +147,40 @@
 
   <!-- Header and Navigation -->
  <!--Nav BAR-->
-<nav class="navbar navbar-expand-lg bg-purple">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
+    <a class="navbar-brand" href="index.html">Hotel Data Insights</a>
+
+    <!-- Hamburger button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="Forc_vs_Actual.html">Booking Pace</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="adr.html">ADR & RevPAR</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="forecast.html">Forecast</a></li>
-        <a href="portfolio.html" class="portfolio-btn">
-    PORTFOLIO
-  </a>
-</li>
-
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="Forc_vs_Actual.html">Booking Pace</a></li>
+        <li class="nav-item"><a class="nav-link" href="adr.html">ADR & RevPAR</a></li>
+        <li class="nav-item"><a class="nav-link" href="forecast.html">Forecast</a></li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="btn btn-warning ms-lg-2 mt-2 mt-lg-0">Portfolio</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
+<!-- Hero Banner -->
+<header class="hero bg-dark text-center py-5">
+  <div class="container">
+    <h1 class="text-white mb-3">Unlocking Hospitality Performance with Data</h1>
+    <p class="text-white">Transforming hotel metrics into actionable insights using Tableau, PostgreSQL, and Python.</p>
+  </div>
+</header>
 
-  <!-- Hero Banner -->
-  <header class="hero bg-purple text-center py-5">
-    <div class="container">
-      <h1 class="text-white mb-3">Unlocking Hospitality Performance with Data</h1>
-      <p class="text-white">Transforming hotel metrics into actionable insights using Tableau, PostgreSQL, and Python.</p>
-    </div>
-  </header>
 
   <!-- Main Content -->
   <main>
@@ -397,4 +394,5 @@
 
 </body>
 </html>
+
 
