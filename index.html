@@ -1,6 +1,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Data Analytics Portfolio | Ayman Salem</title>
 
   <!-- Canonical -->
@@ -122,11 +123,15 @@
     gtag('config', 'G-ZT2VZ3W851');
   </script>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-    <!-- Include FontAwesome icon CDN in <head> -->
+ <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Your custom CSS (make sure the filename is correct: style.css OR styles.css) -->
+<link href="style.css" rel="stylesheet">
+
+<!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -150,10 +155,18 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- Header and Navigation -->
- <!--Nav BAR-->
+<!--Nav BAR-->
 <nav class="navbar navbar-expand-lg bg-purple">
   <div class="container">
     <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
+    
+    <!-- Hamburger button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
@@ -161,13 +174,14 @@
         <li class="nav-item"><a class="nav-link text-white" href="Forc_vs_Actual.html">Booking Pace</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="adr.html">ADR & RevPAR</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="forecast.html">Forecast</a></li>
- <a href="portfolio.html" class="portfolio-btn">
-    PORTFOLIO
-  </a>
+        <li class="nav-item">
+          <a href="portfolio.html" class="btn btn-warning ms-2">Portfolio</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+
 
 
   <!-- Hero Banner -->
@@ -415,9 +429,12 @@
 })();
 </script>
 
+<!-- Bootstrap JS (needed for toggle menu) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
+
 
 
 
