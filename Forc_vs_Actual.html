@@ -60,7 +60,17 @@
 </script>
  <!--End redirect without html-->
   
- 
+ <!—Smooth navigation between pages-->
+<style>
+  body {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  body.loaded {
+    opacity: 1;
+  }
+</style>
+
 </head>
 
 
@@ -167,6 +177,7 @@
 
  <!--Link to Porfolio-->
 <!--Link to Porfolio-->
+<!--Link to Porfolio-->
 <div style="text-align: left; margin: 50px 0 50px 55px;">
   <a href="https://aymansalem.github.io/portfolio.html/" 
      target="_blank" rel="noopener noreferrer"
@@ -174,6 +185,7 @@
     Check out My Portfolio →
   </a>
 </div>
+
 
 
 </div>
@@ -368,14 +380,15 @@
 </script>
 <!--End Nav Menu Scrip -->
 
+  <!—End Smooth navigation between pages before -->
+<script>
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
+</script>
+
 </body>
 
 
 </html>
-
-
-
-
-
-
 
