@@ -85,12 +85,23 @@
 }
 </script>
 
+  <!—Smooth navigation between pages head-->
+<style>
+  body {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  body.loaded {
+    opacity: 1;
+  }
+</style>
+
 <!-- Stylesheets -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="styles.css" />
 
 
-<!-- Include FontAwesome icon CDN in <head> -->
+<!-- Include FontAwesome icon CDN in  -->
 <script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -99,8 +110,14 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3428MK"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-  
-<!--Nav BAR-->
+
+
+  <!—NEW Nav Menu  head-->
+ 
+  <div id="nav-placeholder"></div>
+<!—END NEW Nav Menu -->
+
+<!--Nav BAR
 <nav class="navbar navbar-expand-lg bg-purple">
   <div class="container">
     <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
@@ -114,7 +131,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
   </div>
-</nav>
+</nav>-->
 
 
 <main class="container my-5">
@@ -700,13 +717,15 @@ TA/TO saw a dramatic increase from -24.0% (2018) to +36.2% (2019) — a 60.2% sw
 </section>
 
 <!--Link to Porfolio-->
+<!--Link to Porfolio-->
 <div style="text-align: left; margin: 50px 0 50px 55px;">
-  <a href="https://4-hoteliers.blogspot.com/" 
+  <a href="https://aymansalem.github.io/portfolio.html/" 
      target="_blank" rel="noopener noreferrer"
      style="display: inline-block; padding: 10px 20px; background-color: #0366d6; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
     Check out My Portfolio →
   </a>
 </div>
+
 
 
   
@@ -872,9 +891,27 @@ TA/TO saw a dramatic increase from -24.0% (2018) to +36.2% (2019) — a 60.2% sw
 })();
 </script>
 
+  <!—Nav Menu Scrip -->
+<script>
+  fetch("nav.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("nav-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
+</script>
+<!--End Nav Menu Scrip -->
+
+<!—End Smooth navigation between pages before  -->
+<script>
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
+</script>
 
 </body>
 </html>
+
 
 
 
