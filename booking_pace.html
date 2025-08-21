@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
- <head>
+ 
    <!-- Google Tag Manager (GTM) -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -70,14 +70,21 @@
 </script>
 
   <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
 
-<!-- Your Custom Styles -->
+<!--  Custom Styles -->
 <link rel="stylesheet" href="styles.css" />
 
 <!-- Font Awesome Kit -->
 <script src="https://kit.fontawesome.com/002796a740.js" crossorigin="anonymous"></script>
-
+<!--Redirect html-->
+ <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
+ 
 
 </head>
 
@@ -87,13 +94,16 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV3428MK"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  
+ 
+<!--End Redirect html-->
 
 <body>
+<!—NEW Nav Menu -->
+ 
+  <div id="nav-placeholder"></div>
+<!—END NEW Nav Menu -->
 
-<!--Nav BAR-->
+<!--Nav BAR
 <nav class="navbar navbar-expand-lg bg-purple">
   <div class="container">
     <a class="navbar-brand text-white" href="index.html">Hotel Data Insights</a>
@@ -109,7 +119,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 
-
+-->
 
 <main class="container my-5">
 <h1>Hotel Booking Pace Analysis</h1>
@@ -1231,18 +1241,18 @@ You can analyze:</strong>
   }
 })();
 </script>
+<!—Nav Menu Scrip -->
+<script>
+  fetch("nav.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("nav-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
+</script>
+<!--End Nav Menu Scrip -->
 
 </body>
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
