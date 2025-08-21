@@ -435,20 +435,3 @@ footer {
   font-size: 1rem;
   color: #555;
 }
-
-/* Your purple brand color for the nav */
-.bg-purple { background-color: #4b2c82; }
-
-/* Make sure collapsed menu is readable and full width on mobile */
-@media (max-width: 991.98px) {
-  .navbar .navbar-collapse {
-    background-color: #4b2c82;   /* same purple as nav */
-    padding: 0.5rem 1rem;
-  }
-  .navbar .nav-link {
-    color: #fff !important;
-  }
-}
-
-/* Optional: stronger contrast for brand text */
-.navbar-brand { font-weight: 600; }
