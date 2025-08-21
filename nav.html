@@ -26,42 +26,4 @@
       </ul>
     </div>
   </div>
-
-  <!-- Glowing Portfolio Button Style -->
-  <style>
-    .glowing-btn {
-      position: relative;
-      display: inline-block;
-      padding: 8px 20px;
-      color: white;
-      background-color: #ff9800;
-      border-radius: 6px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s ease-in-out;
-    }
-
-    .glowing-btn::after {
-      content: '';
-      position: absolute;
-      top: -5px; left: -5px; bottom: -5px; right: -5px;
-      background: linear-gradient(45deg, #ff6f00, #ffeb3b, #ff6f00, #ffeb3b);
-      z-index: -1;
-      border-radius: 8px;
-      filter: blur(8px);
-      opacity: 0.7;
-      animation: glow 2s linear infinite;
-    }
-
-    @keyframes glow {
-      0% { filter: blur(4px); opacity: 0.7; }
-      50% { filter: blur(12px); opacity: 1; }
-      100% { filter: blur(4px); opacity: 0.7; }
-    }
-
-    .glowing-btn:hover {
-      transform: scale(1.05);
-      background-color: #ffb74d;
-    }
-  </style>
 </nav>
