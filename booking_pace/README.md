@@ -35,7 +35,7 @@ To compare historical booking patterns using monthly and weekly data — analyzi
 
 ## 🖼️ Sample Visualization
 
-![Booking Pace Chart](./booking_pace_chart.png)
+![Booking Pace Chart](/assets/OTB-2019-bar-1.png)
 
 ---
 
