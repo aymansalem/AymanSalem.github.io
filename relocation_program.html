@@ -1,131 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Relocation Smart Program | Ayman Salem</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Relocation Smart Program | Ayman Salem</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
 <style>
-body {font-family: Arial; margin:40px;}
-h1 {color:#1a73e8;}
-.section {margin-bottom:40px;}
+body{
+font-family: Arial, sans-serif;
+background:#f8f9fa;
+}
+
+.hero{
+background:#0d6efd;
+color:white;
+padding:80px 20px;
+text-align:center;
+}
+
+.box{
+border-radius:8px;
+}
+
+.bg-blue{
+background:#0d6efd;
+}
+
+.section{
+padding:60px 0;
+}
+
+.diagram{
+background:white;
+border-radius:8px;
+padding:25px;
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
+}
+
+footer{
+background:#222;
+color:white;
+padding:20px;
+text-align:center;
+}
 </style>
+
 </head>
 
 <body>
 
+<!-- Navigation -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+
+<a class="navbar-brand" href="index.html">Ayman Salem</a>
+
+<div>
+<ul class="navbar-nav">
+
+<li class="nav-item">
+<a class="nav-link" href="index.html">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.html#projects">Projects</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.html#contact">Contact</a>
+</li>
+
+</ul>
+</div>
+
+</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
 <h1>Relocation Smart Program</h1>
 
 <p>
-A smart algorithm designed for hotel booking engines to maximize occupancy,
-increase OTA commissions, and improve guest satisfaction by converting
-partial room availability into full-length stays.
+Smart Booking Engine Algorithm That Combines Split Availability  
+to Create Full Hotel Stays and Increase Revenue
 </p>
 
-<div class="section">
-<h2>The Problem</h2>
+</section>
 
-<ul>
-<li>Hotels often show <b>"Sold Out"</b> for long stays.</li>
-<li>However, there are <b>gap nights between room types</b>.</li>
-<li>This leads to <b>lost revenue for hotels</b> and <b>lost commission for booking platforms</b>.</li>
-</ul>
+<!-- INTRO -->
 
-<p>
-Example:
+<section class="section container">
+
+<h2 class="text-center mb-4">Concept</h2>
+
+<p class="lead text-center">
+
+Hotels often lose bookings when a room is unavailable for the full stay.
+However, availability may exist across different room types or sister hotels.
+
+The Relocation Smart Program intelligently combines these availability gaps
+to offer guests a complete stay while clearly informing them of any room or
+hotel change.
+
 </p>
 
-<ul>
-<li>Twin Room available: 1–4 Feb</li>
-<li>Double Room available: 4–10 Feb</li>
-<li>Guest searching: 1–10 Feb</li>
-</ul>
+</section>
 
-<p>
-Most booking engines show <b>No Availability</b>.
-</p>
+<!-- PROBLEM -->
 
-</div>
+<section class="section container">
 
+<h2 class="text-center mb-5">The Problem</h2>
 
-<div class="section">
+<div class="diagram">
 
-<h2>The Solution</h2>
+Example scenario:
 
-<p>
-The Relocation Smart Program algorithm automatically:
-</p>
+Guest searches:
 
-<ul>
-<li>Detects partial availability</li>
-<li>Combines multiple room types</li>
-<li>Creates a continuous stay</li>
-<li>Clearly informs the guest about room change</li>
-</ul>
+Check-in: **1 Feb**  
+Check-out: **10 Feb**
 
-<p>
-Result:
-</p>
-
-<ul>
-<li>1–4 Feb → Twin Room</li>
-<li>4–10 Feb → Double Room</li>
-</ul>
-
-<p>
-The guest can book the full stay instead of leaving the website.
-</p>
-
-</div>
-
-
-<div class="section">
-
-<h2>Advanced Feature – Sister Hotel Relocation</h2>
-
-<p>
-If the hotel group owns multiple properties in the same area,
-the algorithm can suggest relocating part of the stay to a nearby hotel.
-</p>
-
-<ul>
-<li>Hotel A: 1–4 Feb</li>
-<li>Hotel B (sister property): 4–10 Feb</li>
-</ul>
-
-<p>
-The booking engine creates <b>one combined reservation</b> for both stays.
-</p>
-
-</div>
-
-
-<div class="section">
-
-<h2>Benefits</h2>
-
-<ul>
-<li>Higher hotel occupancy</li>
-<li>More OTA commissions</li>
-<li>Reduced gap nights</li>
-<li>Better guest experience</li>
-<li>Smart revenue optimization</li>
-</ul>
-
-</div>
-
-
-<div class="section">
-
-<h2>Project Resources</h2>
-
-<ul>
-<li><a href="https://aymansalem.github.io/">Back to Portfolio</a></li>
-<li><a href="#">Project Demo Video (Coming Soon)</a></li>
-<li><a href="#">Pitch Deck (Coming Soon)</a></li>
-</ul>
-
-</div>
-
-
-</body>
-</html>
+Twin Room Availability
