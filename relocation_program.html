@@ -1,266 +1,1037 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NightSeam™ — The Hotel Revenue Recovery Algorithm. Converts partial hotel availability into confirmed, non-refundable bookings. Patent Pending. Invented by Ayman Salem.">
+  <meta name="author" content="Ayman Salem">
+  <meta property="og:title" content="NightSeam™ — Relocation Smart Program | Ayman Salem">
+  <meta property="og:description" content="Algorithm that converts partial hotel availability into confirmed bookings. $199K+ verified. 8 years live. Patent Pending.">
+  <meta property="og:type" content="website">
+  <title>NightSeam™ — Relocation Smart Program | Ayman Salem</title>
+  <style>
+    /* ── RESET & BASE ──────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; line-height: 1.7; color: #1a1a2e; background: #ffffff;
+    }
 
-<title>Relocation Smart Program | Ayman Salem</title>
+    /* ── COLOURS (matching site palette + NightSeam accent) */
+    :root {
+      --navy:   #003580;
+      --blue:   #0071c2;
+      --teal:   #00a699;
+      --coral:  #ff5a5f;
+      --gold:   #f5a623;
+      --gold-d: #c07800;
+      --green:  #008234;
+      --ink:    #1a1a2e;
+      --mid:    #4a5568;
+      --light:  #718096;
+      --faint:  #e2e8f0;
+      --bg:     #f7f9fc;
+      --white:  #ffffff;
+    }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    /* ── NAV (matching site) ──────────────────────────── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--faint);
+      padding: 0 2rem;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 1rem; color: var(--navy);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--mid); text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
 
-<style>
-body{
-font-family: Arial, sans-serif;
-background:#f8f9fa;
-}
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #001e50 60%, #0a1628 100%);
+      padding: 80px 2rem 72px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,.4);
+      margin-bottom: 20px;
+    }
+    .patent-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,166,35,.15); border: 1px solid rgba(245,166,35,.3);
+      color: var(--gold); font-size: 0.72rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px; margin-left: 14px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800; color: var(--white); letter-spacing: -0.5px;
+      line-height: 1.1; margin-bottom: 10px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.65); margin-bottom: 32px; max-width: 640px;
+    }
+    .hero-tagline {
+      font-size: 0.85rem; font-style: italic;
+      color: rgba(255,255,255,.4); margin-top: 28px;
+      font-family: Georgia, serif; letter-spacing: 0.3px;
+    }
 
-.hero{
-background:#0d6efd;
-color:white;
-padding:80px 20px;
-text-align:center;
-}
+    /* Stats row in hero */
+    .hero-stats {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border: 1px solid rgba(255,255,255,.1);
+      margin-top: 40px; max-width: 700px;
+    }
+    .hs {
+      flex: 1; min-width: 150px; padding: 18px 20px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      text-align: center;
+    }
+    .hs:last-child { border-right: none; }
+    .hs-v {
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--gold); line-height: 1; font-family: Georgia, serif;
+    }
+    .hs-l {
+      font-size: 0.65rem; color: rgba(255,255,255,.38);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px;
+    }
 
-.box{
-border-radius:8px;
-}
+    /* ── CONTENT ──────────────────────────────────────── */
+    .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 60px 0; }
+    section + section { border-top: 1px solid var(--faint); }
 
-.bg-blue{
-background:#0d6efd;
-}
+    h2 {
+      font-size: 1.6rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 12px; letter-spacing: -0.3px;
+    }
+    h3 {
+      font-size: 1.1rem; font-weight: 700; color: var(--blue);
+      margin-bottom: 8px; margin-top: 28px;
+    }
+    h4 {
+      font-size: 0.95rem; font-weight: 700; color: var(--mid);
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    p { color: var(--mid); margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--ink); }
 
-.section{
-padding:60px 0;
-}
+    /* Section lead line */
+    .section-rule {
+      width: 48px; height: 3px; background: var(--coral);
+      margin-bottom: 24px;
+    }
+    .section-rule.teal { background: var(--teal); }
+    .section-rule.gold { background: var(--gold); }
+    .section-rule.green { background: var(--green); }
 
-.diagram{
-background:white;
-border-radius:8px;
-padding:25px;
-box-shadow:0 3px 8px rgba(0,0,0,0.08);
-}
+    /* ── 2-COLUMN GRID ────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media(max-width: 768px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+    }
 
-footer{
-background:#222;
-color:white;
-padding:20px;
-text-align:center;
-}
-</style>
+    /* ── CARDS ────────────────────────────────────────── */
+    .card {
+      background: var(--white); border: 1px solid var(--faint);
+      border-radius: 6px; padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .card-blue { border-top: 3px solid var(--blue); }
+    .card-teal { border-top: 3px solid var(--teal); }
+    .card-coral { border-top: 3px solid var(--coral); }
+    .card-gold  { border-top: 3px solid var(--gold); }
+    .card-green { border-top: 3px solid var(--green); }
+    .card-navy  { border-top: 3px solid var(--navy); }
 
+    .card-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+    .card h3 { margin-top: 0; }
+
+    /* ── ALERT BOXES ──────────────────────────────────── */
+    .alert {
+      padding: 16px 20px; border-radius: 4px;
+      border-left: 4px solid; margin: 24px 0;
+    }
+    .alert-navy  { background: #f0f4ff; border-color: var(--navy); }
+    .alert-coral { background: #fff5f5; border-color: var(--coral); }
+    .alert-teal  { background: #f0fffd; border-color: var(--teal); }
+    .alert-gold  { background: #fffbf0; border-color: var(--gold); }
+    .alert-green { background: #f0fff4; border-color: var(--green); }
+    .alert strong { display: block; margin-bottom: 4px; }
+    .alert-navy  strong { color: var(--navy); }
+    .alert-coral strong { color: var(--coral); }
+    .alert-teal  strong { color: var(--teal); }
+    .alert-gold  strong { color: var(--gold-d); }
+    .alert-green strong { color: var(--green); }
+
+    /* ── QUOTE ────────────────────────────────────────── */
+    blockquote {
+      border-left: 4px solid var(--coral);
+      background: #fff5f5; padding: 20px 24px;
+      margin: 24px 0; font-style: italic;
+      font-family: Georgia, serif; font-size: 1.05rem; color: var(--ink);
+    }
+    blockquote cite {
+      display: block; margin-top: 10px; font-size: 0.8rem;
+      font-style: normal; color: var(--light);
+    }
+
+    /* ── STEPS ────────────────────────────────────────── */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex; gap: 16px; padding: 18px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--blue); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .step-body h4 { color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 1rem; }
+
+    /* ── AVAILABILITY CHART ──────────────────────────── */
+    .avail-chart { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .avail-chart th {
+      background: var(--bg); font-weight: 700; color: var(--mid);
+      padding: 8px 10px; text-align: center;
+      border: 1px solid var(--faint); font-size: 0.75rem;
+    }
+    .avail-chart th:first-child { text-align: left; min-width: 130px; }
+    .avail-chart td {
+      border: 1px solid var(--faint); padding: 0; text-align: center;
+    }
+    .avail-chart td:first-child {
+      padding: 8px 12px; font-weight: 600; background: var(--bg);
+      text-align: left;
+    }
+    .cc { padding: 10px 8px; font-weight: 700; font-size: 0.78rem; }
+    .c-g { background: #f0fff8; color: var(--teal); }
+    .c-r { background: #fff5f5; color: var(--coral); }
+    .c-m { background: #fffbf0; color: var(--gold-d); border: 1px solid rgba(245,166,35,.15); }
+
+    /* ── DATA TABLE ───────────────────────────────────── */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 20px 0; }
+    .data-table th {
+      background: var(--navy); color: var(--white);
+      padding: 10px 14px; text-align: left; font-weight: 600;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .data-table td {
+      padding: 10px 14px; border-bottom: 1px solid var(--faint);
+      color: var(--mid);
+    }
+    .data-table tr:nth-child(even) td { background: var(--bg); }
+    .data-table tr:hover td { background: #eff6ff; }
+    .data-table .hl td { background: #fff9e6; }
+    .data-table .hl td:first-child { font-weight: 700; color: var(--gold-d); }
+    .check { color: var(--green); font-weight: 700; }
+    .cross { color: var(--faint); }
+
+    /* ── CODE BLOCK ───────────────────────────────────── */
+    .code-wrap {
+      background: #0d1b2a; border-radius: 6px; overflow: hidden;
+      font-family: 'Courier New', Courier, monospace; font-size: 0.82rem;
+      line-height: 1.8; margin: 20px 0;
+    }
+    .code-bar {
+      background: #162232; padding: 8px 16px;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .code-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .code-fname { font-size: 0.7rem; color: rgba(255,255,255,.3); margin-left: 8px; }
+    .code-body { padding: 16px 20px; color: #a8b9cc; }
+    .code-body .c  { color: #4a6880; font-style: italic; }
+    .code-body .k  { color: #c792ea; }
+    .code-body .s  { color: #a8e478; }
+    .code-body .f  { color: #82aaff; }
+    .code-body .v  { color: #89ddff; }
+    .code-body .n  { color: #f5a623; }
+
+    /* ── STAT BOXES ───────────────────────────────────── */
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--faint); margin: 24px 0;
+    }
+    @media(max-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-cell {
+      padding: 22px 16px; text-align: center;
+      border-right: 1px solid var(--faint);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-v {
+      font-size: 1.9rem; font-weight: 800;
+      line-height: 1; font-family: Georgia, serif;
+    }
+    .stat-l {
+      font-size: 0.65rem; color: var(--light);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px;
+    }
+
+    /* ── BUTTONS ──────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border-radius: 4px; font-weight: 700;
+      font-size: 0.88rem; text-decoration: none; transition: all 0.2s;
+      cursor: pointer; border: none; font-family: inherit;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: #005a9e; }
+    .btn-outline { background: var(--white); color: var(--blue); border: 1.5px solid var(--blue); }
+    .btn-outline:hover { background: #eff6ff; }
+    .btn-coral { background: var(--coral); color: var(--white); }
+    .btn-coral:hover { background: #e03a3f; }
+    .btn-dark { background: var(--navy); color: var(--white); }
+    .btn-dark:hover { background: #002060; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+    /* ── POPUP MOCKUP ─────────────────────────────────── */
+    .popup-mockup {
+      border: 1px solid var(--faint); border-radius: 8px;
+      overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,.1);
+      max-width: 420px;
+    }
+    .popup-hd {
+      background: var(--navy); padding: 14px 18px;
+      color: var(--white);
+    }
+    .popup-hd-title { font-size: 0.95rem; font-weight: 700; }
+    .popup-hd-sub { font-size: 0.72rem; color: rgba(255,255,255,.55); margin-top: 2px; }
+    .popup-badge-pill {
+      display: inline-block; background: var(--gold);
+      color: var(--navy); font-size: 0.68rem; font-weight: 800;
+      padding: 2px 10px; border-radius: 12px; float: right; margin-top: 2px;
+    }
+    .popup-bd { padding: 16px 18px; }
+    .popup-green-box {
+      background: #f0fff4; border-left: 3px solid var(--green);
+      padding: 8px 12px; margin-bottom: 12px; font-size: 0.83rem; color: var(--green);
+    }
+    .popup-check-list { list-style: none; margin-bottom: 14px; }
+    .popup-check-list li {
+      font-size: 0.82rem; color: var(--mid);
+      padding: 3px 0; display: flex; align-items: flex-start; gap: 7px;
+    }
+    .popup-check-list li::before { content: '✓'; color: var(--teal); font-weight: 900; flex-shrink: 0; }
+    .popup-reward {
+      font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 14px;
+    }
+    .popup-reward .save { color: var(--gold-d); font-weight: 800; font-size: 1.1rem; }
+    .popup-btns { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; }
+    .pb-accept {
+      background: var(--teal); color: var(--white); border: none;
+      padding: 10px; font-weight: 700; font-size: 0.83rem;
+      border-radius: 4px; cursor: pointer;
+    }
+    .pb-decline {
+      background: var(--white); color: var(--light);
+      border: 1px solid var(--faint); padding: 10px;
+      font-size: 0.8rem; border-radius: 4px; cursor: pointer;
+    }
+    .popup-footer-note {
+      background: var(--bg); padding: 8px 18px;
+      font-size: 0.7rem; color: var(--light); border-top: 1px solid var(--faint);
+    }
+
+    /* ── TIMELINE BARS ────────────────────────────────── */
+    .year-bars { display: flex; flex-direction: column; gap: 10px; }
+    .ybar {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .ybar-lbl { width: 80px; font-size: 0.82rem; font-weight: 700; color: var(--mid); flex-shrink: 0; }
+    .ybar-track { flex: 1; background: var(--faint); height: 28px; position: relative; border-radius: 2px; }
+    .ybar-fill {
+      height: 100%; border-radius: 2px;
+      display: flex; align-items: center; padding-left: 10px;
+      font-size: 0.8rem; font-weight: 700; color: var(--white);
+      transition: width 1s ease;
+    }
+    .ybar-val { width: 70px; font-weight: 700; font-size: 0.88rem; flex-shrink: 0; font-family: Georgia, serif; }
+
+    /* ── IP / PATENT SECTION ──────────────────────────── */
+    .ip-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin: 24px 0;
+    }
+    @media(max-width: 768px) { .ip-grid { grid-template-columns: 1fr; } }
+    .ip-card {
+      border: 1px solid var(--faint); padding: 18px 16px;
+      border-radius: 4px; background: var(--white);
+    }
+    .ip-icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+    .ip-card h4 { color: var(--navy); text-transform: none; letter-spacing: 0; font-size: 0.92rem; margin-bottom: 4px; }
+    .ip-weight {
+      font-size: 0.68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 10px; display: inline-block; margin-bottom: 8px;
+    }
+    .w-high  { background: #f0fff4; color: var(--green); }
+    .w-vhigh { background: #fff5f5; color: var(--coral); }
+    .w-med   { background: #fffbf0; color: var(--gold-d); }
+
+    /* ── FOOTER (matching site) ──────────────────────── */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--faint);
+      padding: 32px 2rem; text-align: center; margin-top: 60px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo { font-weight: 700; color: var(--navy); margin-bottom: 8px; font-size: 0.95rem; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 12px 0; }
+    .footer-links a { color: var(--mid); text-decoration: none; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-copy { font-size: 0.78rem; color: var(--light); margin-top: 12px; }
+
+    /* ── RESPONSIVE NAV ───────────────────────────────── */
+    @media(max-width: 600px) {
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.8rem; }
+      .hero h1 { font-size: 2rem; }
+      .hs-v { font-size: 1.4rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- Navigation -->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-
-<a class="navbar-brand" href="index.html">Ayman Salem</a>
-
-<div>
-<ul class="navbar-nav">
-
-<li class="nav-item">
-<a class="nav-link" href="index.html">Home</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="index.html#projects">Projects</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="index.html#contact">Contact</a>
-</li>
-
-</ul>
-</div>
-
-</div>
+<!-- ── NAVIGATION (matching site) ─────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://aymansalem.github.io/index.html" class="nav-logo">Ayman Salem</a>
+    <ul class="nav-links">
+      <li><a href="https://aymansalem.github.io/index.html">Home</a></li>
+      <li><a href="https://aymansalem.github.io/index.html#projects">Projects</a></li>
+      <li><a href="https://aymansalem.github.io/index.html#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- HERO -->
-
-<section class="hero">
-
-<h1>Relocation Smart Program</h1>
-
-<p>
-Smart Booking Engine Algorithm That Combines Split Availability  
-to Create Full Hotel Stays and Increase Revenue
-</p>
-
-</section>
-
-<!-- INTRO -->
-
-<section class="section container">
-
-<h2 class="text-center mb-4">Concept</h2>
-
-<p class="lead text-center">
-
-Hotels often lose bookings when a room is unavailable for the full stay.
-However, availability may exist across different room types or sister hotels.
-
-The Relocation Smart Program intelligently combines these availability gaps
-to offer guests a complete stay while clearly informing them of any room or
-hotel change.
-
-</p>
-
-</section>
-
-<!-- PROBLEM -->
-
-<section class="section container">
-
-<h2 class="text-center mb-5">The Problem</h2>
-
-<div class="diagram">
-
-Example scenario:
-
-Guest searches:
-
-Check-in: **1 Feb**  
-Check-out: **10 Feb**
-Twin Room Availability
-1–4 Feb 🟢 Available
-4–10 Feb 🔴 Sold Out  
-
-  <img src="assets/availability closed.png" 
-     alt="Hotel availability gap example" 
-     style="width: 700px; height: auto; display: block; margin: 0 auto;">
-
-Twin Room Availability
-
-Traditional booking engines show:
-
-**“No Availability”**
-
-Even though **the hotel actually has 10 nights available** across room types.
-
-</div>
-
-</section>
-
-<!-- SOLUTION -->
-
-<section class="section container">
-
-<h2 class="text-center mb-5">The Solution</h2>
-
-<div class="diagram">
-
-The Smart Algorithm detects the split availability and offers:
-Stay Option
-
-1–4 Feb Twin Room
-4–10 Feb Double Room
-  Stay Option
-
-1–4 Feb Twin Room
-4–10 Feb Double Room
-  Hotel A
-1–4 Feb Available
-
-Hotel B (same group)
-4–10 Feb Available
-  Hotel A
-1–4 Feb Available
-
-
-The system generates **one combined reservation confirmation**.
-
-</div>
-
-</section>
-
-<!-- BENEFITS -->
-
-<section class="section container">
-
-<h2 class="text-center mb-4">Benefits</h2>
-
-<div class="row">
-
-<div class="col-md-4">
-
-<div class="diagram">
-
-<h5>Hotels</h5>
-
-<ul>
-<li>Fill gap nights</li>
-<li>Increase occupancy</li>
-<li>Reduce lost bookings</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-
-<div class="diagram">
-
-<h5>Booking Engines</h5>
-
-<ul>
-<li>More successful searches</li>
-<li>Higher conversion</li>
-<li>More commission revenue</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-
-<div class="diagram">
-
-<h5>Guests</h5>
-
-<ul>
-<li>Stay in preferred hotel</li>
-<li>Transparent booking options</li>
-<li>More availability choices</li>
-</ul>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- DEMO / LINKS -->
-
-<section class="section container text-center">
-
-<h2 class="mb-4">Project Resources</h2>
-
-<a href="index.html" class="btn btn-primary m-2">
-Back to Portfolio
-</a>
-
-<a href="https://github.com/aymansalem" class="btn btn-dark m-2" target="_blank">
-View GitHub
-</a>
-
-</section>
-
-<!-- FOOTER -->
-
+<!-- ── HERO ────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag">Hotel Revenue Technology · Invented 2016</span>
+      <span class="patent-badge">🔒 Patent Pending</span>
+    </div>
+    <h1>NightSeam™<br><span>Relocation Smart Program</span></h1>
+    <p class="hero-subtitle">
+      The algorithm that converts partial hotel availability into confirmed,
+      non-refundable bookings — before the guest ever sees "Sold Out."
+    </p>
+
+    <div class="hero-stats">
+      <div class="hs">
+        <div class="hs-v">$199K+</div>
+        <div class="hs-l">Revenue Recovered</div>
+      </div>
+      <div class="hs">
+        <div class="hs-v">3,180+</div>
+        <div class="hs-l">Room Nights Filled</div>
+      </div>
+      <div class="hs">
+        <div class="hs-v">8 Years</div>
+        <div class="hs-l">Live Since 2016</div>
+      </div>
+      <div class="hs">
+        <div class="hs-v" style="color:#fff">0</div>
+        <div class="hs-l">OTA Rivals · 2026</div>
+      </div>
+    </div>
+
+    <p class="hero-tagline">"Every gap filled. Every night sold."</p>
+  </div>
+</header>
+
+<div class="content">
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 1 — THE PROBLEM
+  ══════════════════════════════════════════════════ -->
+  <section id="problem">
+    <div class="section-rule coral"></div>
+    <h2>The Problem</h2>
+    <p>Every hotel on every OTA platform loses revenue every night to the same invisible problem.
+    A guest searches for their preferred property for nine nights. The hotel has rooms available —
+    just not the <em>same room type</em> for all nine nights. The platform returns <strong>"Unavailable."</strong>
+    The guest books a competitor. The hotel earns zero. The room expires.</p>
+
+    <div class="alert alert-coral" style="margin-top:28px">
+      <strong>Real Example — Hotel XYZ Casablanca</strong>
+      Guest searches 1–10 August (9 nights). Twin Room available 1–4 Aug only.
+      Double Room available 4–10 Aug only. Platform result: <strong>UNAVAILABLE</strong>.
+      Revenue that existed but expired: <strong>$1,110</strong>.
+    </div>
+
+    <div style="margin-top:32px;overflow-x:auto">
+      <table class="avail-chart">
+        <thead>
+          <tr>
+            <th>Room Type</th>
+            <th>1 Aug</th><th>2 Aug</th><th>3 Aug</th><th>4 Aug</th>
+            <th>5 Aug</th><th>6 Aug</th><th>7 Aug</th><th>8 Aug</th>
+            <th>9 Aug</th><th>10 Aug</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🌙 Twin Room</td>
+            <td><div class="cc c-g">✓</div></td><td><div class="cc c-g">✓</div></td>
+            <td><div class="cc c-g">✓</div></td><td><div class="cc c-g">✓</div></td>
+            <td><div class="cc c-r">✗</div></td><td><div class="cc c-r">✗</div></td>
+            <td><div class="cc c-r">✗</div></td><td><div class="cc c-r">✗</div></td>
+            <td><div class="cc c-r">✗</div></td><td><div class="cc c-r">✗</div></td>
+          </tr>
+          <tr>
+            <td>🛏 Double Room</td>
+            <td><div class="cc c-r">✗</div></td><td><div class="cc c-r">✗</div></td>
+            <td><div class="cc c-r">✗</div></td><td><div class="cc c-r">✗</div></td>
+            <td><div class="cc c-g">✓</div></td><td><div class="cc c-g">✓</div></td>
+            <td><div class="cc c-g">✓</div></td><td><div class="cc c-g">✓</div></td>
+            <td><div class="cc c-g">✓</div></td><td><div class="cc c-g">✓</div></td>
+          </tr>
+          <tr>
+            <td>🧵 <strong>NightSeam™</strong></td>
+            <td><div class="cc c-m">1</div></td><td><div class="cc c-m">2</div></td>
+            <td><div class="cc c-m">3</div></td><td><div class="cc c-m">4</div></td>
+            <td><div class="cc c-m">5</div></td><td><div class="cc c-m">6</div></td>
+            <td><div class="cc c-m">7</div></td><td><div class="cc c-m">8</div></td>
+            <td><div class="cc c-m">9</div></td><td><div class="cc c-m">10</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;font-size:0.8rem;color:var(--light)">
+      🧵 Day 4 is the <strong>seam point</strong> — where Twin ends and Double begins. NightSeam™ detects this and assembles one complete 9-night offer.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 2 — THE SOLUTION
+  ══════════════════════════════════════════════════ -->
+  <section id="solution">
+    <div class="section-rule teal"></div>
+    <h2>The Solution</h2>
+    <p>NightSeam™ scans the availability chart across all room types in real time,
+    detects complementary partial blocks, and assembles them into one complete stay offer —
+    presented to the guest with full transparency before they ever see an unavailability message.</p>
+
+    <h3>Three Algorithms</h3>
+    <div class="three-col" style="margin-top:20px">
+      <div class="card card-teal">
+        <span class="card-icon">🌙</span>
+        <h3 style="color:var(--teal)">Algorithm 1 · Room Relocation</h3>
+        <p>Same hotel. Different room type mid-stay. Guest checks in once — hotel handles the room change. Most seamless experience.</p>
+      </div>
+      <div class="card card-blue">
+        <span class="card-icon">🗺️</span>
+        <h3>Algorithm 2 · Hotel Relay</h3>
+        <p>Hotel fully booked for part of the stay. Algorithm finds a sister property nearby — same area, same stars, free transfer included.</p>
+      </div>
+      <div class="card card-gold">
+        <span class="card-icon">🧵</span>
+        <h3 style="color:var(--gold-d)">Algorithm 3 · Cross-Hotel Seam</h3>
+        <p>Hybrid: partial availability at the primary hotel stitched with availability at a nearby sister property. Full stay assembled seamlessly.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px">How the Seam Detection Works</h3>
+    <div class="steps" style="margin-top:16px">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Scan</h4>
+          <p>Reads the hotel's full availability calendar across all enrolled room types in real time.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Detect the Seam</h4>
+          <p>Identifies the exact date where one partial block ends and another begins — the seam point — with no gap between them.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Assemble the Stay</h4>
+          <p>Confirms the combined blocks form a continuous stay covering the guest's full requested dates.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Present the Offer</h4>
+          <p>Displays the complete offer to the guest with full transparency — before they see any "Unavailable" result. Guest always chooses freely.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Confirm Non-Refundable</h4>
+          <p>On guest acceptance, the booking is confirmed immediately as non-refundable. Hotel revenue secured from that moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 3 — GUEST TRANSPARENCY
+  ══════════════════════════════════════════════════ -->
+  <section id="transparency">
+    <div class="section-rule"></div>
+    <h2>Guest Transparency — Full Disclosure</h2>
+    <p>NightSeam™ is built on a core principle: <strong>the guest is never deceived and never forced.</strong>
+    Before any booking is confirmed, the guest sees exactly what they are agreeing to.
+    They can accept the offer — or dismiss it and continue searching. Zero pressure.</p>
+
+    <div class="two-col" style="margin-top:28px;align-items:start">
+      <div>
+        <h3>Room Relocation Message</h3>
+        <div class="popup-mockup">
+          <div class="popup-hd">
+            <span class="popup-badge-pill">SAVE 10%</span>
+            <div class="popup-hd-title">🛎️ Smart Stay · Room Relocation</div>
+            <div class="popup-hd-sub">Hotel XYZ Casablanca · 01–10 August 2025</div>
+          </div>
+          <div class="popup-bd">
+            <div class="popup-green-box">
+              ✅ <strong>Your full stay is available at this hotel.</strong><br>
+              Same property — just a different room category for part of your stay.
+            </div>
+            <ul class="popup-check-list">
+              <li>Same hotel · Same service · Same breakfast</li>
+              <li>Hotel staff manage the room change — zero effort for you</li>
+              <li>Full stay confirmed · Non-refundable discount locked</li>
+            </ul>
+            <div class="popup-reward">
+              Your reward for saying yes: <span class="save">save 10%</span> on your total booking.
+            </div>
+            <div class="popup-btns">
+              <button class="pb-accept">✅ Yes — Save 10% on my stay</button>
+              <button class="pb-decline">No thanks, continue</button>
+            </div>
+          </div>
+          <div class="popup-footer-note">
+            🔒 This is a Room Relocation offer. You are not required to accept.
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>Design Principles</h3>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" style="background:var(--teal)">✓</div>
+            <div class="step-body">
+              <h4>Lead with the benefit</h4>
+              <p>The 10% discount is stated before the room change — framing it as a reward, not a compromise.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="background:var(--teal)">✓</div>
+            <div class="step-body">
+              <h4>Hotel handles everything</h4>
+              <p>Removes the guest's biggest fear — hassle. The hotel manages the transition; the guest does nothing.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="background:var(--teal)">✓</div>
+            <div class="step-body">
+              <h4>Two equal buttons</h4>
+              <p>No dark patterns. The decline button is equally visible. The choice is genuinely free.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="background:var(--teal)">✓</div>
+            <div class="step-body">
+              <h4>Transparency footer</h4>
+              <p>Every popup confirms: "You are not required to accept." Clearly labelled as a relocation offer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 4 — ADMIN PANEL
+  ══════════════════════════════════════════════════ -->
+  <section id="admin">
+    <div class="section-rule navy"></div>
+    <h2>Hotel Admin Control</h2>
+    <p>The hotel manager activates NightSeam™ from a dedicated panel within their existing
+    OTA extranet or booking engine. No new software. No training manual. One toggle.</p>
+
+    <div class="two-col" style="margin-top:28px;align-items:start">
+      <div>
+        <h3>Admin Panel Features</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Setting</th><th>Options</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Room Relocation</td><td>Toggle ON / OFF</td></tr>
+            <tr><td>Hotel Relay</td><td>Toggle ON / OFF</td></tr>
+            <tr><td>Guest Discount</td><td>5% – 30% (hotel sets)</td></tr>
+            <tr><td>Min Block Length</td><td>1 – 5 nights</td></tr>
+            <tr><td>Max Relay Distance</td><td>100m – 2km</td></tr>
+            <tr><td>Room Types Enrolled</td><td>Select by room category</td></tr>
+            <tr><td>Deactivation</td><td>Instant · Zero penalty</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="alert alert-green">
+          <strong>Full Hotel Sovereignty</strong>
+          The hotel has complete control over the algorithm at all times. They set the discount,
+          choose which room types participate, and can activate or deactivate with a single toggle.
+          The platform has no ability to override the hotel's settings.
+        </div>
+        <div class="code-wrap">
+          <div class="code-bar">
+            <div class="code-dot" style="background:#FF5F57"></div>
+            <div class="code-dot" style="background:#FEBC2E"></div>
+            <div class="code-dot" style="background:#28C840"></div>
+            <span class="code-fname">rooms.php — Real Code · Live since 2016</span>
+          </div>
+          <div class="code-body">
+            <span class="c">// NightSeam™ — Room Relocation Module</span><br>
+            <span class="c">// Written by Ayman Salem · Running since 2016</span><br>
+            <br>
+            <span class="k">public function</span> <span class="f">SetRelocationType</span>(<span class="v">$type</span> = <span class="s">'room'</span>) {<br>
+            &nbsp;&nbsp;<span class="v">$this</span>-><span class="n">relocationType</span> = <span class="v">$type</span>;<br>
+            }<br>
+            <br>
+            <span class="f">ModulesSettings</span>::<span class="f">Get</span>(<span class="s">'rooms'</span>,<br>
+            &nbsp;&nbsp;<span class="s">'allow_relocation_to_other_room'</span>)<br>
+            <br>
+            <span class="f">Rooms</span>::<span class="f">DrawTrySystemSuggestionForm</span>(<br>
+            &nbsp;&nbsp;<span class="v">$room_id</span>, <span class="v">$checkin_day</span>, ...<br>
+            );
+          </div>
+        </div>
+        <p style="font-size:0.78rem;color:var(--light);margin-top:8px">
+          This code has been in production since 2016, generating $199,000+ in verified revenue.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 5 — PROOF & RESULTS
+  ══════════════════════════════════════════════════ -->
+  <section id="proof">
+    <div class="section-rule green"></div>
+    <h2>Proven Results — 8 Years Live</h2>
+
+    <blockquote>
+      "I ran a hotel. I watched revenue expire every midnight. A Twin Room free for three days,
+      a Double Room free for six days, a guest needing nine nights — and the system said Unavailable.
+      I spent my own money, bought a booking engine, learned to code, and built the algorithm myself."
+      <cite>— Ayman Salem, Inventor · Hotel XYZ Casablanca · 2016</cite>
+    </blockquote>
+
+    <div class="two-col" style="margin-top:28px;align-items:start">
+      <div>
+        <h3>Revenue Track Record</h3>
+        <div class="year-bars">
+          <div class="ybar">
+            <div class="ybar-lbl">2016–17</div>
+            <div class="ybar-track">
+              <div class="ybar-fill" style="width:56%;background:var(--teal)">$56K</div>
+            </div>
+            <div class="ybar-val" style="color:var(--teal)">$56K</div>
+          </div>
+          <div class="ybar">
+            <div class="ybar-lbl">2017–18</div>
+            <div class="ybar-track">
+              <div class="ybar-fill" style="width:68%;background:var(--blue)">$68K</div>
+            </div>
+            <div class="ybar-val" style="color:var(--blue)">$68K</div>
+          </div>
+          <div class="ybar">
+            <div class="ybar-lbl">2018–19</div>
+            <div class="ybar-track">
+              <div class="ybar-fill" style="width:75%;background:var(--navy)">$75K</div>
+            </div>
+            <div class="ybar-val" style="color:var(--navy)">$75K</div>
+          </div>
+          <div class="ybar">
+            <div class="ybar-lbl" style="color:var(--gold-d);font-weight:800">TOTAL</div>
+            <div class="ybar-track" style="background:var(--faint)">
+              <div class="ybar-fill" style="width:100%;background:var(--gold);color:var(--navy)">$199,000+</div>
+            </div>
+            <div class="ybar-val" style="color:var(--gold-d)">$199K+</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Zero-Incident Record</h3>
+        <div class="stat-grid">
+          <div class="stat-cell">
+            <div class="stat-v" style="color:var(--green)">0</div>
+            <div class="stat-l">Guest Complaints</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-v" style="color:var(--green)">0</div>
+            <div class="stat-l">Cancellations</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-v" style="color:var(--green)">0</div>
+            <div class="stat-l">CM Conflicts</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-v" style="color:var(--coral)">0</div>
+            <div class="stat-l">OTA Rivals</div>
+          </div>
+        </div>
+        <div class="alert alert-green" style="margin-top:0">
+          <strong>Still Running Today</strong>
+          The algorithm has operated continuously since 2016 — every season,
+          without interruption, rollback, or channel manager conflict.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 6 — COMPETITION
+  ══════════════════════════════════════════════════ -->
+  <section id="competition">
+    <div class="section-rule coral"></div>
+    <h2>Competitive Landscape — Verified March 2026</h2>
+    <p>No OTA platform currently offers proactive pre-booking automatic room relocation.
+    Every major platform verified manually, March 2026.</p>
+
+    <div style="overflow-x:auto;margin-top:24px">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Room Relocation</th>
+            <th>Hotel Relay</th>
+            <th>Auto-Detect</th>
+            <th>Pre-Booking</th>
+            <th>Guest Transparent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl">
+            <td>🧵 NightSeam™</td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="check">✓ Yes</span></td>
+          </tr>
+          <tr>
+            <td>Booking.com</td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>Expedia Group</td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>Agoda</td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>Airbnb</td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>Trip.com</td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 7 — INTELLECTUAL PROPERTY & PATENT
+  ══════════════════════════════════════════════════ -->
+  <section id="ip">
+    <div class="section-rule gold"></div>
+    <h2>Intellectual Property</h2>
+
+    <div class="alert alert-gold">
+      <strong>🔒 Patent Pending</strong>
+      NightSeam™ is the subject of a patent application in process. "Patent Pending" means
+      a patent application has been filed or is being prepared. It provides notice to the public
+      that patent protection is being sought and establishes a priority date for the invention.
+      Commercial use without a license may constitute infringement once the patent is granted.
+    </div>
+
+    <h3>Prior Art Evidence</h3>
+    <p>The invention has a robust prior art record independently verifiable by any third party:</p>
+
+    <div class="ip-grid">
+      <div class="ip-card">
+        <span class="ip-icon">📺</span>
+        <h4>YouTube Video · 2022</h4>
+        <span class="ip-weight w-high">High Legal Weight</span>
+        <p style="font-size:0.82rem">Public disclosure of the algorithm with a Google/YouTube verified timestamp. Archived by the Internet Archive (Wayback Machine). Predates any competitor development by 4+ years.</p>
+      </div>
+      <div class="ip-card">
+        <span class="ip-icon">🏨</span>
+        <h4>Live Commercial System · 2016</h4>
+        <span class="ip-weight w-vhigh">Very High Legal Weight</span>
+        <p style="font-size:0.82rem">8 years of continuous commercial operation generating $199,000+ in verified revenue. The earliest known commercial implementation of this algorithm type.</p>
+      </div>
+      <div class="ip-card">
+        <span class="ip-icon">💻</span>
+        <h4>Source Code</h4>
+        <span class="ip-weight w-high">High Legal Weight</span>
+        <p style="font-size:0.82rem">Real PHP function signatures — SetRelocationType(), DrawTrySystemSuggestionForm(), allow_relocation_to_other_room — in a live booking engine since 2016.</p>
+      </div>
+      <div class="ip-card">
+        <span class="ip-icon">🔗</span>
+        <h4>Blockchain Timestamp</h4>
+        <span class="ip-weight w-vhigh">Very High Legal Weight</span>
+        <p style="font-size:0.82rem">Algorithm documentation hashed and recorded on the Bitcoin blockchain via OriginStamp. Cryptographically immutable — cannot be altered by any party.</p>
+      </div>
+      <div class="ip-card">
+        <span class="ip-icon">📄</span>
+        <h4>Internet Archive</h4>
+        <span class="ip-weight w-high">High Legal Weight</span>
+        <p style="font-size:0.82rem">Multiple pages related to this project archived by the Wayback Machine with independent timestamps. Third-party verifiable by anyone globally.</p>
+      </div>
+      <div class="ip-card">
+        <span class="ip-icon">💰</span>
+        <h4>Revenue Records</h4>
+        <span class="ip-weight w-med">Commercial Proof</span>
+        <p style="font-size:0.82rem">$199,000+ across three operating seasons. Commercially auditable. Establishes that this was not a theoretical concept but a functioning commercial product.</p>
+      </div>
+    </div>
+
+    <div class="alert alert-navy" style="margin-top:28px">
+      <strong>For Licensing Inquiries</strong>
+      This project is available for licensing to OTA platforms and hotel booking engine providers.
+      The algorithm is patent pending. Licensing terms are most favourable during the patent pending
+      window, prior to formal grant. Please contact via the links below to request a technical briefing
+      under NDA.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 8 — LINKS & RESOURCES
+  ══════════════════════════════════════════════════ -->
+  <section id="resources">
+    <div class="section-rule"></div>
+    <h2>Project Resources</h2>
+    <p>Public disclosure, source documentation, and prior art links:</p>
+
+    <div class="three-col" style="margin-top:28px">
+      <div class="card card-navy">
+        <span class="card-icon">📺</span>
+        <h3>YouTube · 2022 Disclosure</h3>
+        <p style="font-size:0.85rem">Original public disclosure of the NightSeam™ algorithm. Verified timestamp 2022. First public documentation of the room relocation concept.</p>
+        <div class="btn-row" style="margin-top:16px">
+          <a href="https://www.youtube.com/@aymansalem" target="_blank" rel="noopener" class="btn btn-dark">
+            ▶ View on YouTube
+          </a>
+        </div>
+      </div>
+
+      <div class="card card-blue">
+        <span class="card-icon">💻</span>
+        <h3>GitHub · Source & Docs</h3>
+        <p style="font-size:0.85rem">Project documentation, algorithm description, and code references on GitHub. Public repository with commit timestamps for prior art verification.</p>
+        <div class="btn-row" style="margin-top:16px">
+          <a href="https://github.com/aymansalem" target="_blank" rel="noopener" class="btn btn-outline">
+            ⌥ View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="card card-coral">
+        <span class="card-icon">📋</span>
+        <h3>Portfolio · Full Profile</h3>
+        <p style="font-size:0.85rem">Full data analytics portfolio including hotel booking pace analysis, ADR insights, and revenue management tools alongside NightSeam™.</p>
+        <div class="btn-row" style="margin-top:16px">
+          <a href="https://aymansalem.github.io/index.html" class="btn btn-coral">
+            ← Back to Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact / Licensing CTA -->
+    <div style="margin-top:48px;background:var(--navy);padding:40px 36px;border-radius:6px;text-align:center">
+      <div style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:12px">Licensing & Collaboration</div>
+      <h3 style="color:#fff;font-size:1.5rem;margin-bottom:8px;color:var(--white)">Interested in NightSeam™?</h3>
+      <p style="color:rgba(255,255,255,.55);max-width:520px;margin:0 auto 24px">
+        Available for licensing to OTA platforms, hotel booking engines, and PMS providers.
+        Patent Pending. First-mover licensing terms available now.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="https://github.com/aymansalem" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff;background:rgba(255,255,255,.08)">
+          View GitHub
+        </a>
+        <a href="https://aymansalem.github.io/index.html#contact" class="btn btn-coral">
+          Get in Touch
+        </a>
+      </div>
+      <p style="color:rgba(255,255,255,.25);font-size:0.72rem;margin-top:20px;font-style:italic">
+        © Ayman Salem · NightSeam™ · Patent Pending · All Rights Reserved · 2016–2026
+      </p>
+    </div>
+  </section>
+
+</div><!-- /content -->
+
+<!-- ── FOOTER (matching site) ──────────────────────── -->
 <footer>
-
-© 2026 Ayman Salem  
-Hotel Revenue & Booking Technology
-
+  <div class="footer-inner">
+    <div class="footer-logo">Ayman Salem</div>
+    <div class="footer-links">
+      <a href="https://aymansalem.github.io/index.html">Home</a>
+      <a href="https://aymansalem.github.io/index.html#projects">Projects</a>
+      <a href="https://github.com/aymansalem" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.youtube.com/@aymansalem" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://4-hoteliers.blogspot.com/" target="_blank" rel="noopener">Blog</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Ayman Salem · Hotel Revenue &amp; Booking Technology ·
+      NightSeam™ Patent Pending
+    </div>
+  </div>
 </footer>
 
 </body>
