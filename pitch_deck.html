@@ -150,7 +150,11 @@
 
 </head>
 
-
+<script>
+window.addEventListener("load", function() {
+  document.body.classList.add("loaded");
+});
+</script>
 
 <body>
 
@@ -1864,6 +1868,15 @@ document.getElementById('s4slider').addEventListener('input',function(){
   document.getElementById('s4val').textContent=this.value+'%';
 });
 goTo(0);
+</script>
+  <script>
+fetch("nav.html")
+.then(function(response){
+return response.text();
+})
+.then(function(data){
+document.getElementById("nav-placeholder").innerHTML = data;
+});
 </script>
 </body>
 </html>
