@@ -83,6 +83,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  overflow-x:hidden;
 }
 
 main {
@@ -101,6 +102,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 40;
+  
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6));
     backdrop-filter: blur(6px);
     box-shadow: 0 1px 0 rgba(16, 24, 40, 0.04)
@@ -111,6 +113,8 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+  position:relative;
+z-index:1000;
     padding: 14px 28px
 }
 
