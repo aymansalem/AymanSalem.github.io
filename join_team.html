@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NightSeam™ | Join the Team – Ayman Salem</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', system-ui, sans-serif; 
+      margin:0; padding:0; 
+      background: #0a0f1c; 
+      color: #e2e8f0; 
+      line-height: 1.6;
+    }
+    section { padding: 90px 20px; max-width: 1100px; margin: auto; }
+    h1 { font-size: 3rem; margin: 0 0 12px; background: linear-gradient(90deg, #60a5fa, #34d399); -webkit-background-clip: text; color: transparent; }
+    h2 { font-size: 2.3rem; color: #60a5fa; margin-bottom: 20px; }
+    .tagline { font-size: 1.45rem; color: #94a3b8; }
+    .slide { 
+      background: #1e2937; 
+      border-radius: 20px; 
+      padding: 55px; 
+      margin-bottom: 50px; 
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+      border: 1px solid #334155;
+    }
+    .cta { 
+      background: linear-gradient(90deg, #3b82f6, #34d399); 
+      color: white; 
+      padding: 18px 45px; 
+      font-size: 1.35rem; 
+      border: none; 
+      border-radius: 50px; 
+      cursor: pointer; 
+      font-weight: 600;
+    }
+    .cta:hover { transform: scale(1.05); }
+    .highlight { color: #34d399; font-weight: bold; }
+
+    /* Image Grid - Force 2 per row */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);   /* Exactly 2 columns */
+      gap: 25px;
+      margin-top: 35px;
+    }
+    .proof-item {
+      text-align: center;
+    }
+    .proof-item img {
+      width: 100%;           /* Force full width of column */
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      object-fit: cover;     /* Keeps aspect ratio clean */
+    }
+
+    video {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      margin-top: 15px;
+    }
+
+    .calendar { 
+      background: #0f172a; 
+      padding: 25px; 
+      border-radius: 12px; 
+      position: relative; 
+      overflow: hidden; 
+      border: 2px solid #1e40af;
+    }
+    .scan-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(transparent, #60a5fa, transparent);
+      box-shadow: 0 0 20px #60a5fa;
+      animation: scan 4.5s linear infinite;
+      z-index: 10;
+    }
+    @keyframes scan {
+      0% { left: 0%; }
+      100% { left: 100%; }
+    }
+    .seam-highlight { 
+      background: rgba(52, 211, 153, 0.25); 
+      animation: highlight-pulse 2s infinite; 
+    }
+    @keyframes highlight-pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 1.05rem; }
+    th, td { padding: 12px; text-align: center; border: 1px solid #334155; }
+    th { background: #1e40af; }
+
+    @media (max-width: 768px) {
+      .proof-grid {
+        grid-template-columns: 1fr;   /* Stack to 1 column on mobile */
+      }
+      section { padding: 60px 15px; }
+      h1 { font-size: 2.4rem; }
+      .slide { padding: 35px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <section class="slide" style="text-align:center; background: linear-gradient(135deg, #1e3a8a, #0f172a);">
+    <h1>NightSeam™</h1>
+    <p class="tagline">I bought a booking engine, learned PHP & MySQL from scratch,<br>and recovered <span class="highlight">$199,000</span> in gap nights.<br>I want to join your team and innovate together.</p>
+    <p><strong>Ayman Salem</strong> • Our Zanzibar Group • Available Immediately</p>
+    <button class="cta" onclick="document.getElementById('contact').scrollIntoView()">Let's Talk →</button>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide">
+    <h2>The Problem OTAs Face Every Day</h2>
+    <ul style="font-size:1.35rem; line-height:2.3rem;">
+      <li>Guests see “No Availability” for multi-night stays even when rooms exist across types.</li>
+      <li>Millions in potential commissions and room nights are lost daily.</li>
+      <li>High cart abandonment on longer searches.</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3 – Main Proof Slide with Animated Chart + 4 Images + 2 Videos -->
+  <section class="slide">
+    <h2>What I Built & Shipped in Production</h2>
+    <h3>NightSeam™ — Smart Split-Stay Algorithm</h3>
+    <p><strong>Real Results (One Boutique Hotel, 2016–2025):</strong></p>
+    <ul style="font-size:1.35rem;">
+      <li><span class="highlight">$199,000</span> recovered gap-night revenue</li>
+      <li>3,180+ non-refundable room nights booked</li>
+      <li>0 complaints • 0 cancellations • 0 conflicts</li>
+    </ul>
+    <p><strong>My Execution Proof:</strong> Bought full booking engine → Self-taught PHP & MySQL → Modified & ran live in production.</p>
+
+    <!-- Animated Booking Calendar -->
+    <div style="margin: 50px 0;">
+      <h3 style="color:#34d399;">NightSeam™ Scanning Live – August 2025 (Our ZNZ Group)</h3>
+      <div class="calendar">
+        <div class="scan-line"></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Room Type</th>
+              <th>1 Aug</th><th>2 Aug</th><th>3 Aug</th><th>4 Aug</th>
+              <th>5 Aug</th><th>6 Aug</th><th>7 Aug</th><th>8 Aug</th><th>9 Aug</th><th>10 Aug</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🌙 Twin Room · Standard</td>
+              <td>✓</td><td>✓</td><td>✓</td><td class="seam-highlight">✓</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>🛏 Double Room · Superior</td>
+              <td>—</td><td>—</td><td>—</td><td class="seam-highlight">✓</td>
+              <td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="text-align:center; margin-top:15px; color:#94a3b8; font-weight:600;">
+          🧵 Seam Detected on 4 Aug • Full 9-night stay now possible
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 Image Placeholders - Forced 2 per row -->
+    <h3 style="margin-top:60px; color:#34d399;">Live Proof from My Real PHP/MySQL Application</h3>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <p><strong>Confirmed Booking 1</strong></p>
+        <img src="https://aymansalem.github.io/pitch_deck/images/confirmed-booking-1.jpg" 
+             alt="Real confirmed split-stay booking screenshot">
+      </div>
+      <div class="proof-item">
+        <p><strong>Confirmed Booking 2</strong></p>
+        <img src="https://aymansalem.github.io/pitch_deck/images/confirmed-booking-2.jpg" 
+             alt="Second confirmed booking screenshot">
+      </div>
+      <div class="proof-item">
+        <p><strong>Reservation Details 1</strong></p>
+        <img src="https://aymansalem.github.io/pitch_deck/images/reservation-details-1.jpg" 
+             alt="Reservation table showing split stay">
+      </div>
+      <div class="proof-item">
+        <p><strong>Reservation Details 2</strong></p>
+        <img src="https://aymansalem.github.io/pitch_deck/images/reservation-details-2.jpg" 
+             alt="Second reservation dashboard screenshot">
+      </div>
+    </div>
+
+    <!-- 2 Video Placeholders -->
+    <div style="margin-top:60px;">
+      <p><strong>Video 1: NightSeam™ Algorithm in Action (Auto-play)</strong></p>
+      <video autoplay loop muted playsinline controls>
+        <source src="https://aymansalem.github.io/pitch_deck/videos/algorithm-demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div style="margin-top:40px;">
+      <p><strong>Video 2: Real Reservation Being Created (Auto-play Proof)</strong></p>
+      <video autoplay loop muted playsinline controls>
+        <source src="https://aymansalem.github.io/pitch_deck/videos/real-reservation-proof.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section class="slide">
+    <h2>Why I Would Be Valuable to Your Team</h2>
+    <ul style="font-size:1.35rem; line-height:2.1rem;">
+      <li>Hands-on builder who ships real production features</li>
+      <li>Deep practical knowledge of hotel inventory systems</li>
+      <li>Proven low-risk integration thinking</li>
+      <li>Fast learner and self-motivated innovator</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5 -->
+  <section class="slide">
+    <h2>I Have Many More Ideas Ready to Build with Your Team</h2>
+    <ul style="font-size:1.35rem;">
+      <li>Dynamic pricing triggered by gap detection</li>
+      <li>AI-powered room relocation suggestions</li>
+      <li>Loyalty rewards for split-stay guests</li>
+      <li>Advanced inventory optimization modules</li>
+      <li>And many others…</li>
+    </ul>
+    <p>I’m ready to learn your stack and ship fast.</p>
+  </section>
+
+ <!-- Slide 8: CTA with QR Code Placeholder -->
+  <section id="contact" class="slide" style="text-align:center; background: linear-gradient(135deg, #1e40af, #0f172a);">
+    <h2>Let’s Work Together</h2>
+    <p style="font-size:1.55rem;">I’m looking for a Software Engineer, Innovation, or Revenue Systems role (full-time or contract-to-hire).</p>
+    <button class="cta" style="font-size:1.5rem; padding:24px 55px;" onclick="window.location.href='mailto:your.email@example.com'">Schedule a 30-Min Call</button>
+
+    <div style="margin-top:40px;">
+      <p><strong>Scan to View Live Deck & Demo</strong></p>
+      <img src="https://aymansalem.github.io/pitch_deck/images/qr-code-placeholder.png" 
+           alt="QR Code to this deck" 
+           style="width:180px; height:180px; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.6);">
+      <p style="font-size:0.95rem; color:#94a3b8; margin-top:10px;">(Replace with your real QR code image)</p>
+    </div>
+
+    <p style="margin-top:40px; font-size:1.1rem;">
+      Email: <strong>your.email@example.com</strong><br>
+      LinkedIn: <strong>https://linkedin.com/in/yourprofile</strong><br>
+      GitHub: <strong>github.com/aymansalem</strong>
+    </p>
+  </section>
+
+</body>
+</html>
