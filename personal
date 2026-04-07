@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NightSeam™ — The Personal Story · 12 Slides</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --coral:#FF5A5F; --coral-d:#C83A3F; --coral-l:#FFF0F0;
+  --teal:#00A699; --teal-l:#E6F7F6; --teal-d:#007A72;
+  --gold:#F5A623; --gold-l:#FFD060; --gold-d:#A66D00;
+  --navy:#0D1B2A; --blue:#0071C2; --blue-l:#E8F1FB;
+  --ink:#222222; --mid:#6B7280; --light:#9CA3AF; --faint:#E5E7EB;
+  --white:#FFFFFF; --off:#FAFAF9; --bg:#F5F4F0;
+  --green:#008234; --green-l:#E8F5ED;
+  --red:#CC0000; --red-l:#FCE8E8;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;
+  font-family:'Nunito',sans-serif;color:var(--ink);background:var(--bg)}
+
+/* ── SLIDE ENGINE ───────────────────────────── */
+.slide{position:fixed;inset:0 0 52px 0;z-index:10;opacity:0;
+  pointer-events:none;transition:opacity .42s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;display:flex;flex-direction:column}
+.slide.active{opacity:1;pointer-events:all}
+#flash{position:fixed;inset:0;z-index:900;background:var(--white);
+  opacity:0;pointer-events:none;transition:opacity .07s}
+
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes rU{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rR{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes rL{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fI{from{opacity:0}to{opacity:1}}
+@keyframes scIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+@keyframes popIn{0%{opacity:0;transform:scale(.8) translateY(30px)}
+  70%{transform:scale(1.03) translateY(-4px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,166,153,.4)}
+  50%{box-shadow:0 0 0 8px rgba(0,166,153,.0)}}
+@keyframes scanLine{from{left:-3px}to{left:calc(100% + 3px)}}
+@keyframes typeCursor{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes countUp{from{opacity:0;filter:blur(4px);transform:scale(1.3)}
+  to{opacity:1;filter:blur(0);transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%,100%{background-position:0%}50%{background-position:100%}}
+
+/* ── TYPOGRAPHY ─────────────────────────────── */
+.serif{font-family:'Playfair Display',serif}
+.mono{font-family:'DM Mono',monospace}
+.tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--light);display:block;margin-bottom:18px}
+.h-cover{font-family:'Playfair Display',serif;font-size:clamp(50px,6.5vw,80px);
+  font-weight:900;letter-spacing:-2px;line-height:.9;color:var(--ink)}
+.h-lg{font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,56px);
+  font-weight:900;letter-spacing:-1.5px;line-height:.95;color:var(--ink)}
+.h-md{font-family:'Playfair Display',serif;font-size:clamp(26px,3.2vw,40px);
+  font-weight:700;letter-spacing:-1px;line-height:1;color:var(--ink)}
+.em{color:var(--coral)}.em-t{color:var(--teal)}.em-g{color:var(--gold-d)}
+.body{font-size:15px;line-height:1.72;color:var(--mid);font-weight:400}
+.body strong{color:var(--ink);font-weight:700}
+
+/* ── LAYOUT ─────────────────────────────────── */
+.split{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.half-l{padding:64px 56px;display:flex;flex-direction:column;justify-content:center;gap:18px;border-right:1px solid var(--faint)}
+.half-r{padding:48px 56px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:48px 72px;gap:22px;text-align:center}
+.cork{width:4px;height:40px;background:var(--coral);margin-bottom:8px}
+.cork-t{width:4px;height:40px;background:var(--teal);margin-bottom:8px}
+
+/* ── ADMIN PANEL MOCKUP ─────────────────────── */
+.admin-panel{
+  background:var(--white);border:1px solid var(--faint);
+  border-radius:8px;overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.1);
+  width:100%;
+}
+.admin-topbar{
+  background:var(--navy);height:42px;padding:0 18px;
+  display:flex;align-items:center;gap:10px;
+}
+.admin-logo{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--white)}
+.admin-dot{width:8px;height:8px;border-radius:50%}
+.admin-tabs{background:#fff;border-bottom:1px solid var(--faint);
+  display:flex;padding:0 18px;gap:2px}
+.admin-tab{font-size:11px;font-weight:700;color:var(--light);
+  padding:0 12px;height:36px;display:flex;align-items:center;
+  border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.admin-tab.on{color:var(--blue);border-bottom-color:var(--blue)}
+.admin-body{padding:16px 18px;background:var(--off)}
+.admin-section{background:#fff;border:1px solid var(--faint);margin-bottom:10px;overflow:hidden}
+.admin-sec-head{padding:10px 14px;border-bottom:1px solid var(--faint);
+  background:#fafafa;font-size:12px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between}
+.admin-row{padding:10px 14px;display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--faint);font-size:12px}
+.admin-row:last-child{border-bottom:none}
+.admin-lbl{flex:1;color:var(--mid)}
+.admin-lbl strong{color:var(--ink);display:block;font-size:12px;margin-bottom:1px}
+
+/* ── TOGGLE ─────────────────────────────────── */
+.tog{width:40px;height:22px;border-radius:11px;position:relative;
+  cursor:pointer;transition:background .3s;flex-shrink:0}
+.tog.off{background:var(--faint)}
+.tog.on{background:var(--teal);box-shadow:0 0 0 3px rgba(0,166,153,.15);
+  animation:pulse 2s ease infinite}
+.tog-k{position:absolute;top:2px;width:18px;height:18px;border-radius:50%;
+  background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2);
+  transition:left .3s cubic-bezier(.34,1.56,.64,1)}
+.tog.off .tog-k{left:2px}
+.tog.on .tog-k{left:20px}
+
+/* ── GUEST POPUP MOCKUP ─────────────────────── */
+.popup-shell{
+  background:rgba(0,0,0,.52);display:flex;align-items:center;
+  justify-content:center;padding:20px;width:100%;
+  border-radius:6px;overflow:hidden;
+}
+.popup-card{
+  background:#fff;border-radius:8px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  width:100%;max-width:440px;
+}
+.popup-header{
+  background:linear-gradient(135deg,var(--navy) 0%,#1a3050 100%);
+  padding:16px 20px;display:flex;align-items:flex-start;gap:12px;
+}
+.popup-icon-wrap{
+  width:40px;height:40px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  background:rgba(255,255,255,.12);
+}
+.popup-h-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:2px}
+.popup-h-sub{font-size:11px;color:rgba(255,255,255,.55)}
+.popup-badge{
+  margin-left:auto;padding:3px 10px;border-radius:10px;
+  background:var(--gold);color:var(--navy);
+  font-size:10px;font-weight:800;flex-shrink:0;align-self:flex-start;margin-top:2px}
+.popup-body{padding:16px 20px}
+.popup-highlight{
+  background:var(--green-l);border-left:3px solid var(--green);
+  padding:8px 12px;margin-bottom:12px;font-size:12px;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.popup-checks{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.popup-check{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid)}
+.popup-check .ck{color:var(--teal);font-size:14px;font-weight:900;flex-shrink:0}
+.popup-main{font-size:13px;color:var(--ink);line-height:1.65;margin-bottom:14px;font-weight:600}
+.popup-main .save{
+  background:linear-gradient(90deg,var(--gold-d),var(--gold-l),var(--gold-d));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;background-size:200%;font-weight:900;font-size:18px;
+  animation:shimmer 2s ease infinite}
+.popup-cta-row{display:grid;grid-template-columns:1.4fr 1fr;gap:8px}
+.btn-accept{
+  background:var(--teal);color:#fff;border:none;padding:11px 14px;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  cursor:pointer;border-radius:5px;display:flex;align-items:center;gap:5px;
+  justify-content:center;transition:background .2s;
+}
+.btn-accept:hover{background:var(--teal-d)}
+.btn-decline{
+  background:#fff;color:var(--light);border:1px solid var(--faint);
+  padding:11px 14px;font-family:'Nunito',sans-serif;font-size:12px;
+  font-weight:600;cursor:pointer;border-radius:5px;text-align:center;
+  transition:all .2s;
+}
+.btn-decline:hover{border-color:var(--red);color:var(--red)}
+.popup-footer{
+  padding:8px 20px;background:var(--off);border-top:1px solid var(--faint);
+  font-size:10px;color:var(--light);display:flex;align-items:center;gap:6px}
+
+/* ── BOOKING CONFIRMATION ────────────────────── */
+.conf{background:#fff;border:1px solid var(--faint);border-radius:8px;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.conf-head{background:var(--teal);padding:14px 20px;color:#fff}
+.conf-head-t{font-size:15px;font-weight:800}
+.conf-head-s{font-size:10px;color:rgba(255,255,255,.7);margin-top:2px;
+  font-family:'DM Mono',monospace;letter-spacing:.5px}
+.conf-body{padding:14px 20px}
+.conf-seg{border-left:4px solid;padding:10px 14px;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:flex-start}
+.conf-seg-a{border-color:var(--teal);background:var(--teal-l)}
+.conf-seg-b{border-color:var(--gold-d);background:#FFF9EE}
+.conf-room{font-size:13px;font-weight:700;color:var(--ink)}
+.conf-dates{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid);margin-top:3px}
+.conf-price{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--navy)}
+.conf-seam{text-align:center;font-size:10px;color:var(--light);padding:4px;
+  font-family:'DM Mono',monospace;letter-spacing:1px}
+.conf-total{padding:10px 14px;background:var(--navy);display:flex;
+  justify-content:space-between;align-items:center}
+.conf-total-l{font-size:13px;color:rgba(255,255,255,.7)}
+.conf-total-v{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold-l)}
+.conf-badge{display:inline-block;padding:2px 8px;border-radius:10px;
+  font-size:10px;font-weight:700;margin-top:5px}
+.cb-red{background:var(--red-l);color:var(--red);border:1px solid rgba(204,0,0,.18)}
+.cb-teal{background:var(--teal-l);color:var(--teal-d);border:1px solid rgba(0,166,153,.22)}
+
+/* ── CODE BLOCK ─────────────────────────────── */
+.code{background:#0D1B2A;border-radius:6px;overflow:hidden;
+  font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.8}
+.code-bar{background:#162232;padding:7px 14px;display:flex;align-items:center;gap:7px;
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.cd{width:9px;height:9px;border-radius:50%}
+.cf{font-size:9.5px;color:rgba(255,255,255,.3);margin-left:8px}
+.code-body{padding:14px 18px;color:#A8B9CC}
+.ck{color:#C792EA}.cv{color:#FF6B8A}.cs{color:#A8E478}.cf2{color:#82AAFF}
+.cm{color:#89DDFF}.cc{color:#4A5E74;font-style:italic}.cn{color:#F5A623}
+.code-line{opacity:0;transition:opacity .25s;display:block}
+.code-line.show{opacity:1}
+.highlight-line{background:rgba(0,166,153,.15);border-left:3px solid var(--teal);
+  padding:4px 10px;margin:8px -18px;display:block;opacity:0;transition:opacity .5s}
+.highlight-line.show{opacity:1}
+
+/* ── STAT STRIP ─────────────────────────────── */
+.stats-strip{display:flex;gap:0;border:1px solid var(--faint)}
+.ss-cell{flex:1;padding:18px 14px;text-align:center;border-right:1px solid var(--faint)}
+.ss-cell:last-child{border-right:none}
+.ss-v{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);
+  font-weight:900;line-height:1;letter-spacing:-1px}
+.ss-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--light);margin-top:6px}
+
+/* ── THREE STATEMENTS ────────────────────────── */
+.stmt{display:flex;align-items:flex-start;gap:20px;
+  padding:24px 0;border-bottom:1px solid var(--faint);
+  opacity:0;transform:translateY(16px);transition:all .5s ease}
+.stmt:last-child{border-bottom:none}
+.stmt.show{opacity:1;transform:translateY(0)}
+.stmt-ic{width:44px;height:44px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:20px;flex-shrink:0;margin-top:2px}
+.ic-coral{background:var(--coral-l)}.ic-teal{background:var(--teal-l)}.ic-gold{background:#FFF9EE}
+.stmt-h{font-size:clamp(17px,2.2vw,24px);font-weight:800;
+  letter-spacing:-.3px;line-height:1.2;color:var(--ink)}
+.stmt-h .kw{color:var(--coral)}
+.stmt-h .kwt{color:var(--teal)}
+.stmt-s{font-size:13px;color:var(--mid);margin-top:5px;line-height:1.6}
+
+/* ── CHART ───────────────────────────────────── */
+.chart{width:100%;border-collapse:collapse;border:1px solid var(--faint);background:#fff}
+.chart th{background:var(--off);font-size:10px;font-weight:700;color:var(--light);
+  text-align:center;padding:7px 4px;border-bottom:2px solid var(--faint);
+  border-right:1px solid var(--faint)}
+.chart th:first-child{text-align:left;padding-left:14px;min-width:110px}
+.chart td{border-right:1px solid var(--faint);border-bottom:1px solid var(--faint);padding:0}
+.chart td:first-child{padding:8px 14px;font-weight:700;font-size:12px;
+  color:var(--ink);background:var(--off)}
+.cc-cell{width:100%;height:40px;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;transition:all .38s ease}
+.c-e{background:#fff;color:var(--faint)}
+.c-g{background:#F0FFF8;color:var(--teal)}
+.c-r{background:#FFF5F5;color:var(--coral)}
+.c-m{background:#FFFBF0;color:var(--gold-d);border:1px solid rgba(245,166,35,.2)}
+.chart-scan{position:absolute;top:0;bottom:0;width:2px;z-index:10;
+  background:linear-gradient(180deg,transparent,var(--teal),var(--gold-l),var(--teal),transparent);
+  box-shadow:0 0 10px rgba(0,166,153,.5);opacity:0;left:0}
+.chart-scan.on{opacity:1}
+
+/* ── PERSONAL QUOTE ──────────────────────────── */
+.p-quote{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.4vw,28px);font-weight:400;
+  font-style:italic;color:var(--mid);line-height:1.55;
+  padding:24px 32px;border-left:4px solid var(--coral);
+  background:var(--coral-l);
+  opacity:0;animation:rR .7s ease both;
+}
+.p-quote strong{color:var(--ink);font-style:normal;font-weight:800}
+
+/* ── CONTROLS ────────────────────────────────── */
+.ctrl{position:fixed;bottom:0;left:0;right:0;height:52px;z-index:800;
+  background:#fff;border-top:1px solid var(--faint);
+  display:flex;align-items:center;padding:0 24px;gap:10px}
+.dots{display:flex;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--faint);
+  cursor:pointer;transition:all .25s}
+.dot.on{background:var(--coral);transform:scale(1.6)}
+.dot.done{background:var(--light)}
+.pb{flex:1;height:2px;background:var(--faint)}
+.pb-f{height:100%;background:var(--coral);transition:width .15s linear}
+.cbtn{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
+  padding:6px 18px;border:1px solid var(--faint);background:#fff;
+  color:var(--mid);cursor:pointer;letter-spacing:.3px;transition:all .2s}
+.cbtn:hover{border-color:var(--coral);color:var(--coral)}
+.clbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--light);white-space:nowrap}
+.wm{position:absolute;bottom:58px;right:14px;font-family:'DM Mono',monospace;
+  font-size:8px;color:var(--faint);letter-spacing:1px;z-index:5}
+</style>
+</head>
+<body>
+<div id="flash"></div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 01 · THE PERSONAL ORIGIN
+     ══════════════════════════════════ -->
+<div class="slide" id="s1" style="background:#fff">
+  <div class="split">
+    <div class="half-l" style="background:var(--navy);border-right:none">
+      <div style="animation:rR .7s ease .2s both;opacity:0">
+        <span class="tag" style="color:rgba(255,255,255,.3)">The Origin · Why This Exists</span>
+        <div style="width:4px;height:48px;background:var(--coral);margin-bottom:20px"></div>
+        <h1 class="h-cover" style="color:#fff;margin-bottom:20px">
+          I saw revenue<br>expire every<br><span style="color:var(--gold-l)">midnight.</span>
+        </h1>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.75;max-width:360px;margin-bottom:28px">
+          I ran a hotel. Every night I watched the booking chart — Twin Room free three days, Double Room free six days, guest needs nine nights — and the system said <strong style="color:rgba(255,255,255,.85)">"Unavailable."</strong> The room expired. The revenue was gone. I couldn't stop thinking about it.
+        </p>
+        <!-- Personal decision point -->
+        <div style="border:1px solid rgba(255,255,255,.12);padding:16px 18px;background:rgba(255,255,255,.04)">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+            color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:8px">The decision</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.65;font-style:italic;font-family:'Playfair Display',serif">
+            "I spent my own money. I bought a booking engine. I learned to code. I modified the system myself — alone — until the algorithm worked."
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.25);margin-top:8px">
+            — Ayman, Founder · NightSeam™ · 2016
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="half-r" style="background:var(--off)">
+      <div style="animation:rL .7s ease .4s both;opacity:0">
+        <span class="tag">What I built — with my own hands</span>
+        <!-- Timeline of personal investment -->
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--faint)">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--coral-l);
+              display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💡</div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--ink)">Identified the gap</div>
+              <div style="font-size:12px;color:var(--mid);margin-top:3px">Watched partial availability expire nightly. Knew there had to be a way to connect the two halves.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--faint)">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--coral-l);
+              display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💸</div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--ink)">Spent personal funds</div>
+              <div style="font-size:12px;color:var(--mid);margin-top:3px">Purchased a professional hotel booking engine. My own investment. My own risk.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--faint)">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--teal-l);
+              display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📚</div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--ink)">Learned to code</div>
+              <div style="font-size:12px;color:var(--mid);margin-top:3px">Studied PHP, JavaScript, database queries — specifically to write this one algorithm.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--faint)">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--teal-l);
+              display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">⚙️</div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--ink)">Modified the system</div>
+              <div style="font-size:12px;color:var(--mid);margin-top:3px">Wrote the Room Relocation and Hotel Relocation modules. Added the admin toggle. Built the guest popup.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;padding:18px 0">
+            <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,166,153,.15);
+              display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--teal);animation:pulse 1.5s ease infinite"></div>
+            </div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--teal)">Still running — since 2016</div>
+              <div style="font-size:12px;color:var(--mid);margin-top:3px">$199,000+ recovered. 3,180+ room nights. Zero cancellations. Zero complaints. Every season.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Key stat -->
+        <div style="padding:14px 16px;background:var(--coral);margin-top:8px;
+          display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600">
+            What I spent years building,<br>you can deploy in
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff">1–2 days</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.6)">one API call</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Personal Origin</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 02 · THE REAL CODE
+     ══════════════════════════════════ -->
+<div class="slide" id="s2" style="background:#fff">
+  <div class="split">
+    <div class="half-l">
+      <div style="animation:rR .6s ease .2s both;opacity:0">
+        <span class="tag">Real Code · Written by Hand</span>
+        <div class="cork-t"></div>
+        <h2 class="h-lg" style="margin-bottom:16px">
+          This isn't a<br>concept. This is<br><span class="em-t">my code.</span>
+        </h2>
+        <p class="body" style="max-width:360px;margin-bottom:20px">
+          Every line in the panel on the right came from the booking engine I purchased and modified. The Room Relocation function. The toggle. The guest popup. <strong>All of it written by me, running live since 2016.</strong>
+        </p>
+        <!-- Proof points -->
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;
+            background:var(--off);border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <span style="color:var(--teal);font-weight:900;font-size:14px">✓</span>
+            <code style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink)">SetRelocationType()</code>
+            <span>— my function, runs today</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;
+            background:var(--off);border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <span style="color:var(--teal);font-weight:900;font-size:14px">✓</span>
+            <code style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink)">allow_relocation_to_other_room</code>
+            <span>— admin toggle</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;
+            background:var(--off);border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <span style="color:var(--teal);font-weight:900;font-size:14px">✓</span>
+            <code style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink)">relocation_to</code>
+            <span>— guest-facing message</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;
+            background:var(--off);border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <span style="color:var(--teal);font-weight:900;font-size:14px">✓</span>
+            <code style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink)">DrawTrySystemSuggestionForm()</code>
+            <span>— display offer</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px 14px;
+          background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);
+          font-size:12px;color:var(--mid);line-height:1.6">
+          <strong style="color:var(--gold-d)">The difference between me and you:</strong><br>
+          I spent years and personal money to make this work. You get it in one API call and 1–2 business days. That is the entire value of this license.
+        </div>
+      </div>
+    </div>
+    <div class="half-r" style="padding:32px 40px">
+      <!-- Actual code from Ayman's system -->
+      <div class="code" style="animation:rL .6s ease .4s both;opacity:0">
+        <div class="code-bar">
+          <div class="cd" style="background:#FF5F57"></div>
+          <div class="cd" style="background:#FEBC2E"></div>
+          <div class="cd" style="background:#28C840"></div>
+          <span class="cf">rooms.php · NightSeam™ Algorithm — Real Code</span>
+        </div>
+        <div class="code-body">
+          <span class="code-line show" id="rc0"><span class="cc">// NightSeam™ — Room Relocation Module</span></span>
+          <span class="code-line show" id="rc1" style="display:block;margin-top:6px"><span class="cc">// Written by Ayman · Running since 2016</span></span>
+          <span class="code-line show" style="display:block;margin-top:10px">
+            <span class="ck">public function</span> <span class="cf2">SetRelocationType</span>(<span class="cv">$relocation_type</span> = <span class="cs">'room'</span>){</span>
+          <span class="code-line show" style="padding-left:24px;display:block">
+            <span class="cm">$this</span>-><span class="cn">relocationType</span> = <span class="cv">$relocation_type</span>;</span>
+          <span class="code-line show" style="display:block">}</span>
+
+          <span class="code-line show" style="display:block;margin-top:10px">
+            <span class="cc">// Guest sees this message — room stay</span></span>
+          <span class="code-line show" style="display:block">
+            <span class="ck">define</span>(<span class="cs">"_MS_RELOCATION_ROOM_PROGRAM"</span>,</span>
+          <span class="highlight-line show" style="display:block">
+            <span class="cs">"Same hotel · Different room · You check in, we handle the rest<br> — Accept now and get 10% off"</span>);</span>
+
+          <span class="code-line show" style="display:block;margin-top:10px">
+            <span class="cc">// Guest sees this message — hotel relay</span></span>
+          <span class="code-line show" style="display:block">
+            <span class="ck">define</span>(<span class="cs">"_MS_RELOCATION_HOTEL_PROGRAM"</span>,</span>
+          <span class="highlight-line show" style="display:block">
+            <span class="cs">"Same area · Same category · Free transfer<br> — Accept now and get 10% off"</span>);</span>
+
+          <span class="code-line show" style="display:block;margin-top:10px">
+            <span class="cc">// Admin toggle: hotel can activate/deactivate</span></span>
+          <span class="code-line show" style="display:block">
+          } <span class="ck">elseif</span> (<span class="cf2">ModulesSettings</span>::<span class="cf2">Get</span>(<span class="cs">'rooms'</span>,</span>
+          <span class="code-line show" style="padding-left:18px;display:block">
+            <span class="cs">'allow_relocation_to_other_room'</span>) == <span class="cs">'no'</span></span>
+          <span class="code-line show" style="padding-left:18px;display:block">
+            && <span class="cf2">ModulesSettings</span>::<span class="cf2">Get</span>(<span class="cs">'rooms'</span>,</span>
+          <span class="code-line show" style="padding-left:18px;display:block">
+            <span class="cs">'allow_relocation_to_other_hotel'</span>) == <span class="cs">'no'</span>) {</span>
+          <span class="code-line show" style="padding-left:24px;display:block">
+            <span class="cf2">Rooms</span>::<span class="cf2">DrawTrySystemSuggestionForm</span>(</span>
+          <span class="code-line show" style="padding-left:36px;display:block">
+            <span class="cv">$room_id</span>, <span class="cv">$checkin_day</span>, <span class="cn">...</span></span>
+          <span class="code-line show" style="padding-left:24px;display:block">);</span>
+          <span class="code-line show" style="display:block">}</span>
+        </div>
+      </div>
+      <!-- Real system proof badge -->
+      <div style="margin-top:12px;padding:10px 14px;background:var(--teal-l);
+        border:1px solid rgba(0,166,153,.22);display:flex;align-items:center;gap:10px;
+        animation:rL .5s ease .8s both;opacity:0">
+        <span style="font-size:18px">🏨</span>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--teal-d)">This code runs on a real hotel system today</div>
+          <div style="font-size:11px;color:var(--mid);margin-top:2px">Not a demo. Not a prototype. Hotel XYZ Casablanca — live since 2016.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Real Code · Verified</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 03 · ADMIN PANEL TOGGLE
+     ══════════════════════════════════ -->
+<div class="slide" id="s3" style="background:var(--off)">
+  <div class="split" style="grid-template-columns:1.1fr 1fr">
+    <div class="half-l" style="background:#fff">
+      <div style="animation:rR .6s ease .2s both;opacity:0">
+        <span class="tag">The Admin Panel · What the Hotel Manager Sees</span>
+        <div class="cork"></div>
+        <h2 class="h-lg" style="margin-bottom:16px">
+          One toggle.<br><span class="em">Activate.</span><br>Algorithm runs.
+        </h2>
+        <p class="body" style="max-width:360px;margin-bottom:18px">
+          The hotel manager opens their existing extranet. No new software, no training manual. One new panel in their settings — <strong>NightSeam™ Room Relocation.</strong> They slide the toggle. The algorithm goes live.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+          <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mid);align-items:center">
+            <span style="color:var(--teal);font-weight:900">✓</span> Hotel can activate or deactivate at any time — zero penalty
+          </div>
+          <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mid);align-items:center">
+            <span style="color:var(--teal);font-weight:900">✓</span> Set discount percentage (5%–30%) — their choice
+          </div>
+          <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mid);align-items:center">
+            <span style="color:var(--teal);font-weight:900">✓</span> Enable Room Relocation, Hotel Relocation, or both
+          </div>
+          <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mid);align-items:center">
+            <span style="color:var(--teal);font-weight:900">✓</span> Full admin control — one screen, three settings
+          </div>
+        </div>
+        <div style="padding:12px 14px;background:var(--coral-l);border-left:4px solid var(--coral);
+          font-size:13px;color:var(--mid);line-height:1.65">
+          <strong style="color:var(--ink)">How long did it take me to build this panel?</strong><br>
+          Months. <strong style="color:var(--coral)">How long will it take your engineers to add it?</strong> 1–2 days. That is 8 years of my work compressed into one toggle.
+        </div>
+      </div>
+    </div>
+    <!-- Admin panel mockup -->
+    <div class="half-r" style="padding:32px 40px">
+      <div class="admin-panel" style="animation:rL .7s ease .4s both;opacity:0" id="adminPanel">
+        <div class="admin-topbar">
+          <div class="admin-dot" style="background:#FF5F57"></div>
+          <div class="admin-dot" style="background:#FEBC2E"></div>
+          <div class="admin-dot" style="background:#28C840"></div>
+          <div class="admin-logo" style="margin-left:8px">⚙️ Hotel Admin Panel · Room Settings</div>
+        </div>
+        <div class="admin-tabs">
+          <div class="admin-tab">General</div>
+          <div class="admin-tab">Rooms</div>
+          <div class="admin-tab on">NightSeam™ 🧵</div>
+          <div class="admin-tab">Pricing</div>
+        </div>
+        <div class="admin-body">
+          <!-- Section: Room Relocation -->
+          <div class="admin-section">
+            <div class="admin-sec-head">
+              Room Relocation Settings
+              <span style="font-size:10px;font-weight:700;padding:2px 8px;
+                border-radius:10px;background:var(--teal-l);color:var(--teal-d)">Active</span>
+            </div>
+            <!-- Toggle 1: Room Relocation -->
+            <div class="admin-row" id="ar0">
+              <div class="admin-lbl">
+                <strong>Allow Room Relocation</strong>
+                Guest stays same hotel, different room category mid-stay
+              </div>
+              <div class="tog on" id="tog0"><div class="tog-k"></div></div>
+            </div>
+            <!-- Toggle 2: Hotel Relocation -->
+            <div class="admin-row" id="ar1">
+              <div class="admin-lbl">
+                <strong>Allow Hotel Relocation</strong>
+                Guest switches to sister hotel nearby — same area, same category
+              </div>
+              <div class="tog on" id="tog1"><div class="tog-k"></div></div>
+            </div>
+            <!-- Discount setting -->
+            <div class="admin-row">
+              <div class="admin-lbl">
+                <strong>Guest Discount %</strong>
+                Incentive offered to guest for accepting relocation
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <input type="range" min="5" max="30" value="10" id="discSlider"
+                  style="width:80px;accent-color:var(--teal);height:3px">
+                <span style="font-size:14px;font-weight:800;color:var(--navy);min-width:32px"
+                  id="discVal">10%</span>
+              </div>
+            </div>
+          </div>
+          <!-- Section: Eligibility -->
+          <div class="admin-section">
+            <div class="admin-sec-head">Relocation Eligibility</div>
+            <div class="admin-row">
+              <div class="admin-lbl">
+                <strong>Minimum Stay Gap</strong>
+                Minimum nights between partial blocks to trigger relocation
+              </div>
+              <select style="border:1px solid var(--faint);border-radius:3px;
+                padding:4px 8px;font-size:11px;color:var(--ink)">
+                <option>1 night</option><option selected>2 nights</option><option>3 nights</option>
+              </select>
+            </div>
+            <div class="admin-row">
+              <div class="admin-lbl">
+                <strong>Max Sister Hotel Distance</strong>
+                Maximum walking distance for hotel relay
+              </div>
+              <select style="border:1px solid var(--faint);border-radius:3px;
+                padding:4px 8px;font-size:11px;color:var(--ink)">
+                <option>200m</option><option selected>500m</option><option>1km</option>
+              </select>
+            </div>
+          </div>
+          <!-- Save button -->
+          <div style="display:flex;justify-content:flex-end;gap:8px;padding:8px 0">
+            <button style="padding:7px 16px;border:1px solid var(--faint);background:#fff;
+              font-family:'Nunito',sans-serif;font-size:11px;color:var(--mid);cursor:pointer">
+              Cancel
+            </button>
+            <button style="padding:7px 16px;background:var(--teal);border:none;
+              font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;
+              color:#fff;cursor:pointer">
+              💾 Save Settings
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Note about real screenshots -->
+      <div style="margin-top:10px;padding:8px 12px;background:rgba(245,166,35,.08);
+        border:1px solid rgba(245,166,35,.2);font-size:11px;color:var(--mid);
+        animation:rL .5s ease .9s both;opacity:0">
+        <strong style="color:var(--gold-d)">📸 For your live presentation:</strong>
+        Replace this mockup with a screenshot of your actual admin panel — same concept, real proof.
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Admin Control</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 04 · GUEST POPUP — ROOM
+     ══════════════════════════════════ -->
+<div class="slide" id="s4" style="background:var(--off)">
+  <div class="split" style="grid-template-columns:1fr 1.15fr">
+    <div class="half-l">
+      <div style="animation:rR .6s ease .2s both;opacity:0">
+        <span class="tag">Transparency · The Guest Sees This First</span>
+        <div class="cork-t"></div>
+        <h2 class="h-lg" style="margin-bottom:16px">
+          Full disclosure.<br>Guest chooses.<br><span class="em-t">Zero pressure.</span>
+        </h2>
+        <p class="body" style="max-width:360px;margin-bottom:18px">
+          Before a guest books, they see exactly what they are agreeing to. Room Relocation is clearly labelled. They can accept — or dismiss and continue looking. <strong>We never deceive. The booking is their choice, fully informed.</strong>
+        </p>
+        <!-- Psychology of the message -->
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2px;
+            text-transform:uppercase;color:var(--light);margin-bottom:4px">
+            Message design principles
+          </div>
+          <div style="padding:8px 12px;background:#fff;border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <strong style="color:var(--ink)">Lead with the benefit</strong> — 10% off before mentioning the change
+          </div>
+          <div style="padding:8px 12px;background:#fff;border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <strong style="color:var(--ink)">Hotel handles everything</strong> — removes the guest's biggest fear (hassle)
+          </div>
+          <div style="padding:8px 12px;background:#fff;border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <strong style="color:var(--ink)">Two equal buttons</strong> — no dark pattern, genuine free choice
+          </div>
+          <div style="padding:8px 12px;background:#fff;border:1px solid var(--faint);font-size:12px;color:var(--mid)">
+            <strong style="color:var(--ink)">"Your reward for saying yes"</strong> — frames discount as earned, not consolation
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Room relocation popup -->
+    <div class="half-r" style="padding:24px 40px">
+      <div style="animation:popIn .7s cubic-bezier(.22,1,.36,1) .5s both;opacity:0">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+          color:var(--light);text-transform:uppercase;margin-bottom:10px;text-align:center">
+          Guest sees this popup before confirming
+        </div>
+        <div class="popup-shell" style="background:rgba(13,27,42,.06);border:1px solid var(--faint)">
+          <div class="popup-card">
+            <!-- Header -->
+            <div class="popup-header">
+              <div class="popup-icon-wrap">🛎️</div>
+              <div>
+                <div class="popup-h-title">Smart Stay · Room Relocation</div>
+                <div class="popup-h-sub">Hotel XYZ Casablanca · 01–10 August 2025</div>
+              </div>
+              <div class="popup-badge">SAVE 10%</div>
+            </div>
+            <!-- Body -->
+            <div class="popup-body">
+              <div class="popup-highlight">
+                <span>✅</span>
+                <span><strong style="color:var(--green)">Your full stay is available at this hotel.</strong><br>
+                Same property — just a different room category for part of your stay.</span>
+              </div>
+
+              <div class="popup-main">
+                Your reward for saying yes: <span class="save">save 10%</span> on your total booking.
+              </div>
+
+              <div class="popup-checks">
+                <div class="popup-check"><span class="ck">✓</span>Same hotel · Same service · Same breakfast</div>
+                <div class="popup-check"><span class="ck">✓</span>Hotel staff manage the room change — zero effort for you</div>
+                <div class="popup-check"><span class="ck">✓</span>Your luggage transferred by the hotel team</div>
+                <div class="popup-check"><span class="ck">✓</span>Full stay confirmed · Non-refundable discount locked</div>
+              </div>
+
+              <div class="popup-cta-row">
+                <button class="btn-accept">✅ Yes — Save 10% on my stay</button>
+                <button class="btn-decline">No thanks, continue</button>
+              </div>
+            </div>
+            <!-- Footer transparency note -->
+            <div class="popup-footer">
+              <span>🔒</span>
+              <span>This is a Room Relocation offer. You are not required to accept. Your original search results remain available if you decline.</span>
+            </div>
+          </div>
+        </div>
+        <!-- Label -->
+        <div style="margin-top:10px;padding:8px 12px;background:var(--teal-l);
+          border:1px solid rgba(0,166,153,.2);font-size:11px;color:var(--teal-d);text-align:center">
+          <strong>Zero dark patterns.</strong> The decline button is equally visible. Guest has full control.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Guest Transparency</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 05 · HOTEL RELOCATION POPUP
+     ══════════════════════════════════ -->
+<div class="slide" id="s5" style="background:var(--off)">
+  <div class="split" style="grid-template-columns:1fr 1.15fr">
+    <div class="half-l">
+      <div style="animation:rR .6s ease .2s both;opacity:0">
+        <span class="tag">Hotel Relay · When the Hotel Is Fully Booked</span>
+        <div class="cork"></div>
+        <h2 class="h-lg" style="margin-bottom:16px">
+          Different hotel.<br>Same area.<br><span class="em">Free transfer.</span>
+        </h2>
+        <p class="body" style="max-width:360px;margin-bottom:18px">
+          When a hotel is fully booked for part of the stay, NightSeam™ locates a sister property nearby — same neighbourhood, same star category. The guest sees this offer with complete transparency before booking.
+        </p>
+        <div style="background:var(--off);border:1px solid var(--faint);padding:14px 16px;
+          margin-bottom:14px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:1.5px;
+            text-transform:uppercase;color:var(--light);margin-bottom:8px">Your Original PHP Message</div>
+          <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--mid);
+            line-height:1.8;background:var(--navy);padding:10px 12px;color:#A8B9CC;border-radius:4px">
+            <span style="color:#4A5E74;font-style:italic">// Original:</span><br>
+            "Enjoy 10% off rate when you choose<br>smart relocation program. Now get<br>oriented by splitting your holiday..."
+          </div>
+        </div>
+        <div style="background:var(--teal-l);border:1px solid rgba(0,166,153,.22);padding:14px 16px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:1.5px;
+            text-transform:uppercase;color:var(--teal-d);margin-bottom:8px">✓ Rewritten — Psychologically Optimised</div>
+          <div style="font-size:12px;color:var(--ink);line-height:1.7;font-style:italic;font-family:'Playfair Display',serif">
+            "Same neighbourhood. Same stars. Free transfer.<br>Two hotels, one seamless trip — and 10% off for the adventure."
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hotel relay popup -->
+    <div class="half-r" style="padding:24px 40px">
+      <div style="animation:popIn .7s cubic-bezier(.22,1,.36,1) .5s both;opacity:0">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+          color:var(--light);text-transform:uppercase;margin-bottom:10px;text-align:center">
+          Hotel Relay Offer — Guest Popup
+        </div>
+        <div class="popup-shell" style="background:rgba(13,27,42,.06);border:1px solid var(--faint)">
+          <div class="popup-card">
+            <div class="popup-header" style="background:linear-gradient(135deg,#1a3050 0%,var(--navy) 100%)">
+              <div class="popup-icon-wrap" style="background:rgba(245,166,35,.2)">🗺️</div>
+              <div>
+                <div class="popup-h-title">Smart Trip · Hotel Relay Offer</div>
+                <div class="popup-h-sub">Hotel Group XYZ · Two properties · Same area</div>
+              </div>
+              <div class="popup-badge" style="background:var(--coral)">SAVE 10%</div>
+            </div>
+            <div class="popup-body">
+              <div class="popup-highlight" style="background:rgba(245,166,35,.1);border-left-color:var(--gold-d)">
+                <span>🗺️</span>
+                <span><strong style="color:var(--gold-d)">Hotel Relay — Two Hotels · One Seamless Stay</strong><br>
+                Both properties: same neighbourhood, same star category.</span>
+              </div>
+
+              <div class="popup-main" style="font-size:13px;font-weight:400;color:var(--mid)">
+                Your complete stay is covered — split between two hotels, 200m apart, with a <span class="save" style="font-size:16px">free transfer</span> included.
+              </div>
+
+              <!-- Mini itinerary -->
+              <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+                <div style="display:flex;justify-content:space-between;align-items:center;
+                  padding:8px 12px;background:var(--teal-l);font-size:12px">
+                  <div>
+                    <div style="font-weight:700;color:var(--teal-d)">🏨 Hotel A</div>
+                    <div style="color:var(--mid);font-size:10px;font-family:'DM Mono',monospace">01 Aug → 05 Aug · 4 nights</div>
+                  </div>
+                  <div style="font-weight:700;color:var(--ink)">$520</div>
+                </div>
+                <div style="text-align:center;font-size:10px;color:var(--light);
+                  font-family:'DM Mono',monospace;padding:2px">
+                  🚶 200m · free transfer · same hotel group
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;
+                  padding:8px 12px;background:rgba(245,166,35,.1);font-size:12px">
+                  <div>
+                    <div style="font-weight:700;color:var(--gold-d)">🏨 Hotel B · 200m away</div>
+                    <div style="color:var(--mid);font-size:10px;font-family:'DM Mono',monospace">05 Aug → 10 Aug · 5 nights</div>
+                  </div>
+                  <div style="font-weight:700;color:var(--ink)">$650</div>
+                </div>
+              </div>
+
+              <div class="popup-cta-row">
+                <button class="btn-accept" style="background:var(--coral)">✅ Accept — Save 10%</button>
+                <button class="btn-decline">No thanks</button>
+              </div>
+            </div>
+            <div class="popup-footer">
+              <span>🔒</span>
+              <span>This is a Hotel Relay offer. You are not required to accept. Free transfer guaranteed by the hotel group. Both bookings non-refundable on acceptance.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Hotel Relay Transparency</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 06 · BOOKING CONFIRMATION
+     ══════════════════════════════════ -->
+<div class="slide" id="s6" style="background:#fff">
+  <div class="center" style="gap:20px">
+    <div style="text-align:center;animation:rU .6s ease .2s both;opacity:0">
+      <span class="tag" style="text-align:center;display:block;margin-bottom:10px">The Result · What the Guest Receives</span>
+      <h2 class="h-md" style="margin-bottom:6px">
+        Preferred hotel. Full stay. <span class="em-t">Chose freely.</span>
+      </h2>
+      <p style="font-size:14px;color:var(--mid);max-width:560px">
+        After accepting the offer, the guest receives this confirmation. Two clean booking cards. Fully transparent. Non-refundable from acceptance. Zero surprises.
+      </p>
+    </div>
+
+    <!-- Confirmation card -->
+    <div class="conf" style="width:100%;max-width:640px;animation:scIn .6s ease .5s both;opacity:0">
+      <div class="conf-head">
+        <div class="conf-head-t">✅ Booking Confirmed — NightSeam™ Smart Stay</div>
+        <div class="conf-head-s">Confirmation #NS-20250801-12847 · Hotel XYZ Casablanca</div>
+      </div>
+      <div class="conf-body">
+        <!-- Acceptance badge -->
+        <div style="background:var(--blue-l);border:1px solid rgba(0,113,194,.18);
+          padding:9px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;
+          font-size:12px">
+          <span>🧵</span>
+          <div>
+            <strong style="color:var(--blue)">Room Relocation Applied — Guest Accepted Freely</strong><br>
+            <span style="color:var(--mid)">Guest was shown full details before booking · Two-button choice · Accepted voluntarily · 10% discount applied</span>
+          </div>
+        </div>
+        <!-- Segment A -->
+        <div class="conf-seg conf-seg-a" id="csA" style="opacity:0;transform:translateX(-16px);transition:all .4s">
+          <div>
+            <div class="conf-room">🌙 Twin Room — Standard</div>
+            <div class="conf-dates">01 Aug 2025 → 04 Aug 2025 · 3 nights · Hotel XYZ</div>
+            <div style="margin-top:6px;display:flex;gap:5px">
+              <span class="conf-badge cb-red">Non-Refundable 🔒</span>
+              <span class="conf-badge cb-teal">✓ 10% discount</span>
+            </div>
+          </div>
+          <div class="conf-price">$390</div>
+        </div>
+        <!-- Seam connector -->
+        <div class="conf-seam" id="cseam" style="opacity:0;transition:opacity .3s">
+          ↕ Room change · Same hotel · Staff informed · Guest aware ↕
+        </div>
+        <!-- Segment B -->
+        <div class="conf-seg conf-seg-b" id="csB" style="opacity:0;transform:translateX(-16px);transition:all .4s">
+          <div>
+            <div class="conf-room">🛏 Double Room — Superior</div>
+            <div class="conf-dates">04 Aug 2025 → 10 Aug 2025 · 6 nights · Hotel XYZ</div>
+            <div style="margin-top:6px;display:flex;gap:5px">
+              <span class="conf-badge cb-red">Non-Refundable 🔒</span>
+              <span class="conf-badge cb-teal">✓ Guest accepted freely</span>
+            </div>
+          </div>
+          <div class="conf-price">$720</div>
+        </div>
+        <!-- Total -->
+        <div class="conf-total" id="ctot" style="opacity:0;transition:opacity .5s">
+          <div>
+            <div class="conf-total-l">9 nights · Preferred hotel · 10% discount applied</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px">Guest confirmed understanding of room change before booking</div>
+          </div>
+          <div style="text-align:right">
+            <div class="conf-total-v">$1,110</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.4)">incl. tax</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three outcome stats -->
+    <div class="stats-strip" style="max-width:640px;width:100%;
+      animation:rU .5s ease 1.2s both;opacity:0">
+      <div class="ss-cell"><div class="ss-v" style="color:var(--coral)">$0</div><div class="ss-l">Without NightSeam™</div></div>
+      <div class="ss-cell"><div class="ss-v" style="color:var(--teal)">$1,110</div><div class="ss-l">With NightSeam™</div></div>
+      <div class="ss-cell"><div class="ss-v" style="color:var(--ink)">0</div><div class="ss-l">Complaints in 8 years</div></div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Booking Confirmation</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 07 · THE CHART ANIMATED
+     ══════════════════════════════════ -->
+<div class="slide" id="s7" style="background:#fff">
+  <div class="center" style="gap:20px">
+    <div style="animation:rU .6s ease .2s both;opacity:0;text-align:center">
+      <span class="tag" style="display:block;margin-bottom:10px">The Algorithm · Scanning the Chart</span>
+      <h2 class="h-md" style="margin-bottom:6px">Your system already has the data.</h2>
+      <p style="font-size:14px;color:var(--mid);max-width:520px">NightSeam™ reads your existing availability chart and finds the seam — the exact day where one partial block ends and another begins.</p>
+    </div>
+    <div style="width:100%;max-width:840px;position:relative;animation:scIn .6s ease .4s both;opacity:0">
+      <div id="scanBar" style="position:absolute;top:0;bottom:0;width:2px;z-index:10;
+        background:linear-gradient(180deg,transparent,var(--teal),var(--gold-l),var(--teal),transparent);
+        box-shadow:0 0 10px rgba(0,166,153,.5);opacity:0;left:110px;transition:opacity .3s"></div>
+      <table class="chart">
+        <thead>
+          <tr>
+            <th>Room Type</th>
+            <th>1 Aug</th><th>2 Aug</th><th>3 Aug</th><th>4 Aug</th>
+            <th>5 Aug</th><th>6 Aug</th><th>7 Aug</th><th>8 Aug</th>
+            <th>9 Aug</th><th>10 Aug</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🌙 Twin Room</td>
+            <td><div class="cc-cell c-e" id="t0">—</div></td><td><div class="cc-cell c-e" id="t1">—</div></td>
+            <td><div class="cc-cell c-e" id="t2">—</div></td><td><div class="cc-cell c-e" id="t3">—</div></td>
+            <td><div class="cc-cell c-e" id="t4">—</div></td><td><div class="cc-cell c-e" id="t5">—</div></td>
+            <td><div class="cc-cell c-e" id="t6">—</div></td><td><div class="cc-cell c-e" id="t7">—</div></td>
+            <td><div class="cc-cell c-e" id="t8">—</div></td><td><div class="cc-cell c-e" id="t9">—</div></td>
+          </tr>
+          <tr>
+            <td>🛏 Double Room</td>
+            <td><div class="cc-cell c-e" id="d0">—</div></td><td><div class="cc-cell c-e" id="d1">—</div></td>
+            <td><div class="cc-cell c-e" id="d2">—</div></td><td><div class="cc-cell c-e" id="d3">—</div></td>
+            <td><div class="cc-cell c-e" id="d4">—</div></td><td><div class="cc-cell c-e" id="d5">—</div></td>
+            <td><div class="cc-cell c-e" id="d6">—</div></td><td><div class="cc-cell c-e" id="d7">—</div></td>
+            <td><div class="cc-cell c-e" id="d8">—</div></td><td><div class="cc-cell c-e" id="d9">—</div></td>
+          </tr>
+          <tr id="seamRow" style="display:none">
+            <td style="color:var(--gold-d);font-weight:900;font-size:11px">🧵 NightSeam™</td>
+            <td><div class="cc-cell c-m">1</div></td><td><div class="cc-cell c-m">2</div></td>
+            <td><div class="cc-cell c-m">3</div></td><td><div class="cc-cell c-m">4</div></td>
+            <td><div class="cc-cell c-m">5</div></td><td><div class="cc-cell c-m">6</div></td>
+            <td><div class="cc-cell c-m">7</div></td><td><div class="cc-cell c-m">8</div></td>
+            <td><div class="cc-cell c-m">9</div></td><td><div class="cc-cell c-m">10</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="s7label" style="opacity:0;transition:opacity .5s;
+      padding:10px 22px;border:2px solid var(--gold-d);color:var(--gold-d);
+      font-weight:800;font-size:14px;letter-spacing:.3px;text-align:center;
+      background:rgba(245,166,35,.06)">
+      🧵 Seam detected — Twin (1–4) + Double (4–10) = full 9-night stay · Non-refundable · Guest informed
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Chart Scan</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 08 · REVENUE PROOF
+     ══════════════════════════════════ -->
+<div class="slide" id="s8" style="background:var(--off)">
+  <div class="split">
+    <div class="half-l" style="background:#fff">
+      <div style="animation:rR .6s ease .2s both;opacity:0">
+        <span class="tag">The Proof · Real Financial Results</span>
+        <div class="cork-t"></div>
+        <h2 class="h-lg" style="margin-bottom:16px">
+          <span class="em-t">$199,000</span><br>from rooms that<br>would have been $0.
+        </h2>
+        <p class="body" style="max-width:380px;margin-bottom:20px">
+          Hotel XYZ Casablanca. My algorithm. My toggle. Three seasons of verified financial records. Every booking non-refundable. Every guest fully informed and freely choosing.
+        </p>
+        <!-- Year results -->
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div class="fin-row" id="fr0" style="display:flex;gap:0;border:1px solid var(--faint);
+            margin-bottom:2px;opacity:0;transform:translateX(-16px);transition:all .5s">
+            <div style="width:80px;flex-shrink:0;background:var(--off);padding:12px 10px;
+              text-align:center;border-right:1px solid var(--faint)">
+              <div style="font-size:10px;font-weight:700;color:var(--light);text-transform:uppercase;letter-spacing:1px">Year 1</div>
+              <div style="font-size:13px;font-weight:800;color:var(--mid)">2016–17</div>
+            </div>
+            <div style="flex:1;padding:12px 14px">
+              <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--teal);line-height:1">$56,000</div>
+              <div style="font-size:11px;color:var(--light);margin-top:2px;font-family:'DM Mono',monospace">975 room nights · all non-refundable</div>
+            </div>
+            <div style="width:60px;background:var(--teal);display:flex;align-items:center;
+              justify-content:center;font-size:12px;font-weight:700;color:#fff;padding:8px;text-align:center">
+              ↑ live
+            </div>
+          </div>
+          <div class="fin-row" id="fr1" style="display:flex;gap:0;border:1px solid var(--faint);
+            margin-bottom:2px;opacity:0;transform:translateX(-16px);transition:all .5s">
+            <div style="width:80px;flex-shrink:0;background:var(--off);padding:12px 10px;
+              text-align:center;border-right:1px solid var(--faint)">
+              <div style="font-size:10px;font-weight:700;color:var(--light);text-transform:uppercase;letter-spacing:1px">Year 2</div>
+              <div style="font-size:13px;font-weight:800;color:var(--mid)">2017–18</div>
+            </div>
+            <div style="flex:1;padding:12px 14px">
+              <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--teal);line-height:1">$68,000</div>
+              <div style="font-size:11px;color:var(--light);margin-top:2px;font-family:'DM Mono',monospace">1,005 room nights <span style="color:var(--teal);font-weight:700">↑ +21%</span></div>
+            </div>
+            <div style="width:60px;background:var(--teal);display:flex;align-items:center;
+              justify-content:center;font-size:12px;font-weight:700;color:#fff;padding:8px;text-align:center">
+              ↑ +21%
+            </div>
+          </div>
+          <div class="fin-row" id="fr2" style="display:flex;gap:0;border:1px solid var(--faint);
+            margin-bottom:2px;opacity:0;transform:translateX(-16px);transition:all .5s">
+            <div style="width:80px;flex-shrink:0;background:var(--off);padding:12px 10px;
+              text-align:center;border-right:1px solid var(--faint)">
+              <div style="font-size:10px;font-weight:700;color:var(--light);text-transform:uppercase;letter-spacing:1px">Year 3</div>
+              <div style="font-size:13px;font-weight:800;color:var(--mid)">2018–19</div>
+            </div>
+            <div style="flex:1;padding:12px 14px">
+              <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--teal);line-height:1">$75,000</div>
+              <div style="font-size:11px;color:var(--light);margin-top:2px;font-family:'DM Mono',monospace">1,200 room nights <span style="color:var(--teal);font-weight:700">↑ +10%</span></div>
+            </div>
+            <div style="width:60px;background:var(--teal);display:flex;align-items:center;
+              justify-content:center;font-size:12px;font-weight:700;color:#fff;padding:8px;text-align:center">
+              ↑ +10%
+            </div>
+          </div>
+          <!-- Total -->
+          <div id="fr3" style="display:flex;background:var(--navy);
+            opacity:0;transition:opacity .5s">
+            <div style="width:80px;flex-shrink:0;padding:14px 10px;text-align:center;
+              border-right:1px solid rgba(255,255,255,.1)">
+              <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px">Total</div>
+            </div>
+            <div style="flex:1;padding:14px 14px">
+              <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold-l);line-height:1">$199,000+</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;font-family:'DM Mono',monospace">3,180+ nights · 100% non-refundable · 0 complaints</div>
+            </div>
+            <div style="width:60px;background:var(--gold-d);display:flex;align-items:center;
+              justify-content:center;font-size:12px;font-weight:700;color:#fff;padding:8px;text-align:center">
+              Still<br>Live
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right: zeros proof -->
+    <div class="half-r">
+      <div style="animation:rL .6s ease .4s both;opacity:0">
+        <span class="tag" style="margin-bottom:16px">What Never Happened In 8 Years</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--faint);border:1px solid var(--faint)">
+          <div style="background:#fff;padding:22px 16px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--teal);line-height:1">0</div>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin:6px 0 4px">Guest Complaints</div>
+            <div style="font-size:11px;color:var(--mid)">Every guest informed. Every guest chose freely. Not one dispute filed.</div>
+          </div>
+          <div style="background:#fff;padding:22px 16px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--teal);line-height:1">0</div>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin:6px 0 4px">Cancellations</div>
+            <div style="font-size:11px;color:var(--mid)">Every booking non-refundable. Every guest honoured their choice.</div>
+          </div>
+          <div style="background:#fff;padding:22px 16px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--gold-d);line-height:1">0</div>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin:6px 0 4px">CM Conflicts</div>
+            <div style="font-size:11px;color:var(--mid)">Zero channel manager issues. Runs above the CM layer entirely.</div>
+          </div>
+          <div style="background:#fff;padding:22px 16px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--coral);line-height:1">0</div>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin:6px 0 4px">OTA Rivals</div>
+            <div style="font-size:11px;color:var(--mid)">Booking.com · Expedia · Agoda · Airbnb · Trip.com. Verified March 2026.</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:14px 16px;background:var(--coral);color:#fff;
+          font-size:14px;font-weight:700;line-height:1.6">
+          "I built this with zero team, zero VC funding, and zero OTA support.<br>
+          <span style="font-weight:400;opacity:.8">Imagine what you can do with your infrastructure."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Revenue Proof</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 09 · SIMPLE INTEGRATION
+     ══════════════════════════════════ -->
+<div class="slide" id="s9" style="background:#fff">
+  <div class="split">
+    <div class="half-l">
+      <div style="animation:rR .6s ease .2s both;opacity:0">
+        <span class="tag">For Your Engineers</span>
+        <div class="cork"></div>
+        <h2 class="h-lg" style="margin-bottom:16px">
+          Years of work<br>for me.<br><span class="em">1–2 days for you.</span>
+        </h2>
+        <p class="body" style="max-width:360px;margin-bottom:18px">
+          I learned PHP, JavaScript, and database management specifically to build this. Your team doesn't need to learn anything new. <strong>One conditional check. One API call. That's the entire integration.</strong>
+        </p>
+        <div style="padding:16px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);
+          margin-bottom:14px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2px;
+            text-transform:uppercase;color:var(--gold-d);margin-bottom:8px">⚡ What I built — months</div>
+          <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mid)">
+            <div>📚 Learned PHP and jQuery from scratch</div>
+            <div>💻 Purchased and deployed booking engine</div>
+            <div>🔧 Modified Room and Hotel Relocation modules</div>
+            <div>🧪 Tested across real hotel bookings</div>
+            <div>🔁 Iterated over 3 seasons of live operation</div>
+          </div>
+        </div>
+        <div style="padding:16px;background:var(--teal-l);border:1px solid rgba(0,166,153,.2)">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2px;
+            text-transform:uppercase;color:var(--teal-d);margin-bottom:8px">✓ What you need — 1 to 2 days</div>
+          <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mid)">
+            <div>⚡ One conditional in your availability check</div>
+            <div>🔌 One API call to NightSeam.scan()</div>
+            <div>📦 Returns booking offer in your existing format</div>
+            <div>✅ Zero database changes · Zero CM conflict</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="half-r" style="padding:32px 40px">
+      <!-- Simple code block -->
+      <div class="code" style="animation:rL .6s ease .4s both;opacity:0">
+        <div class="code-bar">
+          <div class="cd" style="background:#FF5F57"></div>
+          <div class="cd" style="background:#FEBC2E"></div>
+          <div class="cd" style="background:#28C840"></div>
+          <span class="cf">nightseam-integration.js · Your Integration</span>
+        </div>
+        <div class="code-body">
+          <span style="display:block;color:#4A5E74;font-style:italic">// What Ayman spent years learning to build:</span>
+          <span style="display:block;color:#4A5E74;font-style:italic;margin-bottom:12px">// PHP · jQuery · Booking engine modifications · 3 seasons</span>
+
+          <span style="display:block;color:#4A5E74;font-style:italic">// What your engineers write:</span>
+          <span style="display:block;color:#A8B9CC;margin-top:4px">
+            <span class="ck">if</span> (<span class="cf2">availability</span>.isPartial(<span class="cn">request</span>)) {</span>
+          <span style="display:block;padding-left:22px;color:#A8B9CC">
+            <span style="color:#A8B9CC">const </span><span class="cm">seam</span> = <span class="ck">await</span> <span class="cf2">NightSeam</span>.scan({</span>
+          <span style="display:block;padding-left:42px;color:#89DDFF">hotelId: hotel.id,</span>
+          <span style="display:block;padding-left:42px;color:#89DDFF">checkIn: request.checkIn,</span>
+          <span style="display:block;padding-left:42px;color:#89DDFF">checkOut: request.checkOut,</span>
+          <span style="display:block;padding-left:42px;color:#A8B9CC">maxRelay: <span class="cn">500</span> <span class="cc">// metres</span></span>
+          <span style="display:block;padding-left:22px;color:#A8B9CC">});</span>
+          <span style="display:block;padding-left:22px;color:#A8B9CC;margin-top:4px">
+            <span class="ck">if</span> (seam.found) <span class="ck">return</span> <span class="cf2">booking</span>.create(seam.offer);</span>
+          <span style="display:block;color:#A8B9CC">}</span>
+
+          <span style="display:block;margin-top:12px;padding:8px 12px;
+            background:rgba(0,166,153,.15);border-left:3px solid var(--teal);
+            color:#4ECBA0;font-style:italic">
+            // ✓ That's it. One condition. One call. Done.
+          </span>
+        </div>
+      </div>
+      <!-- Comparison -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;
+        animation:rL .5s ease .8s both;opacity:0">
+        <div style="padding:12px;background:var(--coral-l);border:1px solid rgba(255,90,95,.15);text-align:center">
+          <div style="font-size:13px;font-weight:700;color:var(--coral)">Ayman's path</div>
+          <div style="font-size:22px;font-weight:900;color:var(--ink);margin:4px 0">Months</div>
+          <div style="font-size:11px;color:var(--mid)">Learning · Building · Testing · Iterating</div>
+        </div>
+        <div style="padding:12px;background:var(--teal-l);border:1px solid rgba(0,166,153,.15);text-align:center">
+          <div style="font-size:13px;font-weight:700;color:var(--teal-d)">Your path</div>
+          <div style="font-size:22px;font-weight:900;color:var(--ink);margin:4px 0">1–2 days</div>
+          <div style="font-size:11px;color:var(--mid)">One conditional · One API call</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Simple Integration</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 10 · ZERO RIVALS
+     ══════════════════════════════════ -->
+<div class="slide" id="s10" style="background:#fff">
+  <div class="center" style="gap:28px">
+    <div style="animation:rU .6s ease .2s both;opacity:0;text-align:center">
+      <span class="tag" style="display:block;margin-bottom:10px">Competition · Verified March 2026</span>
+      <h2 class="h-md">No one else has built this.</h2>
+      <p style="font-size:14px;color:var(--mid);max-width:480px;margin-top:8px">
+        I spent 8 years developing, testing, and running NightSeam™ in a real hotel. In that entire time, not a single OTA built the same feature. Verified manually, March 2026.
+      </p>
+    </div>
+    <div style="width:100%;max-width:800px;border:1px solid var(--faint);
+      animation:scIn .6s ease .4s both;opacity:0">
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:var(--off)">
+            <th style="text-align:left;padding:12px 18px;font-size:11px;font-weight:700;
+              color:var(--mid);text-transform:uppercase;letter-spacing:1px;
+              border-bottom:2px solid var(--faint)">Platform</th>
+            <th style="text-align:center;padding:12px;font-size:10px;font-weight:700;
+              color:var(--mid);text-transform:uppercase;letter-spacing:1px;
+              border-bottom:2px solid var(--faint)">Room Relocation</th>
+            <th style="text-align:center;padding:12px;font-size:10px;font-weight:700;
+              color:var(--mid);text-transform:uppercase;letter-spacing:1px;
+              border-bottom:2px solid var(--faint)">Hotel Relay</th>
+            <th style="text-align:center;padding:12px;font-size:10px;font-weight:700;
+              color:var(--mid);text-transform:uppercase;letter-spacing:1px;
+              border-bottom:2px solid var(--faint)">Auto-Detect</th>
+            <th style="text-align:center;padding:12px;font-size:10px;font-weight:700;
+              color:var(--mid);text-transform:uppercase;letter-spacing:1px;
+              border-bottom:2px solid var(--faint)">Pre-Booking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(245,166,35,.06);border-bottom:1px solid var(--faint)" id="ctr0">
+            <td style="padding:14px 18px;font-weight:900;color:var(--gold-d);font-size:14px">
+              🧵 NightSeam™ <span style="font-size:10px;font-weight:400;color:var(--light)">(Ayman · 2016)</span></td>
+            <td style="text-align:center;font-size:16px;font-weight:900;color:var(--teal)">✓</td>
+            <td style="text-align:center;font-size:16px;font-weight:900;color:var(--teal)">✓</td>
+            <td style="text-align:center;font-size:16px;font-weight:900;color:var(--teal)">✓</td>
+            <td style="text-align:center;font-size:16px;font-weight:900;color:var(--teal)">✓</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--faint)" id="ctr1" class="cr-row" style="opacity:0">
+            <td style="padding:12px 18px;font-weight:700;font-size:13px">Booking.com</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--faint)" id="ctr2" class="cr-row" style="opacity:0">
+            <td style="padding:12px 18px;font-weight:700;font-size:13px">Expedia Group</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--faint)" id="ctr3" class="cr-row" style="opacity:0">
+            <td style="padding:12px 18px;font-weight:700;font-size:13px">Agoda</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+          </tr>
+          <tr id="ctr4" class="cr-row" style="opacity:0">
+            <td style="padding:12px 18px;font-weight:700;font-size:13px">Airbnb · Trip.com</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+            <td style="text-align:center;font-size:16px;color:var(--faint)">✗</td><td style="text-align:center;font-size:16px;color:var(--faint)">✗</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:14px 24px;background:var(--navy);color:#fff;
+      max-width:800px;width:100%;text-align:center;
+      animation:rU .5s ease .9s both;opacity:0;font-size:15px;font-weight:600">
+      The first OTA to license NightSeam™ owns this feature entirely. <span style="color:var(--gold-l)">Every day of delay is revenue left on the table.</span>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · Competitive Landscape</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 11 · WIN × 3
+     ══════════════════════════════════ -->
+<div class="slide" id="s11" style="background:var(--off)">
+  <div class="center" style="gap:22px">
+    <div style="animation:rU .5s ease .2s both;opacity:0;text-align:center">
+      <span class="tag" style="display:block;margin-bottom:8px">The Outcome</span>
+      <h2 class="h-md">Three winners. Every booking.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+      border:1px solid var(--faint);width:100%;max-width:1000px;background:var(--faint)">
+      <div id="ww0" style="background:#fff;padding:28px 22px;
+        opacity:0;transform:translateY(16px);transition:all .6s ease .2s">
+        <div style="font-size:32px;margin-bottom:12px">🏨</div>
+        <div style="font-size:20px;font-weight:900;color:var(--teal);margin-bottom:10px">Hotel Wins</div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:14px">
+          Gap nights that expired unsold every midnight become confirmed non-refundable bookings. Zero new marketing. Zero new rooms. <strong style="color:var(--ink)">Pure recovered revenue.</strong><br><br>
+          Full control — activate, deactivate, set discount, choose room types. No penalty to stop.
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--teal);
+          text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--faint);
+          padding-top:10px">Fills gap · Earns more · Zero risk</div>
+      </div>
+      <div id="ww1" style="background:#fff;padding:28px 22px;
+        opacity:0;transform:translateY(16px);transition:all .6s ease .4s">
+        <div style="font-size:32px;margin-bottom:12px">💻</div>
+        <div style="font-size:20px;font-weight:900;color:var(--coral);margin-bottom:10px">Platform Wins</div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:14px">
+          +18% higher commission per relocated booking. More room nights per guest search. A patentable feature <strong style="color:var(--ink)">zero competitors offer today.</strong><br><br>
+          No tech conflicts. No CM integration. Works in your existing extranet. 1–2 days to ship.
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--coral);
+          text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--faint);
+          padding-top:10px">More commission · Unique · 0 rivals</div>
+      </div>
+      <div id="ww2" style="background:#fff;padding:28px 22px;
+        opacity:0;transform:translateY(16px);transition:all .6s ease .6s">
+        <div style="font-size:32px;margin-bottom:12px">✈️</div>
+        <div style="font-size:20px;font-weight:900;color:var(--gold-d);margin-bottom:10px">Guest Wins</div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:14px">
+          Stays at preferred hotel for full trip. Offered discount. <strong style="color:var(--ink)">Never forced — always sees the offer clearly and chooses freely.</strong><br><br>
+          Zero complaints across 8 years of live operation. Every guest informed before booking.
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--gold-d);
+          text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--faint);
+          padding-top:10px">Right hotel · Full stay · Free choice</div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">NightSeam™ · WIN × 3</div>
+</div>
+
+<!-- ╔══════════════════════════════════
+     SLIDE 12 · THE CLOSING ASK
+     ══════════════════════════════════ -->
+<div class="slide" id="s12" style="background:var(--navy)">
+  <div class="split" style="grid-template-columns:1fr 1fr">
+    <div style="padding:64px 56px;display:flex;flex-direction:column;
+      justify-content:center;gap:20px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="animation:rR .7s ease .3s both;opacity:0">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;
+          text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:20px">
+          The Personal Challenge
+        </span>
+        <div style="width:4px;height:48px;background:var(--coral);margin-bottom:20px"></div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,54px);
+          font-weight:900;letter-spacing:-1.5px;line-height:.95;color:#fff;margin-bottom:20px">
+          I built this alone,<br>with my own money,<br>in <span style="color:var(--gold-l)">my own hotel.</span>
+        </h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.75;max-width:360px;margin-bottom:28px">
+          No team. No VC. No OTA support. Just a problem I couldn't stop thinking about, and enough stubbornness to code the solution myself. The result? $199,000. 3,180 room nights. Eight years running. Zero rivals.
+        </p>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-style:italic;
+          color:rgba(255,255,255,.75);padding:16px 20px;border-left:4px solid var(--coral)">
+          "The hotel had the room. The guest wanted to stay. The only thing missing was the intelligence to connect them."
+        </div>
+      </div>
+    </div>
+    <!-- Right: CTA -->
+    <div style="padding:64px 56px;display:flex;flex-direction:column;
+      justify-content:center;gap:20px">
+      <div style="animation:rL .7s ease .4s both;opacity:0">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;
+          text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:20px">
+          The Question
+        </span>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);
+          font-weight:900;letter-spacing:-1.5px;line-height:.95;color:#fff;margin-bottom:16px">
+          You have 57,000 hotels<br>in this position<br><span style="color:var(--coral)">tonight.</span>
+        </div>
+        <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:28px">
+          Every night without NightSeam™ is revenue your platform chose not to capture. Your engineers need 1–2 days. I needed months. Patent pending — terms most favourable before the patent is granted.
+        </p>
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+          background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);margin-bottom:20px">
+          <div style="background:rgba(255,255,255,.04);padding:14px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold-l)">$199K+</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px">Revenue proven</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:14px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#fff">3,180+</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px">Room nights</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:14px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--coral)">0</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px">Rivals today</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:14px;text-align:center">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#fff">1–2</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px">Days to deploy</div>
+          </div>
+        </div>
+        <!-- Closing question -->
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+          color:#fff;margin-bottom:10px">
+          Who adds the toggle <span style="color:var(--coral)">first?</span>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.2);
+          letter-spacing:3px;text-transform:uppercase">
+          [ stay silent · let them answer ]
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm" style="color:rgba(255,255,255,.18)">NightSeam™ · Patent Pending · All Rights Reserved</div>
+</div>
+
+<!-- ── CONTROLS ─────────────────────────────── -->
+<div class="ctrl">
+  <div class="dots" id="dots"></div>
+  <div class="pb"><div class="pb-f" id="pbf"></div></div>
+  <button class="cbtn" onclick="prev()">← Prev</button>
+  <button class="cbtn" id="pbtn" onclick="togglePlay()">⏸</button>
+  <button class="cbtn" onclick="next()">Next →</button>
+  <button class="cbtn" onclick="goTo(0)" style="color:var(--faint)">↺</button>
+  <div class="clbl" id="clbl">01 / 12</div>
+  <div class="clbl" id="cname" style="margin-left:8px">— Personal Origin</div>
+</div>
+
+<script>
+let cur=0,playing=true,TT=[],autoT=null;
+const N=12;
+const DUR=[11000,10000,9500,10000,9500,9000,10000,10000,9500,9000,9000,14000];
+const NM=['Personal Origin','Real Code','Admin Panel','Guest Popup — Room',
+  'Hotel Relay Popup','Booking Confirmation','Chart Animated',
+  'Revenue Proof','Simple Integration','Zero Rivals','WIN × 3','The Ask'];
+
+(()=>{const w=document.getElementById('dots');
+  for(let i=0;i<N;i++){const d=document.createElement('div');d.className='dot';
+    d.onclick=()=>goTo(i);w.appendChild(d);}})();
+
+function updUI(){
+  document.querySelectorAll('.dot').forEach((d,i)=>
+    d.className='dot'+(i===cur?' on':i<cur?' done':''));
+  document.getElementById('clbl').textContent=(cur<9?'0'+(cur+1):cur+1)+' / '+N;
+  document.getElementById('cname').textContent='— '+NM[cur];
+}
+function sBar(d){const f=document.getElementById('pbf');
+  f.style.transition='none';f.style.width='0%';
+  setTimeout(()=>{f.style.transition=`width ${d}ms linear`;f.style.width='100%';},30);}
+function stopBar(){const f=document.getElementById('pbf');f.style.transition='none';f.style.width='0%';}
+function fl(){const f=document.getElementById('flash');f.style.opacity='.18';setTimeout(()=>f.style.opacity='0',120);}
+function clr(){TT.forEach(clearTimeout);TT=[];if(autoT)clearTimeout(autoT);stopBar();}
+function t(fn,d){const id=setTimeout(fn,d);TT.push(id);}
+function showEl(id,delay=0){t(()=>{const el=document.getElementById(id);if(el){el.style.opacity='1';el.style.transform='translateY(0) translateX(0)';}},delay);}
+
+function goTo(i){
+  clr();
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  fl();
+  setTimeout(()=>document.getElementById('s'+(i+1)).classList.add('active'),140);
+  cur=i;updUI();SFN[i]();
+  if(playing){sBar(DUR[i]);autoT=setTimeout(()=>{
+    if(!playing)return;
+    if(cur<N-1)goTo(cur+1);
+    else{playing=false;document.getElementById('pbtn').textContent='▶';stopBar();}
+  },DUR[i]);}
+}
+
+const SFN=[
+  function(){}, // s1
+  function(){}, // s2
+  function(){   // s3 — toggle animation
+    const t0=document.getElementById('tog0');
+    const t1=document.getElementById('tog1');
+    if(t0)t0.className='tog off';if(t1)t1.className='tog off';
+    t(()=>{if(t0)t0.className='tog on';},1800);
+    t(()=>{if(t1)t1.className='tog on';},2600);
+  },
+  function(){}, // s4
+  function(){}, // s5
+  function(){   // s6 — booking confirmation build
+    ['csA','cseam','csB','ctot'].forEach(id=>{const el=document.getElementById(id);
+      if(el){el.style.opacity='0';if(id!=='cseam')el.style.transform='translateX(-16px)';}});
+    t(()=>{const e=document.getElementById('csA');if(e){e.style.opacity='1';e.style.transform='translateX(0)';e.style.transition='all .4s';}},400);
+    t(()=>{const e=document.getElementById('cseam');if(e)e.style.opacity='1';},1100);
+    t(()=>{const e=document.getElementById('csB');if(e){e.style.opacity='1';e.style.transform='translateX(0)';e.style.transition='all .4s';}},1700);
+    t(()=>{const e=document.getElementById('ctot');if(e)e.style.opacity='1';},2800);
+  },
+  function(){   // s7 — chart scan
+    for(let i=0;i<10;i++){['t','d'].forEach(p=>{const el=document.getElementById(p+i);
+      if(el){el.className='cc-cell c-e';el.textContent='—';}})}
+    const sc=document.getElementById('scanBar');
+    const sr=document.getElementById('seamRow');
+    const lb=document.getElementById('s7label');
+    if(sc){sc.style.opacity='0';sc.style.left='110px';}
+    if(sr)sr.style.display='none';if(lb)lb.style.opacity='0';
+    t(()=>{
+      if(sc)sc.style.opacity='1';
+      for(let i=0;i<10;i++){(j=>{t(()=>{
+        const w=document.querySelector('.chart').offsetWidth;
+        if(sc)sc.style.left=(110+j*((w-110)/10))+'px';
+        const ta=document.getElementById('t'+j);const da=document.getElementById('d'+j);
+        if(ta){ta.className='cc-cell '+(j<4?'c-g':'c-r');ta.textContent=j<4?'✓':'✗';}
+        if(da){da.className='cc-cell '+(j<4?'c-r':'c-g');da.textContent=j<4?'✗':'✓';}
+      },j*100);})(i);}
+    },600);
+    t(()=>{if(sc)sc.style.opacity='0';if(sr)sr.style.display='';},2100);
+    t(()=>{if(lb)lb.style.opacity='1';},2500);
+  },
+  function(){   // s8 — revenue bars
+    ['fr0','fr1','fr2','fr3'].forEach(id=>{const el=document.getElementById(id);
+      if(el){el.style.opacity='0';el.style.transform='translateX(-16px)';}});
+    t(()=>{const e=document.getElementById('fr0');if(e){e.style.opacity='1';e.style.transform='translateX(0)';e.style.transition='all .5s';}},400);
+    t(()=>{const e=document.getElementById('fr1');if(e){e.style.opacity='1';e.style.transform='translateX(0)';e.style.transition='all .5s';}},900);
+    t(()=>{const e=document.getElementById('fr2');if(e){e.style.opacity='1';e.style.transform='translateX(0)';e.style.transition='all .5s';}},1400);
+    t(()=>{const e=document.getElementById('fr3');if(e)e.style.opacity='1';},1900);
+  },
+  function(){}, // s9
+  function(){   // s10 — competitor rows
+    ['ctr1','ctr2','ctr3','ctr4'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity='0';});
+    t(()=>['ctr1','ctr2','ctr3','ctr4'].forEach((id,i)=>{
+      setTimeout(()=>{const el=document.getElementById(id);if(el){el.style.opacity='1';el.style.transition='opacity .4s';}},i*150);
+    }),600);
+  },
+  function(){   // s11 — win cards
+    ['ww0','ww1','ww2'].forEach(id=>{const el=document.getElementById(id);
+      if(el){el.style.opacity='0';el.style.transform='translateY(16px)';}});
+    t(()=>['ww0','ww1','ww2'].forEach((id,i)=>{
+      setTimeout(()=>{const el=document.getElementById(id);if(el){el.style.opacity='1';el.style.transform='translateY(0)';el.style.transition='all .6s ease';}},i*320);
+    }),300);
+  },
+  function(){}, // s12
+];
+
+function next(){if(cur<N-1)goTo(cur+1);}
+function prev(){if(cur>0)goTo(cur-1);}
+function togglePlay(){playing=!playing;document.getElementById('pbtn').textContent=playing?'⏸':'▶';
+  if(playing)goTo(cur);else clr();}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}
+  else if(e.key==='ArrowLeft'){e.preventDefault();prev();}
+});
+document.getElementById('discSlider').addEventListener('input',function(){
+  document.getElementById('discVal').textContent=this.value+'%';
+});
+goTo(0);
+</script>
+</body>
+</html>
