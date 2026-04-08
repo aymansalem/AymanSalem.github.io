@@ -200,75 +200,78 @@
 
 
   <!--here-->
- <style>
+ <!-- Videos Section -->
 
+<style>
 .video-gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+  gap:30px;
+  margin-top:60px;
+  width:100%;
+  max-width:1400px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .video-card{
-background:#111;
-border-radius:12px;
-overflow:hidden;
-transition:transform .3s, box-shadow .3s;
-cursor:pointer;
-}
-
-.video-card:hover{
-transform:scale(1.04);
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  background:#111;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 .video-card iframe{
-width:100%;
-height:360px;
-border:0;
+  width:100%;
+  height:260px;
+  border:0;
 }
 
 .video-title{
-padding:14px;
-font-weight:600;
-font-size:16px;
-color:#fff;
-background:#1a1a1a;
-}
-
-</style>
-
-
-  
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 ratio */
-  height: 0;
-}
-
-.video-container iframe {
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  border:0;
+  padding:12px 16px;
+  font-weight:bold;
+  color:#fff;
+  background:#1a1a1a;
 }
 </style>
 
-</style>
+<h2 style="text-align:center;margin-top:80px;">
+NightSeam™ Smart Relocation System
+</h2>
+
+<p style="text-align:center;max-width:900px;margin:auto;">
+Demonstration of the automated room and hotel relocation system including
+platform administration, hotel manager configuration, and real guest booking experience.
+</p>
+
 <div class="video-gallery">
-.video-gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
-gap:30px;
-margin-top:60px;
-width:100%;
-max-width:1400px;
-margin-left:auto;
-margin-right:auto;
-}
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/ILDfbDoxKec" allowfullscreen></iframe>
+    <div class="video-title">Hotel Admin Panel</div>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/Hf4D5GCIGTk" allowfullscreen></iframe>
+    <div class="video-title">Hotel Relocation Feature</div>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/BxfQQJ5iUcM" allowfullscreen></iframe>
+    <div class="video-title">Platform Administrator Controls</div>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/RLfH3jrtw8w" allowfullscreen></iframe>
+    <div class="video-title">Auto Room Relocation</div>
+  </div>
+
+  <div class="video-card">
+    <iframe src="https://www.youtube.com/embed/BBGnJPquc9I" allowfullscreen></iframe>
+    <div class="video-title">Final Relocation Pitch Deck</div>
+  </div>
+
+</div>
 <!-- Video 1 -->
 <div class="video-card">
 <iframe src="https://www.youtube.com/embed/ILDfbDoxKec?mute=1"
