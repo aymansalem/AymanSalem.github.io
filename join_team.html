@@ -198,6 +198,46 @@
  <!-- Videos Section -->
 
 <style>
+
+  <!--here-->
+  <style>
+
+.video-gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+margin-top:60px;
+}
+
+.video-card{
+background:#111;
+border-radius:12px;
+overflow:hidden;
+transition:transform .3s, box-shadow .3s;
+cursor:pointer;
+}
+
+.video-card:hover{
+transform:scale(1.04);
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+.video-card iframe{
+width:100%;
+height:200px;
+border:0;
+}
+
+.video-title{
+padding:14px;
+font-weight:600;
+font-size:16px;
+color:#fff;
+background:#1a1a1a;
+}
+
+</style>
+  
 .video-container {
   position: relative;
   width: 100%;
@@ -216,87 +256,42 @@
 </style>
 
 
+<div class="video-gallery">
+
 <!-- Video 1 -->
-<div style="margin-top:60px;">
-  <p><strong>1. Hotel Admin Panel</strong></p>
-
-  <div class="video-container">
-    <iframe
-      loading="lazy"
-      src="https://www.youtube.com/embed/ILDfbDoxKec?mute=1"
-      title="Hotel Admin Panel"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
-
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/ILDfbDoxKec?mute=1"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-title">Hotel Admin Panel</div>
 </div>
-
 
 <!-- Video 2 -->
-<div style="margin-top:40px;">
-  <p><strong>2. Hotel Relocation</strong></p>
-
-  <div class="video-container">
-    <iframe
-      loading="lazy"
-      src="https://www.youtube.com/embed/Hf4D5GCIGTk?mute=1"
-      title="Hotel Relocation"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
-
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/Hf4D5GCIGTk?mute=1"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-title">Hotel Relocation Feature</div>
 </div>
-
 
 <!-- Video 3 -->
-<div style="margin-top:40px;">
-  <p><strong>3. Platform Administrator Controls</strong></p>
-
-  <div class="video-container">
-    <iframe
-      loading="lazy"
-      src="https://www.youtube.com/embed/BxfQQJ5iUcM?mute=1"
-      title="Platform Administrator Controls"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
-
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/BxfQQJ5iUcM?mute=1"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-title">Platform Administrator Controls</div>
 </div>
-
 
 <!-- Video 4 -->
-<div style="margin-top:40px;">
-  <p><strong>4. Auto Room Relocation</strong></p>
-
-  <div class="video-container">
-    <iframe
-      loading="lazy"
-      src="https://www.youtube.com/embed/RLfH3jrtw8w?mute=1"
-      title="Auto Room Relocation"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
-
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/RLfH3jrtw8w?mute=1"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-title">Auto Room Relocation Demo</div>
 </div>
 
-
 <!-- Video 5 -->
-<div style="margin-top:40px;">
-  <p><strong>5. Final Relocation Pitch Deck</strong></p>
-
-  <div class="video-container">
-    <iframe
-      loading="lazy"
-      src="https://www.youtube.com/embed/BBGnJPquc9I?mute=1"
-      title="Final Relocation Pitch Deck"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/BBGnJPquc9I?mute=1"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-title">Final Relocation Pitch Deck</div>
+</div>
 
 </div>
 
