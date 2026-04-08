@@ -15,11 +15,24 @@ color:#e2e8f0;
 line-height:1.6;
 }
 
+/* Layout */
+
 section{
 padding:90px 30px;
 max-width:1400px;
 margin:auto;
 }
+
+.slide{
+background:#1e2937;
+border-radius:20px;
+padding:55px;
+margin-bottom:60px;
+box-shadow:0 20px 45px rgba(0,0,0,.45);
+border:1px solid #334155;
+}
+
+/* Typography */
 
 h1{
 font-size:3rem;
@@ -40,21 +53,29 @@ font-size:1.4rem;
 color:#94a3b8;
 }
 
-.slide{
-background:#1e2937;
-border-radius:20px;
-padding:55px;
-margin-bottom:60px;
-box-shadow:0 20px 45px rgba(0,0,0,.45);
-border:1px solid #334155;
-}
-
 .highlight{
 color:#34d399;
 font-weight:bold;
 }
 
-/* ---------- IMAGE GRID ---------- */
+/* CTA */
+
+.cta{
+background:linear-gradient(90deg,#3b82f6,#34d399);
+color:white;
+padding:18px 45px;
+font-size:1.3rem;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-weight:600;
+}
+
+.cta:hover{
+transform:scale(1.05);
+}
+
+/* PROOF IMAGES */
 
 .proof-grid{
 display:grid;
@@ -69,7 +90,62 @@ border-radius:14px;
 box-shadow:0 10px 30px rgba(0,0,0,.6);
 }
 
-/* ---------- VIDEO HERO ---------- */
+/* ---------- ANIMATED CALENDAR ---------- */
+
+.calendar{
+background:#0f172a;
+padding:30px;
+border-radius:14px;
+position:relative;
+border:2px solid #1e40af;
+overflow:hidden;
+margin-top:40px;
+}
+
+.scan-line{
+position:absolute;
+top:0;
+bottom:0;
+width:5px;
+background:linear-gradient(transparent,#60a5fa,transparent);
+box-shadow:0 0 20px #60a5fa;
+animation:scan 5s linear infinite;
+z-index:5;
+}
+
+@keyframes scan{
+0%{left:0}
+100%{left:100%}
+}
+
+.seam{
+background:rgba(52,211,153,0.35);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:.5}
+50%{opacity:1}
+100%{opacity:.5}
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:10px;
+text-align:center;
+border:1px solid #334155;
+}
+
+th{
+background:#1e40af;
+}
+
+/* VIDEO HERO */
 
 .video-hero iframe{
 width:100%;
@@ -79,7 +155,7 @@ border:0;
 box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 
-/* ---------- VIDEO GALLERY ---------- */
+/* VIDEO GALLERY */
 
 .video-gallery{
 display:grid;
@@ -113,38 +189,15 @@ font-weight:600;
 background:#020617;
 }
 
-/* ---------- CTA ---------- */
-
-.cta{
-background:linear-gradient(90deg,#3b82f6,#34d399);
-color:white;
-padding:18px 45px;
-font-size:1.3rem;
-border:none;
-border-radius:40px;
-cursor:pointer;
-font-weight:600;
-}
-
-.cta:hover{
-transform:scale(1.05);
-}
-
-/* ---------- MOBILE ---------- */
+/* MOBILE */
 
 @media(max-width:768px){
 
-section{
-padding:60px 18px;
-}
+section{padding:60px 18px;}
 
-.video-hero iframe{
-height:300px;
-}
+.video-hero iframe{height:300px;}
 
-.proof-grid{
-grid-template-columns:1fr;
-}
+.proof-grid{grid-template-columns:1fr;}
 
 }
 
@@ -153,20 +206,18 @@ grid-template-columns:1fr;
 
 <body>
 
-
 <!-- HERO -->
+
 <section class="slide" style="text-align:center;background:linear-gradient(135deg,#1e3a8a,#0f172a);">
 
 <h1>NightSeam™</h1>
 
 <p class="tagline">
-I bought a booking engine, learned PHP & MySQL from scratch,
+I bought a booking engine, learned PHP & MySQL from scratch,<br>
 and recovered <span class="highlight">$199,000</span> in gap nights.
 </p>
 
-<p>
-<strong>Ayman Salem</strong> • Our Zanzibar Group • Available Immediately
-</p>
+<p><strong>Ayman Salem</strong> • Our Zanzibar Group • Available Immediately</p>
 
 <button class="cta" onclick="document.getElementById('contact').scrollIntoView()">Let's Talk →</button>
 
@@ -174,40 +225,98 @@ and recovered <span class="highlight">$199,000</span> in gap nights.
 
 
 <!-- PROBLEM -->
+
 <section class="slide">
 
 <h2>The Problem OTAs Face</h2>
 
 <ul style="font-size:1.3rem;line-height:2rem">
 <li>Guests see <b>No Availability</b> even when rooms exist across types</li>
-<li>Millions in revenue lost due to inventory gaps</li>
-<li>High search abandonment on longer stays</li>
+<li>Millions in revenue lost from fragmented availability</li>
+<li>High abandonment for multi-night searches</li>
 </ul>
 
 </section>
-<!--Animatd Chart-->
-
-<!-- Slide 1 --> <section class="slide" style="text-align:center; background: linear-gradient(135deg, #1e3a8a, #0f172a);"> <h1>NightSeam™</h1> <p class="tagline">I bought a booking engine, learned PHP & MySQL from scratch,<br>and recovered <span class="highlight">$199,000</span> in gap nights.<br>I want to join your team and innovate together.</p> <p><strong>Ayman Salem</strong> • Our Zanzibar Group • Available Immediately</p> <button class="cta" onclick="document.getElementById('contact').scrollIntoView()">Let's Talk →</button> </section> <!-- Slide 2 --> <section class="slide"> <h2>The Problem OTAs Face Every Day</h2> <ul style="font-size:1.35rem; line-height:2.3rem;"> <li>Guests see “No Availability” for multi-night stays even when rooms exist across types.</li> <li>Millions in potential commissions and room nights are lost daily.</li> <li>High cart abandonment on longer searches.</li> </ul> </section> <!-- Slide 3 – Main Proof Slide with Animated Chart + 4 Images + 2 Videos --> <section class="slide"> <h2>What I Built & Shipped in Production</h2> <h3>NightSeam™ — Smart Split-Stay Algorithm</h3> <p><strong>Real Results (SIX Boutique Hotels, 2016–2025):</strong></p> <ul style="font-size:1.35rem;"> <li><span class="highlight">$199,000</span> recovered gap-night revenue</li> <li>3,180+ non-refundable room nights booked</li> <li>0 complaints • 0 cancellations • 0 conflicts</li> </ul> <p><strong>My Execution Proof:</strong> Bought full booking engine → Self-taught PHP & MySQL → Modified & ran live in production.</p> <!-- Animated Booking Calendar --> <div style="margin: 50px 0;"> <h3 style="color:#34d399;">NightSeam™ Scanning Live – August 2025 (Our ZNZ Group)</h3> <div class="calendar"> <div class="scan-line"></div> <table> <thead> <tr> <th>Room Type</th> <th>1 Aug</th><th>2 Aug</th><th>3 Aug</th><th>4 Aug</th> <th>5 Aug</th><th>6 Aug</th><th>7 Aug</th><th>8 Aug</th><th>9 Aug</th><th>10 Aug</th> </tr> </thead> <tbody> <tr> <td>🌙 Twin Room · Standard</td> <td>✓</td><td>✓</td><td>✓</td><td class="seam-highlight">✓</td> <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td> </tr> <tr> <td>🛏 Double Room · Superior</td> <td>—</td><td>—</td><td>—</td><td class="seam-highlight">✓</td> <td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td> </tr> </tbody> </table> <p style="text-align:center; margin-top:15px; color:#94a3b8; font-weight:600;"> 🧵 Seam Detected on 4 Aug • Full 9-night stay now possible </p> </div> </div> <!-- 4 Image Placeholders - Forced 2 per row --> <h3 style="margin-top:60px; color:#34d399;">Live Proof from My Real PHP/MySQL Application</h3> <div class="proof-grid"> <div class="proof-item"> <p><strong>Confirmed Booking 1</strong></p> <img src="https://aymansalem.github.io/images/screen-1.png" alt="Real confirmed split-stay booking screenshot"> </div> <div class="proof-item"> <p><strong>Confirmed Booking 2</strong></p> <img src="https://aymansalem.github.io/images/scren-2.png" alt="Second confirmed booking screenshot"> </div> <div class="proof-item"> <p><strong>Reservation Details 1</strong></p> <img src="https://aymansalem.github.io/images/screen-3.png" alt="Reservation table showing split stay"> </div> <div class="proof-item"> <p><strong>Reservation Details 2</strong></p> <img src="https://aymansalem.github.io/images/last-page.png" alt="Second reservation dashboard screenshot"> </div> </div>
-  
 
 
-  
+<!-- ALGORITHM VISUAL -->
 
-<!-- PROOF -->
 <section class="slide">
 
-<h2>What I Built & Shipped in Production</h2>
+<h2>NightSeam™ Algorithm in Action</h2>
 
-<p><strong>Real Results (2016-2025)</strong></p>
+<p>
+The algorithm scans room availability across inventory
+and automatically detects a <span class="highlight">seam</span> where
+room types can be combined into one continuous stay.
+</p>
+
+<div class="calendar">
+
+<div class="scan-line"></div>
+
+<table>
+
+<thead>
+<tr>
+<th>Room Type</th>
+<th>1</th><th>2</th><th>3</th><th>4</th>
+<th>5</th><th>6</th><th>7</th><th>8</th><th>9</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Standard Twin</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td class="seam">✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Superior Double</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td class="seam">✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<p style="text-align:center;margin-top:15px;color:#94a3b8">
+🧵 Seam detected on Aug 4 → 9-night stay possible
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PROOF -->
+
+<section class="slide">
+
+<h2>Real Production Results</h2>
 
 <ul style="font-size:1.3rem">
-<li><span class="highlight">$199,000</span> recovered revenue</li>
-<li>3180+ non-refundable nights booked</li>
-<li>0 cancellations</li>
+<li><span class="highlight">$199,000</span> recovered gap-night revenue</li>
+<li>3,180+ non-refundable nights booked</li>
+<li>0 cancellations • 0 conflicts</li>
 </ul>
-
-
-<h3 style="margin-top:50px;color:#34d399;">Live Application Screens</h3>
 
 <div class="proof-grid">
 
@@ -232,52 +341,40 @@ and recovered <span class="highlight">$199,000</span> in gap nights.
 </section>
 
 
-<!-- VIDEO SECTION -->
+<!-- VIDEO DEMO -->
+
 <section class="slide">
 
 <h2 style="text-align:center">
-NightSeam™ Smart Relocation System – Live Demonstration
+NightSeam™ System Demonstration
 </h2>
 
-<p style="text-align:center;max-width:850px;margin:auto">
-Real implementation of automated room and hotel relocation logic integrated into a hotel booking platform.
-</p>
+<div class="video-hero">
 
-
-<!-- HERO VIDEO -->
-
-<div class="video-hero" style="margin-top:50px">
-
-<iframe
-src="https://www.youtube.com/embed/RLfH3jrtw8w"
-allowfullscreen>
-</iframe>
+<iframe src="https://www.youtube.com/embed/RLfH3jrtw8w" allowfullscreen></iframe>
 
 </div>
-
-
-<!-- VIDEO GALLERY -->
 
 <div class="video-gallery">
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/ILDfbDoxKec" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/ILDfbDoxKec"></iframe>
 <div class="video-title">Hotel Admin Panel</div>
 </div>
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/Hf4D5GCIGTk" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/Hf4D5GCIGTk"></iframe>
 <div class="video-title">Hotel Relocation Feature</div>
 </div>
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/BxfQQJ5iUcM" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/BxfQQJ5iUcM"></iframe>
 <div class="video-title">Platform Administrator Controls</div>
 </div>
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/BBGnJPquc9I" allowfullscreen></iframe>
-<div class="video-title">Final Relocation Pitch Deck</div>
+<iframe src="https://www.youtube.com/embed/BBGnJPquc9I"></iframe>
+<div class="video-title">Pitch Deck Explanation</div>
 </div>
 
 </div>
@@ -286,40 +383,34 @@ allowfullscreen>
 
 
 <!-- VALUE -->
+
 <section class="slide">
 
 <h2>Why I Would Be Valuable to Your Team</h2>
 
 <ul style="font-size:1.3rem;line-height:2rem">
-
-<li>Builder who ships production features</li>
+<li>Builder who ships real production features</li>
 <li>Deep understanding of hotel inventory systems</li>
 <li>Algorithmic thinking applied to real revenue problems</li>
-<li>Fast self-learner</li>
-
+<li>Fast learner</li>
 </ul>
 
 </section>
 
 
-<!-- CTA -->
+<!-- CONTACT -->
+
 <section id="contact" class="slide" style="text-align:center;background:linear-gradient(135deg,#1e40af,#0f172a);">
 
 <h2>Let’s Work Together</h2>
 
-<p style="font-size:1.4rem">
-Open to Innovation, Revenue Systems or Product roles.
-</p>
-
-<button class="cta"
-onclick="window.location.href='mailto:aymanhsalem@gmail.com'">
+<button class="cta" onclick="window.location.href='mailto:aymanhsalem@gmail.com'">
 Schedule a Call
 </button>
 
 <br><br>
 
-<img src="https://aymansalem.github.io/images/QR-120.png"
-style="width:180px;border-radius:12px">
+<img src="https://aymansalem.github.io/images/QR-120.png" style="width:180px;border-radius:12px">
 
 <p style="margin-top:30px">
 
