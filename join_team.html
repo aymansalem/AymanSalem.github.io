@@ -247,24 +247,23 @@ margin:22px 0;
 }
 
 .bar-label{
+text-align:left;
 margin-bottom:6px;
-color:#cbd5f5;
+font-size:14px;
 }
 
 .bar-track{
-height:12px;
-background:#1e293b;
+background:#222;
 border-radius:8px;
 overflow:hidden;
-margin-top:8px;
 }
 
 .bar-fill{
-height:100%;
+height:26px;
 width:0;
-background:linear-gradient(90deg,#caa75e,#f5d38a);
+background:linear-gradient(90deg,#1ec8a5,#3ad6ff);
 border-radius:8px;
-transition:width 1.8s ease;
+transition:width 2s ease;
 }
 
 /* MOBILE */
@@ -437,32 +436,30 @@ Seam detected → Continuous stay created
 
 <!-- IMPACT -->
 
-<section class="slide">
+<section id="impact" style="margin-top:80px;text-align:center;">
 
-<h2 style="text-align:center">Proven Revenue Impact</h2>
+<h2>Proven Revenue Impact</h2>
 
-<div class="revenue-section">
+<div class="revenue-chart">
 
-<h3>Proven Revenue Impact</h3>
-
-<div class="rev-row">
-<span>2016–2017 — $56K · 975 nights</span>
-<div class="rev-bar">
-<div class="rev-fill" data-width="56"></div>
+<div class="bar">
+<div class="bar-label">2016–2017 — $56K · 975 nights</div>
+<div class="bar-track">
+<div class="bar-fill" data-width="60%"></div>
 </div>
 </div>
 
-<div class="rev-row">
-<span>2017–2018 — $68K · 1,005 nights (+21%)</span>
-<div class="rev-bar">
-<div class="rev-fill" data-width="68"></div>
+<div class="bar">
+<div class="bar-label">2017–2018 — $68K · 1,005 nights (+21%)</div>
+<div class="bar-track">
+<div class="bar-fill" data-width="75%"></div>
 </div>
 </div>
 
-<div class="rev-row">
-<span>2018–2019 — $75K · 1,200 nights (+10%)</span>
-<div class="rev-bar">
-<div class="rev-fill" data-width="75"></div>
+<div class="bar">
+<div class="bar-label">2018–2019 — $75K · 1,200 nights (+10%)</div>
+<div class="bar-track">
+<div class="bar-fill" data-width="90%"></div>
 </div>
 </div>
 
@@ -498,20 +495,19 @@ Portfolio
 
 <script>
 
-window.addEventListener("load", function(){
-
 const bars = document.querySelectorAll(".bar-fill");
 
-bars.forEach((bar,i)=>{
-
-let target = bar.getAttribute("data-width");
-
-setTimeout(()=>{
-bar.style.width = target;
-},300 + i*200);
-
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+let bar = entry.target;
+bar.style.width = bar.dataset.width;
+}
+});
 });
 
+bars.forEach(bar=>{
+observer.observe(bar);
 });
 
 </script>
