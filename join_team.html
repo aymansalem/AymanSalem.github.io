@@ -429,6 +429,437 @@ Seam detected → Continuous stay created
 
 <!-- CONTACT -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NightSeam™ | Join the Team – Ayman Salem</title>
+
+<style>
+
+body{
+font-family:'Segoe UI',system-ui,sans-serif;
+margin:0;
+background:#0a0f1c;
+color:#e2e8f0;
+line-height:1.6;
+}
+
+/* Layout */
+
+section{
+padding:90px 30px;
+max-width:1400px;
+margin:auto;
+}
+
+.slide{
+background:#1e2937;
+border-radius:20px;
+padding:55px;
+margin-bottom:60px;
+box-shadow:0 20px 45px rgba(0,0,0,.45);
+border:1px solid #334155;
+}
+
+/* Typography */
+
+h1{
+font-size:3rem;
+margin-bottom:12px;
+background:linear-gradient(90deg,#60a5fa,#34d399);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+h2{
+font-size:2.2rem;
+color:#60a5fa;
+margin-bottom:20px;
+}
+
+.tagline{
+font-size:1.4rem;
+color:#94a3b8;
+}
+
+.highlight{
+color:#34d399;
+font-weight:bold;
+}
+
+/* CTA */
+
+.cta{
+background:linear-gradient(90deg,#3b82f6,#34d399);
+color:white;
+padding:18px 45px;
+font-size:1.3rem;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-weight:600;
+}
+
+.cta:hover{
+transform:scale(1.05);
+}
+
+/* PROOF IMAGES */
+
+.proof-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:30px;
+margin-top:40px;
+}
+
+.proof-item img{
+width:100%;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+/* CALENDAR ANIMATION */
+
+.calendar{
+background:#0f172a;
+padding:30px;
+border-radius:14px;
+position:relative;
+border:2px solid #1e40af;
+overflow:hidden;
+margin-top:40px;
+}
+
+.scan-line{
+position:absolute;
+top:0;
+bottom:0;
+width:5px;
+background:linear-gradient(transparent,#60a5fa,transparent);
+box-shadow:0 0 20px #60a5fa;
+animation:scan 5s linear infinite;
+}
+
+@keyframes scan{
+0%{left:0}
+100%{left:100%}
+}
+
+.seam{
+background:rgba(52,211,153,0.35);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:.5}
+50%{opacity:1}
+100%{opacity:.5}
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:10px;
+text-align:center;
+border:1px solid #334155;
+}
+
+th{
+background:#1e40af;
+}
+
+/* VIDEO HERO */
+
+.video-hero{
+position:relative;
+width:100%;
+padding-bottom:56.25%;
+margin-bottom:50px;
+}
+
+.video-hero iframe{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:0;
+border-radius:12px;
+}
+
+/* VIDEO GALLERY */
+
+.video-gallery{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr;
+gap:50px;
+}
+
+.video-box{
+background:#111;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:.3s;
+}
+
+.video-box:hover{
+transform:translateY(-6px);
+box-shadow:0 25px 60px rgba(0,0,0,0.5);
+}
+
+.video-title{
+font-weight:bold;
+margin-bottom:15px;
+font-size:18px;
+color:#fff;
+}
+
+.video-frame{
+position:relative;
+width:100%;
+padding-bottom:56.25%;
+}
+
+.video-frame iframe{
+position:absolute;
+width:100%;
+height:100%;
+border:0;
+}
+
+/* IMPACT STATS */
+<!--Proven Revenue-->
+  .revenue-section{
+margin-top:40px;
+}
+
+.rev-row{
+margin-bottom:20px;
+font-size:14px;
+}
+
+.rev-bar{
+height:10px;
+background:#e9eef2;
+border-radius:20px;
+overflow:hidden;
+margin-top:6px;
+}
+
+.rev-fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,#caa75e,#e6c98a);
+border-radius:20px;
+transition:width 1.8s ease;
+}
+.impact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+margin-bottom:60px;
+}
+
+.impact-box{
+background:#0f172a;
+padding:30px;
+border-radius:14px;
+text-align:center;
+border:1px solid #334155;
+}
+
+.impact-box h3{
+font-size:2.2rem;
+color:#34d399;
+margin:0;
+}
+
+/* BAR CHART */
+
+.revenue-chart{
+max-width:800px;
+margin:auto;
+}
+
+.bar{
+margin:22px 0;
+}
+
+.bar-label{
+margin-bottom:6px;
+color:#cbd5f5;
+}
+
+.bar-track{
+height:12px;
+background:#1e293b;
+border-radius:8px;
+overflow:hidden;
+margin-top:8px;
+}
+
+.bar-fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,#caa75e,#f5d38a);
+border-radius:8px;
+transition:width 1.8s ease;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+section{padding:60px 18px;}
+
+.proof-grid{grid-template-columns:1fr;}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HERO -->
+
+<section class="slide" style="text-align:center;background:linear-gradient(135deg,#1e3a8a,#0f172a);">
+
+<h1>NightSeam™</h1>
+
+<p class="tagline">
+I bought a booking engine, learned PHP & MySQL from scratch,
+and recovered <span class="highlight">$199,000</span> in gap nights.
+</p>
+
+<p><strong>Ayman Salem</strong> • Our Zanzibar Group • Available Immediately</p>
+
+<button class="cta" onclick="document.getElementById('contact').scrollIntoView()">Let's Talk →</button>
+
+</section>
+
+
+<!-- CALENDAR -->
+
+<section class="slide">
+
+<h2>NightSeam™ Algorithm in Action</h2>
+
+<p>
+Scan Availability → Detect Gap Nights → Stitch Rooms
+</p>
+
+<div class="calendar">
+
+<div class="scan-line"></div>
+
+<table>
+
+<thead>
+<tr>
+<th>Room</th>
+<th>1</th><th>2</th><th>3</th><th>4</th>
+<th>5</th><th>6</th><th>7</th><th>8</th><th>9</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Standard</td>
+<td>✓</td><td>✓</td><td>✓</td>
+<td class="seam">✓</td>
+<td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+</tr>
+
+<tr>
+<td>Superior</td>
+<td>—</td><td>—</td><td>—</td>
+<td class="seam">✓</td>
+<td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<p style="text-align:center;margin-top:15px;color:#94a3b8">
+Seam detected → Continuous stay created
+</p>
+
+</div>
+
+</section>
+
+
+<!-- VIDEO DEMO -->
+
+<section class="slide">
+
+<h2 style="text-align:center">NightSeam™ System Demonstration</h2>
+
+  <div class="video-box">
+<div class="video-title">Idea in 16 Seconds </div>
+<div class="video-frame">
+<iframe src="src="https://www.youtube.com/embed/6wR-rC5o4tc"></iframe>
+</div>
+</div>
+
+
+<div class="video-box">
+<div class="video-title">Hotel Relocation Feature</div>
+<div class="video-frame">
+<iframe src="https://www.youtube.com/embed/Hf4D5GCIGTk"></iframe>
+</div>
+</div>
+
+<div class="video-box">
+<div class="video-title">Platform Admin Controls</div>
+<div class="video-frame">
+<iframe src="https://www.youtube.com/embed/BxfQQJ5iUcM"></iframe>
+</div>
+</div>
+
+<div class="video-box">
+<div class="video-title">Auto Room Relocation</div>
+<div class="video-frame">
+<iframe src="https://www.youtube.com/embed/RLfH3jrtw8w"></iframe>
+</div>
+</div>
+
+<div class="video-box">
+<div class="video-title">Final Pitch Deck</div>
+<div class="video-frame">
+<iframe src="https://www.youtube.com/embed/BBGnJPquc9I"></iframe>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- IMPACT -->
+
+<!--Running Revenue--> <section id="impact" class="slide"> <h2 style="text-align:center;">Proven Revenue Impact</h2> <p style="text-align:center;color:#94a3b8;font-size:1.2rem;margin-bottom:40px;"> Real production results from boutique hotels running NightSeam™ </p> <div class="impact-grid"> <div class="impact-box"> <h3 class="counter" data-target="199000">$0</h3> <p>Revenue Recovered</p> </div> <div class="impact-box"> <h3 class="counter" data-target="3180">0</h3> <p>Room Nights Sold</p> </div> <div class="impact-box"> <h3 class="counter" data-target="8">0</h3> <p>Years Running</p> </div> <div class="impact-box"> <h3 class="counter" data-target="0">0</h3> <p>Guest Complaints</p> </div> </div> <div class="revenue-chart"> <div class="bar"> <div class="bar-label">2016–2017 — $56K · 975 nights</div> <div class="bar-track"> <div class="bar-fill" data-width="60%"></div> </div> </div> <div class="bar"> <div class="bar-label">2017–2018 — $68K · 1,005 nights (+21%)</div> <div class="bar-track"> <div class="bar-fill" data-width="75%"></div> </div> </div> <div class="bar"> <div class="bar-label">2018–2019 — $75K · 1,200 nights (+10%)</div> <div class="bar-track"> <div class="bar-fill" data-width="90%"></div> </div> </div> </div>
+
+
+<!-- CONTACT -->
+
 <section id="contact" class="slide" style="text-align:center">
 
 <h2>Let's Work Together</h2>
@@ -438,6 +869,28 @@ Schedule a Call
 </button>
 
 </section>
+
+
+<script>
+
+window.addEventListener("load", function(){
+
+const bars = document.querySelectorAll(".bar-fill");
+
+bars.forEach((bar,i)=>{
+
+let target = bar.getAttribute("data-width");
+
+setTimeout(()=>{
+bar.style.width = target;
+},300 + i*200);
+
+});
+
+});
+
+</script>
+
 
 
 <script>
