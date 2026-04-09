@@ -210,25 +210,29 @@ border:0;
 
 /* IMPACT STATS */
 
-.impact-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-margin-bottom:60px;
+.revenue-section{
+margin-top:40px;
 }
 
-.impact-box{
-background:#0f172a;
-padding:30px;
-border-radius:14px;
-text-align:center;
-border:1px solid #334155;
+.rev-row{
+margin-bottom:20px;
+font-size:14px;
 }
 
-.impact-box h3{
-font-size:2.2rem;
-color:#34d399;
-margin:0;
+.rev-bar{
+height:10px;
+background:#e9eef2;
+border-radius:20px;
+overflow:hidden;
+margin-top:6px;
+}
+
+.rev-fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,#caa75e,#e6c98a);
+border-radius:20px;
+transition:width 1.8s ease;
 }
 
 /* BAR CHART */
@@ -270,7 +274,35 @@ section{padding:60px 18px;}
 .proof-grid{grid-template-columns:1fr;}
 
 }
+<!--Contact-->
+  .contact-links{
+text-align:center;
+margin-top:80px;
+}
 
+.contact-grid{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+.contact-btn{
+padding:12px 28px;
+border:1px solid #caa75e;
+border-radius:8px;
+color:#caa75e;
+text-decoration:none;
+font-weight:600;
+transition:all .3s ease;
+}
+
+.contact-btn:hover{
+background:#caa75e;
+color:#0f172a;
+transform:translateY(-2px);
+}
 </style>
 </head>
 
@@ -407,45 +439,29 @@ Seam detected → Continuous stay created
 
 <h2 style="text-align:center">Proven Revenue Impact</h2>
 
-<div class="impact-grid">
+<div class="revenue-section">
 
-<div class="impact-box">
-<h3 class="counter" data-target="199000">0</h3>
-<p>Revenue Recovered</p>
+<h3>Proven Revenue Impact</h3>
+
+<div class="rev-row">
+<span>2016–2017 — $56K · 975 nights</span>
+<div class="rev-bar">
+<div class="rev-fill" data-width="56"></div>
+</div>
 </div>
 
-<div class="impact-box">
-<h3 class="counter" data-target="3180">0</h3>
-<p>Room Nights</p>
+<div class="rev-row">
+<span>2017–2018 — $68K · 1,005 nights (+21%)</span>
+<div class="rev-bar">
+<div class="rev-fill" data-width="68"></div>
+</div>
 </div>
 
-<div class="impact-box">
-<h3 class="counter" data-target="8">0</h3>
-<p>Years Running</p>
+<div class="rev-row">
+<span>2018–2019 — $75K · 1,200 nights (+10%)</span>
+<div class="rev-bar">
+<div class="rev-fill" data-width="75"></div>
 </div>
-
-<div class="impact-box">
-<h3 class="counter" data-target="0">0</h3>
-<p>Guest Complaints</p>
-</div>
-
-</div>
-
-<div class="revenue-chart">
-
-<div class="bar">
-<div class="bar-label">2016–2017 — $56K · 975 nights</div>
-<div class="bar-track"><div class="bar-fill" data-width="60%"></div></div>
-</div>
-
-<div class="bar">
-<div class="bar-label">2017–2018 — $68K · 1,005 nights (+21%)</div>
-<div class="bar-track"><div class="bar-fill" data-width="75%"></div></div>
-</div>
-
-<div class="bar">
-<div class="bar-label">2018–2019 — $75K · 1,200 nights (+10%)</div>
-<div class="bar-track"><div class="bar-fill" data-width="90%"></div></div>
 </div>
 
 </div>
@@ -455,52 +471,43 @@ Seam detected → Continuous stay created
 
 <!-- CONTACT -->
 
-<section id="contact" class="slide" style="text-align:center">
+<section class="contact-links">
 
-<h2>Let's Work Together</h2>
+<h2>Contact</h2>
 
-<button class="cta" onclick="window.location.href='mailto:aymanhsalem@gmail.com'">
-Schedule a Call
-</button>
+<div class="contact-grid">
+
+<a href="https://www.linkedin.com/in/ayman-h-salem/" target="_blank" class="contact-btn">
+LinkedIn
+</a>
+
+<a href="mailto:aymansalem@gmail.com" class="contact-btn">
+Email
+</a>
+
+<a href="https://aymansalem.github.io/portfolio.html" target="_blank" class="contact-btn">
+Portfolio
+</a>
+
+</div>
 
 </section>
 
 
 <script>
 
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
+window.addEventListener("load", function(){
 
-entry.target.querySelectorAll('.bar-fill').forEach(bar=>{
-bar.style.width=bar.dataset.width
-})
+const bars = document.querySelectorAll(".rev-fill");
 
-entry.target.querySelectorAll('.counter').forEach(counter=>{
+bars.forEach(bar => {
+let value = bar.getAttribute("data-width");
+setTimeout(() => {
+bar.style.width = value + "%";
+}, 400);
+});
 
-let target=+counter.dataset.target
-let count=0
-let step=target/120
-
-let update=setInterval(()=>{
-count+=step
-if(count>=target){
-counter.innerText=target.toLocaleString()
-clearInterval(update)
-}else{
-counter.innerText=Math.floor(count).toLocaleString()
-}
-},20)
-
-})
-
-observer.unobserve(entry.target)
-
-}
-})
-})
-
-observer.observe(document.querySelector('#impact'))
+});
 
 </script>
 
