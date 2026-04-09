@@ -472,39 +472,18 @@ Schedule a Call
 
 <script>
 
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
+window.addEventListener("load", function(){
 
-entry.target.querySelectorAll('.bar-fill').forEach(bar=>{
-bar.style.width=bar.dataset.width
-})
+const bars = document.querySelectorAll(".rev-fill");
 
-entry.target.querySelectorAll('.counter').forEach(counter=>{
+bars.forEach(bar => {
+let value = bar.getAttribute("data-width");
+setTimeout(() => {
+bar.style.width = value + "%";
+}, 400);
+});
 
-let target=+counter.dataset.target
-let count=0
-let step=target/120
-
-let update=setInterval(()=>{
-count+=step
-if(count>=target){
-counter.innerText=target.toLocaleString()
-clearInterval(update)
-}else{
-counter.innerText=Math.floor(count).toLocaleString()
-}
-},20)
-
-})
-
-observer.unobserve(entry.target)
-
-}
-})
-})
-
-observer.observe(document.querySelector('#impact'))
+});
 
 </script>
 
