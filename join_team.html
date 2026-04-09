@@ -6,7 +6,56 @@
 <title>NightSeam™ | Join the Team – Ayman Salem</title>
 
 <style>
+.impact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+margin-bottom:60px;
+}
 
+.impact-box{
+background:#0f172a;
+padding:30px;
+border-radius:14px;
+text-align:center;
+border:1px solid #334155;
+}
+
+.impact-box h3{
+font-size:2.2rem;
+color:#34d399;
+margin:0;
+}
+
+.revenue-chart{
+max-width:800px;
+margin:auto;
+}
+
+.bar{
+margin:22px 0;
+}
+
+.bar-label{
+text-align:left;
+margin-bottom:6px;
+font-size:14px;
+color:#cbd5f5;
+}
+
+.bar-track{
+background:#1e293b;
+border-radius:8px;
+overflow:hidden;
+}
+
+.bar-fill{
+height:26px;
+width:0;
+background:linear-gradient(90deg,#34d399,#60a5fa);
+border-radius:8px;
+transition:width 2s ease;
+}
 body{
 font-family:'Segoe UI',system-ui,sans-serif;
 margin:0;
@@ -146,48 +195,53 @@ background:#1e40af;
 }
 
 /* VIDEO HERO */
-
-.video-hero iframe{
-width:100%;
-height:520px;
-border-radius:14px;
-border:0;
-box-shadow:0 15px 40px rgba(0,0,0,.6);
-}
-
-/* VIDEO GALLERY */
-
 .video-gallery{
+max-width:1100px;
+margin:auto;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
-gap:30px;
-margin-top:50px;
+grid-template-columns:1fr;
+gap:50px;
 }
 
-.video-card{
-background:#111827;
+.video-box{
+background:#111;
+padding:20px;
 border-radius:12px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.35);
-transition:all .35s ease;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:transform .35s ease, box-shadow .35s ease;
 }
 
-.video-card:hover{
-transform:translateY(-6px);
-box-shadow:0 25px 60px rgba(0,0,0,.6);
-}
-
-.video-card iframe{
-width:100%;
-height:260px;
-border:0;
+.video-box:hover{
+transform:translateY(-5px);
+box-shadow:0 25px 60px rgba(0,0,0,0.5);
 }
 
 .video-title{
-padding:14px 18px;
-font-weight:600;
-background:#020617;
+font-weight:bold;
+margin-bottom:15px;
+font-size:18px;
+color:#fff;
 }
+
+.video-frame{
+position:relative;
+width:100%;
+padding-bottom:56.25%;
+height:0;
+overflow:hidden;
+border-radius:10px;
+}
+
+.video-frame iframe{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:0;
+}
+
+</style>
 
 /* MOBILE */
 
@@ -420,121 +474,57 @@ NightSeam™ System Demonstration
 </section>
 
 <!--Running Revenue-->
-  <section id="impact" style="margin-top:80px;text-align:center;">
+<section id="impact" class="slide">
 
-<h2>Proven Revenue Impact</h2>
-
-<p style="font-size:18px;margin-bottom:40px;">
-NightSeam™ turns empty nights into revenue.
+<h2 style="text-align:center;">Proven Revenue Impact</h2>
+<p style="text-align:center;color:#94a3b8;font-size:1.2rem;margin-bottom:40px;">
+Real production results from boutique hotels running NightSeam™
 </p>
 
-<style>
+<div class="impact-grid">
 
-.impact-stats{
-display:flex;
-justify-content:center;
-gap:60px;
-flex-wrap:wrap;
-margin-bottom:60px;
-}
-
-.stat-box{
-background:#111;
-padding:25px;
-border-radius:12px;
-min-width:160px;
-box-shadow:0 10px 25px rgba(0,0,0,.35);
-}
-
-.stat-number{
-font-size:34px;
-font-weight:bold;
-color:#1ec8a5;
-}
-
-.stat-label{
-font-size:14px;
-opacity:.8;
-margin-top:6px;
-}
-
-.revenue-chart{
-max-width:800px;
-margin:auto;
-}
-
-.bar{
-margin:18px 0;
-}
-
-.bar-label{
-text-align:left;
-font-size:14px;
-margin-bottom:6px;
-}
-
-.bar-track{
-background:#222;
-border-radius:8px;
-overflow:hidden;
-}
-
-.bar-fill{
-height:26px;
-background:linear-gradient(90deg,#1ec8a5,#3ad6ff);
-width:0;
-border-radius:8px;
-transition:width 2s ease;
-}
-
-</style>
-
-
-<div class="impact-stats">
-
-<div class="stat-box">
-<div class="stat-number">$199K+</div>
-<div class="stat-label">Revenue Recovered</div>
+<div class="impact-box">
+<h3 class="counter" data-target="199000">$0</h3>
+<p>Revenue Recovered</p>
 </div>
 
-<div class="stat-box">
-<div class="stat-number">3,180+</div>
-<div class="stat-label">Room Nights Sold</div>
+<div class="impact-box">
+<h3 class="counter" data-target="3180">0</h3>
+<p>Room Nights Sold</p>
 </div>
 
-<div class="stat-box">
-<div class="stat-number">0</div>
-<div class="stat-label">Guest Complaints</div>
+<div class="impact-box">
+<h3 class="counter" data-target="8">0</h3>
+<p>Years Running</p>
 </div>
 
-<div class="stat-box">
-<div class="stat-number">8 Years</div>
-<div class="stat-label">Proven Operation</div>
+<div class="impact-box">
+<h3 class="counter" data-target="0">0</h3>
+<p>Guest Complaints</p>
 </div>
 
 </div>
-
 
 <div class="revenue-chart">
 
 <div class="bar">
 <div class="bar-label">2016–2017 — $56K · 975 nights</div>
 <div class="bar-track">
-<div class="bar-fill" style="width:60%"></div>
+<div class="bar-fill" data-width="60%"></div>
 </div>
 </div>
 
 <div class="bar">
 <div class="bar-label">2017–2018 — $68K · 1,005 nights (+21%)</div>
 <div class="bar-track">
-<div class="bar-fill" style="width:75%"></div>
+<div class="bar-fill" data-width="75%"></div>
 </div>
 </div>
 
 <div class="bar">
 <div class="bar-label">2018–2019 — $75K · 1,200 nights (+10%)</div>
 <div class="bar-track">
-<div class="bar-fill" style="width:90%"></div>
+<div class="bar-fill" data-width="90%"></div>
 </div>
 </div>
 
@@ -564,6 +554,42 @@ Portfolio: <b>aymansalem.github.io</b>
 </p>
 
 </section>
+<script>
 
+const bars=document.querySelectorAll(".bar-fill");
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.style.width=entry.target.dataset.width;
+}
+});
+});
+
+bars.forEach(bar=>{
+observer.observe(bar);
+});
+
+const counters=document.querySelectorAll(".counter");
+
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute("data-target");
+const current=+counter.innerText.replace(/,/g,'');
+
+const increment=target/200;
+
+if(current<target){
+counter.innerText=Math.ceil(current+increment).toLocaleString();
+setTimeout(update,10);
+}else{
+counter.innerText=target.toLocaleString();
+}
+};
+
+update();
+});
+
+</script>
 </body>
 </html>
