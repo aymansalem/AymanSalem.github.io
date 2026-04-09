@@ -272,17 +272,19 @@ color:#cbd5f5;
 }
 
 .bar-track{
+height:12px;
 background:#1e293b;
 border-radius:8px;
 overflow:hidden;
+margin-top:8px;
 }
 
 .bar-fill{
-height:26px;
+height:100%;
 width:0;
-background:linear-gradient(90deg,#34d399,#60a5fa);
+background:linear-gradient(90deg,#caa75e,#f5d38a);
 border-radius:8px;
-transition:width 2s ease;
+transition:width 1.8s ease;
 }
 
 /* MOBILE */
@@ -380,7 +382,7 @@ Seam detected → Continuous stay created
 <h2 style="text-align:center">NightSeam™ System Demonstration</h2>
 
 <div class="video-hero">
-<iframe src="https://www.youtube.com/embed/RLfH3jrtw8w"></iframe>
+<iframe src="https://youtu.be/6wR-rC5o4tc?si=WD3E8FqMqWWQFIzC"></iframe>
 </div>
 
 <div class="video-gallery">
@@ -447,13 +449,16 @@ Schedule a Call
 
 window.addEventListener("load", function(){
 
-const bars = document.querySelectorAll(".rev-fill");
+const bars = document.querySelectorAll(".bar-fill");
 
-bars.forEach(bar => {
-let value = bar.getAttribute("data-width");
-setTimeout(() => {
-bar.style.width = value + "%";
-}, 400);
+bars.forEach((bar,i)=>{
+
+let target = bar.getAttribute("data-width");
+
+setTimeout(()=>{
+bar.style.width = target;
+},300 + i*200);
+
 });
 
 });
