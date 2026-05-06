@@ -2,6 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <!--redirect without html-->
+  <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT2VZ3W851"></script>
 <script>
@@ -25,13 +32,7 @@
 
 <!-- Canonical -->
 <link rel="canonical" href="https://aymansalem.github.io/adr" />
-  <!--redirect without html-->
-  <script>
-  if (window.location.pathname.endsWith('.html')) {
-    var newPath = window.location.pathname.replace(/\.html$/, '');
-    window.location.replace(window.location.origin + newPath);
-  }
-</script>
+ 
 
 
 <!-- Meta Tags -->
