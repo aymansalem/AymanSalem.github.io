@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!--redirect without html-->
+  <script>
+  if (window.location.pathname.endsWith('.html')) {
+    var newPath = window.location.pathname.replace(/\.html$/, '');
+    window.location.replace(window.location.origin + newPath);
+  }
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Personal Site - Template</title>
